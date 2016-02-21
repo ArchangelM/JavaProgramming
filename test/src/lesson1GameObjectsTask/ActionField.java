@@ -1,6 +1,7 @@
 /**
  * Created by Rodichka on 21.02.2016.
  */
+package lesson1GameObjectsTask;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -59,7 +60,7 @@ public class ActionField extends JPanel {
 
     public ActionField() throws Exception {
         battleField = new BattleField();
-        mainTank = new Tank();
+        mainTank = new Tank(this, battleField);
         tankBullet = new Bullet();
 
         JFrame frame = new JFrame("BATTLE FIELD, DAY 2");
@@ -121,7 +122,7 @@ public class ActionField extends JPanel {
 
 
     public void processTurn(Tank tank) throws Exception {
-        tank.changeDirection();
+        //tank.turn();
         repaint();
     }
 
