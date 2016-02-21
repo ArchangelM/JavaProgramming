@@ -1,6 +1,8 @@
 /**
  * Created by Rodichka on 21.02.2016.
  */
+package lesson1GameObjectsTask;
+
 public class Bullet {
     private int x;
     private int y;

@@ -1,6 +1,8 @@
 /**
  * Created by Rodichka on 21.02.2016.
  */
+package lesson1GameObjectsTask;
+
 public class BattleField {
     private final int BF_WIDTH = 576;
     private final int BF_HEIGHT = 576;

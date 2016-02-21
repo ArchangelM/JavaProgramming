@@ -1,33 +1,29 @@
 /**
  * Created by Rodichka on 21.02.2016.
  */
-
-import java.util.Random;
-
-import static lesson1GameObjectsTask.ActionField.UP;
-import static lesson1GameObjectsTask.ActionField.DOWN;
-import static lesson1GameObjectsTask.ActionField.LEFT;
-import static lesson1GameObjectsTask.ActionField.RIGHT;
-
-
+package lesson1GameObjectsTask;
 public class Tank {
     private int direction;
 
     private int x;
     private int y;
 
-    private final int speed = 10;
+    private int speed;
 
     ActionField engine;
     BattleField battlefield;
 
     public Tank(ActionField af, BattleField bf) {
         this(af, bf, 128, 512, 1);
+        speed = 10;
+
     }
 
     public Tank(ActionField af, BattleField bf, int x, int y, int direction) {
         this.x = x;
         this.y = y;
+
+        speed = 10;
 
         this.direction = direction;
 
