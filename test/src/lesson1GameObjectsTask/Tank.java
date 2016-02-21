@@ -3,12 +3,19 @@
  */
 package lesson1GameObjectsTask;
 public class Tank {
+
+    final static int UP    = 1;
+    final static int DOWN  = 2;
+    final static int LEFT  = 3;
+    final static int RIGHT = 4;
+
     private int direction;
 
     private int x;
     private int y;
 
     private int speed;
+    private final int step = 1;
 
     ActionField engine;
     BattleField battlefield;
@@ -83,7 +90,28 @@ public class Tank {
         this.y += y;
     }
 
+    ////
+    void moveUp() {
+        y -= step;
+    }
+
+    void moveDown() {
+        y += step;
+    }
+
+    void moveLeft() {
+        x -= step;
+    }
+
+    void moveRight() {
+        x += step;
+    }
+
     //getters & setters
+    void setDirection(int direction) {
+        this.direction = direction;
+    }
+
     public int getDirection() {
         return direction;
     }

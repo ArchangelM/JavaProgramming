@@ -8,7 +8,7 @@ public class Launcher {
             // TODO Auto-generated method stub
             ActionField myGame = new ActionField();
 
-            //myGame.runTheGame();
+            myGame.runTheGame();
         }
 
 }
