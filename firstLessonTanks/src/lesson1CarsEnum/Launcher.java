@@ -6,7 +6,7 @@ package lesson1CarsEnum;
 public class Launcher {
 
     public static void main(String[] args) throws Exception {
-        // TODO Auto-generated method stub
+
         Car myCar = new Car(Colors.MAGENTA, "GM", "Chevy");
         Car friendCar = new Car();
 
