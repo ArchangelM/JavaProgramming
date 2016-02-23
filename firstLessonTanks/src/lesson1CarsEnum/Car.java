@@ -5,9 +5,11 @@ package lesson1CarsEnum;
  */
 public class Car {
     private Colors color;
+    private int gear;
 
     private String manufacturer;
     private String model;
+    private String transmission;
 
     private double maxSpeed;
     private double curSpeed;
@@ -17,17 +19,17 @@ public class Car {
     private double gpsLatitude;
     private double gpsLongitude;
 
+    private int maxGear;
+    private int minGear;
+
     //Constructors
     public Car() {
         color = Colors.GREEN;
         manufacturer = "FORD";
         model = "Fiesta";
+        transmission = "manual";
 
-        gpsLatitude = 50.356107;
-        gpsLongitude = 30.550393;
-        direction = 0;
-        maxSpeed = 200;
-        curSpeed = 0;
+        manufacturing();
     }
 
     public Car(Colors color, String manufacturer, String model) {
@@ -35,15 +37,26 @@ public class Car {
         this.manufacturer = manufacturer;
         this.model = model;
 
+        manufacturing();
+    }
+
+    //methods
+    public void manufacturing() {
         gpsLatitude = 50.356107;
         gpsLongitude = 30.550393;
         direction = 0;
         maxSpeed = 200;
         curSpeed = 0;
+        gear = 0;
 
+        maxGear = 5;
+        minGear = -1;
+
+
+        System.out.println(this.color + " car has manufactured.");
     }
 
-    //methods
+
     public void rePaint(Colors color) {
         System.out.println(this.color + " car is repainted in " + color);
         this.color = color;
@@ -61,14 +74,35 @@ public class Car {
 
     }
 
-    public void moveForward() {
-        System.out.println("The " + color + " car moves in direction of " + direction + " degrees.");
+    public void moveForward(double speed) {
+        System.out.println("The " + color + " car moves in direction of " + direction + " degrees with speed " +
+                speed + " .");
+        if (gear < 1) gear = 1;
+        if (speed < maxSpeed && speed > 0) curSpeed = speed;
+    }
+
+    public void moveBackward(double speed) {
+        System.out.println("The " + color + " car moves in direction of " + (direction+180)+ " degrees with speed " +
+                speed + " .");
+        if (gear > -1) gear = -1;
+        if (speed < maxSpeed && speed > 0) curSpeed = speed;
+    }
+
+    public void changeGearUp() {
+        System.out.println("The " + color + " car gear is up.");
+        if (gear < maxGear) gear += 1;
 
     }
 
-    public void moveBackward() {
-        System.out.println("The " + color + " car moves in direction of " + (direction+180)+ " degrees.");
+    public void changeGearDown() {
+        System.out.println("The " + color + " car gear is down.");
+        if (gear > minGear) gear -= 1;
+    }
 
+    public void breakCar() {
+        System.out.println("The " + color + " car stopped.");
+        curSpeed = 0;
+        gear = 0;
     }
 
     //getters & setters
