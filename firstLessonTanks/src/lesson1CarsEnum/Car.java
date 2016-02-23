@@ -27,7 +27,7 @@ public class Car {
         color = Colors.GREEN;
         manufacturer = "FORD";
         model = "Fiesta";
-        transmission = "manual";
+
 
         manufacturing();
     }
@@ -42,6 +42,8 @@ public class Car {
 
     //methods
     public void manufacturing() {
+        transmission = "manual";
+
         gpsLatitude = 50.356107;
         gpsLongitude = 30.550393;
         direction = 0;
