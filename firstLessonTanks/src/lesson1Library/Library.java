@@ -91,7 +91,7 @@ public class Library {
             i =  lastBookGanreSearch;
 
            while((i < library.length) && (j < books.length)) {
-                if(library[i].getGanre() == ganre)) {
+                if(library[i].getGanre() == ganre) {
                     library[i].copyBook(books[j++]);
                 }
                i++;
@@ -100,13 +100,13 @@ public class Library {
                 lastBookGanreSearch = -1;
                 lastGanre = null;
             }
-            
+
             return books;
         }
         else {
             for(i = 0; i < library.length;i++) {
                 if(library[i].getGanre() == ganre) {
-                    return library[i];
+                    return books;
                 }
 
             }
