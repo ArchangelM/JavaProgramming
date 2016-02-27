@@ -4,15 +4,10 @@ package lesson1Library;
  * Created by Rodichka on 23.02.2016.
  */
 
-import java.io.UnsupportedEncodingException;
-import java.security.*;
 
-import static java.security.MessageDigest.getInstance;
 
 public class Book {
     private int index;
-   // MessageDigest md5Name;
-   // MessageDigest md5Auth;
 
     private String name;
     private String author;
@@ -20,31 +15,30 @@ public class Book {
     private Ganre ganre;
 
 
-/*  http://stackoverflow.com/questions/415953/how-can-i-generate-an-md5-hash  http://devcolibri.com/4604
-    byte[] bytesOfMessage = myString.getBytes("UTF-8");
-    MessageDigest md = MessageDigest.getInstance("MD5");
-    byte[] thedigest = md.digest(bytesOfMessage);
-    If you have a lot of data take a look at the .update(byte[]) method which can be called repeatedly.
-    Then call .digest() to obtain the resulting hash.
-    */
 
-    public void Book() {
+    public Book() {
 
     }
 
-    public void Book(String name, String author, Ganre ganre) throws UnsupportedEncodingException {
+    public Book(String name, String author, Ganre ganre)  {
         setName(name);
         setAuthor(author);
         setGanre(ganre);
-        /*byte[] bytesOfMessage = name.getBytes("UTF-8");
-        md5Name = getInstance("MD5");
-        byte[] thedigest = md5Name.digest(bytesOfMessage);
-        */
     }
 
+    public void copyBook(Book receiverBook) {
+        receiverBook.author = this.author;
+        receiverBook.name = this.name;
+        receiverBook.ganre = this.ganre;
+    }
 
-
-
+    public void  printBook() {
+        System.out.println("Автор: " + author);
+        System.out.println("Наименование: " + name);
+        if(ganre != null) {
+            System.out.println("Жанр: " + ganre);
+        }
+    }
 
     public String getName() {
         return name;

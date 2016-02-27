@@ -10,15 +10,24 @@ public class LauncerLibrary {
 
     public static void main(String[] args) throws Exception {
         // TODO Auto-generated method stub
-        Book[] library = new Book[10];
+        Library library = new Library(18);
+        library.sortGanre();
 
-        String name = "Эдгар По";
-        MessageDigest md5Name;
-        byte[] bytesOfMessage = name.getBytes("UTF-8");
-        md5Name = MessageDigest.getInstance("MD5");
-        byte[] thedigest = md5Name.digest(bytesOfMessage);
+        Book myFavoriteAuthor = library.searchAuthor("Эдгар По 2");
+        myFavoriteAuthor.printBook();
+        System.out.println();
+        Book myFavoriteBook = library.searchName("Очень интересная книга 15");
+        myFavoriteBook.printBook();
+        System.out.println();
+        myFavoriteBook = library.searchName("Очень интересная книга вапр");
+        myFavoriteBook.printBook();
 
-        System.out.println(Arrays.toString(thedigest));
+        Book [] myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
+        for(int i=0;i < myFavoriteGanreBooks.length;i++) {
+            myFavoriteGanreBooks[i].printBook();
+        }
+
+
 
     }
 }
