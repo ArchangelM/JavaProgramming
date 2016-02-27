@@ -19,8 +19,10 @@ public class LauncerLibrary {
         Book myFavoriteBook = library.searchName("Очень интересная книга 15");
         myFavoriteBook.printBook();
         System.out.println();
+        
         myFavoriteBook = library.searchName("Очень интересная книга вапр");
         myFavoriteBook.printBook();
+        System.out.println();
 
         Book [] myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
         for(int i=0;i < myFavoriteGanreBooks.length;i++) {

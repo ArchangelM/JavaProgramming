@@ -85,8 +85,38 @@ public class Library {
 
     public Book[] searchGanre(Ganre ganre) {
         Book [] books = new Book[PACKET_NUM_BOOK];
+        int i = 0;
+        int j = 0;
+        if (lastGanre == ganre) {
+            i =  lastBookGanreSearch;
 
-        for(int i=0;i < PACKET_NUM_BOOK;i++) {
+           while((i < library.length) && (j < books.length)) {
+                if(library[i].getGanre() == ganre)) {
+                    library[i].copyBook(books[j++]);
+                }
+               i++;
+           }
+            if (j < PACKET_NUM_BOOK) {
+                lastBookGanreSearch = -1;
+                lastGanre = null;
+            }
+            
+            return books;
+        }
+        else {
+            for(i = 0; i < library.length;i++) {
+                if(library[i].getGanre() == ganre) {
+                    return library[i];
+                }
+
+            }
+        }
+
+
+
+
+
+        for(int i = 0;i < books.length;i++) {
             books[i] = new Book("В библиотеки нет книг", "необходимого Вам жанра", ganre);
         }
 
