@@ -26,7 +26,15 @@ public class LauncerLibrary {
 
         Book [] myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
         for(int i=0;i < myFavoriteGanreBooks.length;i++) {
-            myFavoriteGanreBooks[i].printBook();
+            if(myFavoriteGanreBooks[i] != null) {
+                myFavoriteGanreBooks[i].printBook();
+            }
+        }
+        myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
+        for(int i=0;i < myFavoriteGanreBooks.length;i++) {
+            if(myFavoriteGanreBooks[i] != null) {
+                myFavoriteGanreBooks[i].printBook();
+            }
         }
 
 

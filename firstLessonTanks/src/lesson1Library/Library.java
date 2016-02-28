@@ -111,6 +111,7 @@ public class Library {
 
              if (lastGanre != ganre) {
                  lastBookGanreSearch = ganreIndex[isGanre];
+                 lastGanre = ganre;
              }
                 //i =  lastBookGanreSearch;
                 for (i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
@@ -120,7 +121,7 @@ public class Library {
                     library[i].copyBook(books[j++]);
 
                 }
-                if (i < ganreIndex[isGanre+1]) {
+                if (i >= ganreIndex[isGanre+1]) {
                     lastBookGanreSearch = -1;
                     lastGanre = null;
                 }
