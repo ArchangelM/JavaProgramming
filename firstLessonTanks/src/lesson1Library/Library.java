@@ -116,8 +116,9 @@ public class Library {
                 for (int i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
                 //while(i < ganreIndex[isGanre+1])
                 {
+                    books[j] = new Book();
                     library[i].copyBook(books[j++]);
-                    j++;
+
                 }
                 if (j < PACKET_NUM_BOOK) {
                     lastBookGanreSearch = -1;
