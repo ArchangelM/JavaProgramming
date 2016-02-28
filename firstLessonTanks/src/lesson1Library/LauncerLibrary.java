@@ -10,7 +10,7 @@ public class LauncerLibrary {
 
     public static void main(String[] args) throws Exception {
         // TODO Auto-generated method stub
-        Library library = new Library(18);
+        Library library = new Library(15);
         library.sortGanre();
 
         Book myFavoriteAuthor = library.searchAuthor("Эдгар По 2");
@@ -28,13 +28,13 @@ public class LauncerLibrary {
         for(int i=0;i < myFavoriteGanreBooks.length;i++) {
             if(myFavoriteGanreBooks[i] != null) {
                 myFavoriteGanreBooks[i].printBook();
-            }
+            }else break;
         }
         myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
         for(int i=0;i < myFavoriteGanreBooks.length;i++) {
             if(myFavoriteGanreBooks[i] != null) {
                 myFavoriteGanreBooks[i].printBook();
-            }
+            } else break;
         }
 
 

@@ -114,14 +114,20 @@ public class Library {
                  lastGanre = ganre;
              }
                 //i =  lastBookGanreSearch;
-                for (i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
+                /*for (i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
                 //while(i < ganreIndex[isGanre+1])
                 {
                     books[j] = new Book();
                     library[i].copyBook(books[j++]);
 
-                }
-                if (i >= ganreIndex[isGanre+1]) {
+                }*/
+            while((lastBookGanreSearch <= ganreIndex[isGanre+1]) && (j < books.length))
+            {
+                books[j] = new Book();
+                library[lastBookGanreSearch++].copyBook(books[j++]);
+
+            }
+                if (lastBookGanreSearch > ganreIndex[isGanre+1]) {
                     lastBookGanreSearch = -1;
                     lastGanre = null;
                 }
