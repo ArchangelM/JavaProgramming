@@ -12,6 +12,9 @@ public class BattleField {
     final static int X_MAX = 8;
     final static int Y_MAX = 8;
 
+    final String DESTRUCTABLE = "BCE"; //коды разрушаемых объектов: кирпич, танк компьютера, штаб
+    final String UN_DESTRUCTABLE = "WS"; //коды не разрушаемых объектов: вода, камни
+
     private String[][] battleField = {
             {"B", "B", " ", "B", " ", "B", " ", "B", "B"},
             {"B", " ", " ", "B", " ", "B", " ", " ", "B"},
@@ -27,7 +30,24 @@ public class BattleField {
     public BattleField() {
 
     }
-
+/*
+    boolean isQuadrantDestructable(int[] quadrantCoord) {
+        if (DESTRUCTABLE.indexOf(battleField[quadrantCoord[QY]][quadrantCoord[QX]]) >= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+*/
+    boolean isQuadrantDestructable(int x, int y) {
+        if (x <= X_MAX && y <= Y_MAX && DESTRUCTABLE.indexOf(battleField[y][x]) >= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     String getQuadrantNum(int x, int y) {
         String horisontalCode = "123456789";
@@ -53,6 +73,26 @@ public class BattleField {
         }
 
         return vertical+horizontal;
+
+    }
+
+    int getQuadrantV(int y) {
+        return y/PIXELS_IN_CELL;
+    }
+
+    int getQuadrantH(int x) {
+        return x/PIXELS_IN_CELL;
+    }
+
+    int getDifferenceH(int curH, int finishH) {
+        if (finishH < 0 || finishH > X_MAX) return 0;
+        else return finishH - curH;
+
+    }
+
+    int getDifferenceV(int curV,int finishV) {
+        if (finishV < 0 || finishV > Y_MAX) return 0;
+        else return finishV - curV;
 
     }
 

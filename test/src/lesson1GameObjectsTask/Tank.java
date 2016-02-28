@@ -2,6 +2,9 @@
  * Created by Rodichka on 21.02.2016.
  */
 package lesson1GameObjectsTask;
+
+import java.util.Random;
+
 public class Tank {
 
     final static int UP    = 1;
@@ -50,7 +53,7 @@ public class Tank {
     }
 
     public void move() throws Exception {
-        engine.processMove(this);
+                engine.processMove(this);
 		/*
 		switch (direction) {
 		case UP:
@@ -73,14 +76,159 @@ public class Tank {
     }
 
 
-    void moveRandom() {
+    void moveRandom() throws Exception {
+        Random r = new Random();
+        int randomDirection;
+        while (true) {
+            randomDirection = r.nextInt(5);
+            if (randomDirection > 0) {
+                turn(randomDirection);
+                move();
+            }
+        }
+    }
+
+    void moveToQuadrant(int v, int h) throws Exception {
+        int tankV = battlefield.getQuadrantV(y);
+        int tankH = battlefield.getQuadrantH(x);
+
+        int difference = battlefield.getDifferenceH(tankH, h);
+        int next = tankH;
+
+        if (difference > 0) {
+            while(difference > 0) {
+                turn(RIGHT);
+                next++;
+
+                if (battlefield.isQuadrantDestructable(next, tankV)) {
+                    fire();
+                }
+
+                move();
+                difference--;
+            }
+        }
+        else if (difference < 0) {
+            while(difference < 0) {
+                turn(LEFT);
+                next--;
+
+                if (battlefield.isQuadrantDestructable(next, tankV)) {
+                    fire();
+                }
+
+                move();
+                difference++;
+            }
+        }
+
+        difference = battlefield.getDifferenceV(tankV, v);
+       // tankH = battlefield.getQuadrantH(x);
+        next = tankV;
+
+        if (difference > 0) {
+            while(difference > 0) {
+                turn(DOWN);
+                next++;
+
+                if (battlefield.isQuadrantDestructable(tankH, next)) {
+                    fire();
+                }
+
+                move();
+                difference--;
+            }
+        }
+        else if (difference < 0) {
+            while (difference < 0) {
+                turn(UP);
+                next--;
+
+                if (battlefield.isQuadrantDestructable(tankH, next)) {
+                    fire();
+                }
+
+                move();
+                difference++;
+            }
+        }
+    }
+
+    void clean() throws Exception {
+        int moveY = 0;
+
+        while(battlefield.getDimentionY() >= moveY) {
+            moveToQuadrant(0, moveY);
+            turn(DOWN);
+            clearWay(8);
+            moveY++;
+        }
 
     }
 
-    void moveToQuadrant(int v, int h) {
-
-
+    void clearWay(int length) throws Exception {
+        while(radar(length)) {
+            fire();
+        }
     }
+
+    boolean radar(int length) {
+        int leftBorder = 0;
+        int rightBorder = battlefield.getDimentionX();
+        int upBorder = 0;
+        int downBorder = battlefield.getDimentionY();
+
+        int beam;
+
+        int tankV = battlefield.getQuadrantV(y);
+        int tankH = battlefield.getQuadrantH(x);
+
+        switch (direction) {
+            case UP:
+                //if (y != upBorder) {
+                if (tankV != upBorder) {
+                    beam = tankV;
+                    while (beam >= upBorder && (tankV - beam) <= length) {
+                        if(battlefield.isQuadrantDestructable(tankH, beam)) return true;
+                        beam--;
+                    }
+                }
+                break;
+            case DOWN:
+               // if (y != downBorder*PIXELS_IN_CELL) {
+                if (tankV != downBorder) {
+                    beam = tankV;
+                    while (beam <= downBorder && (beam - tankV) <= length) {
+                        if(battlefield.isQuadrantDestructable(tankH, beam)) return true;
+                        beam++;
+                    }
+                }
+                break;
+            case LEFT:
+                //if (x != leftBorder) {
+                if (tankH != leftBorder) {
+                    beam = tankH;
+                    while (beam >= leftBorder && (tankH - beam) <= length) {
+                        if(battlefield.isQuadrantDestructable(beam, tankV)) return true;
+                        beam--;
+                    }
+                }
+                break;
+            case RIGHT:
+                //if (x != rightBorder*PIXELS_IN_CELL) {
+                if (tankH != rightBorder) {
+                    beam = tankH;
+                    while (beam <= rightBorder && (beam - tankH) <= length) {
+                        if(battlefield.isQuadrantDestructable(beam, tankV)) return true;
+                        beam++;
+                    }
+                }
+                break;
+        }
+
+        return false;
+    }
+
 
     void updateX(int x) {
         this.x += x;
