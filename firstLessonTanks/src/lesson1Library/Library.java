@@ -110,7 +110,7 @@ public class Library {
             int j = 0;
 
              if (lastGanre != ganre) {
-                 lastBookGanreSearch = 0;
+                 lastBookGanreSearch = ganreIndex[isGanre];
              }
                 //i =  lastBookGanreSearch;
                 for (int i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
