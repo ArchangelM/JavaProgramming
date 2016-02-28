@@ -106,21 +106,21 @@ public class Library {
         int isGanre = 2*ganre.ordinal();
 
         if (ganreIndex[isGanre] != -1) {
-            //int i = 0;
+            int i = 0;
             int j = 0;
 
              if (lastGanre != ganre) {
                  lastBookGanreSearch = ganreIndex[isGanre];
              }
                 //i =  lastBookGanreSearch;
-                for (int i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
+                for (i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
                 //while(i < ganreIndex[isGanre+1])
                 {
                     books[j] = new Book();
                     library[i].copyBook(books[j++]);
 
                 }
-                if (j < PACKET_NUM_BOOK) {
+                if (i < ganreIndex[isGanre+1]) {
                     lastBookGanreSearch = -1;
                     lastGanre = null;
                 }
