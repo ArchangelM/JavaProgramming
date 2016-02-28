@@ -9,7 +9,7 @@ public class Library {
     private final int MAX_BOOKS = 10;
     private final int PACKET_NUM_BOOK = 2;
 
-    int maxBooks;
+    private int maxBooks;
     private Book[] library;
     private Ganre lastGanre; //последний жанр, который искали
     private int lastBookGanreSearch;
