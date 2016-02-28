@@ -14,6 +14,8 @@ public class Library {
     private Ganre lastGanre; //последний жанр, который искали
     private int lastBookGanreSearch;
 
+    private int [] ganreIndex;
+
 
     public Library(){
         library = new Book[MAX_BOOKS];
@@ -25,6 +27,8 @@ public class Library {
             library[i] = new Book(name, author, ganre);
         }
         lastBookGanreSearch = -1;
+
+        ganreIndex = new int[2*MAX_BOOKS];
     }
 
     public Library(int max){
@@ -37,6 +41,12 @@ public class Library {
             library[i] = new Book(name, author, ganre);
         }
         lastBookGanreSearch = -1;
+
+        ganreIndex = new int[2*max];
+
+        for(int i=0;i<2*max;i++) {
+            ganreIndex[i] = -1;
+        }
     }
 
     public void sortGanre() {
@@ -44,6 +54,7 @@ public class Library {
         Book tmpBook = new Book();
         //int counter = 0;
         int forInsert =0;
+        int tmp = forInsert;
 
         for(int i=0;i<Ganre.getNum();i++) {
             for(int j=forInsert;j<maxBooks;j++) {
@@ -51,10 +62,17 @@ public class Library {
                     library[forInsert].copyBook(tmpBook);
                     library[j].copyBook(library[forInsert]);
                     tmpBook.copyBook(library[j]);
+
+                    if (forInsert == tmp) {
+                        ganreIndex[2*i] = j;
+                    }
+
                     forInsert++;
                 }
-            }
 
+            }
+            ganreIndex[2*i+1] = forInsert - 1;
+            tmp = forInsert;
             ganre = Ganre.getNextGanre(ganre);
         }
     }
@@ -85,36 +103,30 @@ public class Library {
 
     public Book[] searchGanre(Ganre ganre) {
         Book [] books = new Book[PACKET_NUM_BOOK];
-        int i = 0;
-        int j = 0;
-        if (lastGanre == ganre) {
-            i =  lastBookGanreSearch;
+        int isGanre = 2*ganre.ordinal();
 
-           while((i < library.length) && (j < books.length)) {
-                if(library[i].getGanre() == ganre) {
+        if (ganreIndex[isGanre] != -1) {
+            //int i = 0;
+            int j = 0;
+
+             if (lastGanre != ganre) {
+                 lastBookGanreSearch = 0;
+             }
+                //i =  lastBookGanreSearch;
+                for (int i = lastBookGanreSearch;i < ganreIndex[isGanre+1] && j < books.length;i++)
+                //while(i < ganreIndex[isGanre+1])
+                {
                     library[i].copyBook(books[j++]);
+                    j++;
                 }
-               i++;
-           }
-            if (j < PACKET_NUM_BOOK) {
-                lastBookGanreSearch = -1;
-                lastGanre = null;
-            }
-
-            return books;
-        }
-        else {
-            for(i = 0; i < library.length;i++) {
-                if(library[i].getGanre() == ganre) {
-                    return books;
+                if (j < PACKET_NUM_BOOK) {
+                    lastBookGanreSearch = -1;
+                    lastGanre = null;
                 }
 
-            }
+                return books;
+
         }
-
-
-
-
 
         for(int i = 0;i < books.length;i++) {
             books[i] = new Book("В библиотеки нет книг", "необходимого Вам жанра", ganre);
