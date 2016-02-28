@@ -1,7 +1,8 @@
-package lesson1Library;
+package lesson1LibraryAlt;
 
-import java.security.*;
-import java.util.Arrays;
+import lesson1Library.Book;
+import lesson1Library.Ganre;
+import lesson1Library.Library;
 
 /**
  * Created by Rodichka on 23.02.2016.
@@ -13,13 +14,13 @@ public class LauncerLibrary {
         Library library = new Library(35);
         library.sortGanre();
 
-        Book myFavoriteAuthor = library.searchAuthor("Эдгар По 2");
+        lesson1Library.Book myFavoriteAuthor = library.searchAuthor("Эдгар По 2");
         myFavoriteAuthor.printBook();
         System.out.println();
-        Book myFavoriteBook = library.searchName("Очень интересная книга 15");
+        lesson1Library.Book myFavoriteBook = library.searchName("Очень интересная книга 15");
         myFavoriteBook.printBook();
         System.out.println();
-        
+
         myFavoriteBook = library.searchName("Очень интересная книга вапр");
         myFavoriteBook.printBook();
         System.out.println();
@@ -28,7 +29,7 @@ public class LauncerLibrary {
         myFavoriteBook.printBook();
         System.out.println();
 
-        Book [] myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
+        Book[] myFavoriteGanreBooks = library.searchGanre(Ganre.COMPUTERS);
         for(int i=0;i < myFavoriteGanreBooks.length;i++) {
             if(myFavoriteGanreBooks[i] != null) {
                 myFavoriteGanreBooks[i].printBook();

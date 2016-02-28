@@ -1,4 +1,7 @@
-package lesson1Library;
+package lesson1LibraryAlt;
+
+import lesson1Library.Book;
+import lesson1Library.Ganre;
 
 import static lesson1Library.Ganre.getSpecGanre;
 
@@ -11,7 +14,7 @@ public class Library {
 
     private int maxBooks;
     private Book[] library;
-    private Ganre lastGanre; //последний жанр, который искали
+    private lesson1Library.Ganre lastGanre; //последний жанр, который искали
     private int lastBookGanreSearch;
 
     private int [] ganreIndex;
@@ -23,12 +26,12 @@ public class Library {
         for(int i=0;i<maxBooks;i++) {
             String name = "Очень интересная книга " + Integer.toString(10+i);
             String author = "Эдгар По " + Integer.toString(i);
-            Ganre ganre  = getSpecGanre(i);
+            lesson1Library.Ganre ganre  = getSpecGanre(i);
             library[i] = new Book(name, author, ganre);
         }
         lastBookGanreSearch = -1;
 
-        ganreIndex = new int[2*Ganre.getNum()];
+        ganreIndex = new int[2* lesson1Library.Ganre.getNum()];
     }
 
     public Library(int max){
@@ -37,7 +40,7 @@ public class Library {
         for(int i=0;i<maxBooks;i++) {
             String name = "Очень интересная книга " + Integer.toString(10+i);
             String author = "Эдгар По " + Integer.toString(i);
-            Ganre ganre  = getSpecGanre(i);
+            lesson1Library.Ganre ganre  = getSpecGanre(i);
             library[i] = new Book(name, author, ganre);
         }
         lastBookGanreSearch = -1;
@@ -50,13 +53,13 @@ public class Library {
     }
 
     public void sortGanre() {
-        Ganre ganre = Ganre.getFirstGanre();
+        lesson1Library.Ganre ganre = lesson1Library.Ganre.getFirstGanre();
         Book tmpBook = new Book();
         //int counter = 0;
         int forInsert =0;
         int tmp = forInsert;
 
-        for(int i=0;i<Ganre.getNum();i++) {
+        for(int i = 0; i< lesson1Library.Ganre.getNum(); i++) {
             for(int j=forInsert;j<maxBooks;j++) {
                 if (library[j].getGanre() == ganre) {
                     library[forInsert].copyBook(tmpBook);
@@ -73,7 +76,7 @@ public class Library {
             }
             ganreIndex[2*i+1] = forInsert - 1;
             tmp = forInsert;
-            ganre = Ganre.getNextGanre(ganre);
+            ganre = lesson1Library.Ganre.getNextGanre(ganre);
         }
     }
 
