@@ -28,7 +28,7 @@ public class Library {
         }
         lastBookGanreSearch = -1;
 
-        ganreIndex = new int[2*MAX_BOOKS];
+        ganreIndex = new int[2*Ganre.getNum()];
     }
 
     public Library(int max){
@@ -64,7 +64,7 @@ public class Library {
                     tmpBook.copyBook(library[j]);
 
                     if (forInsert == tmp) {
-                        ganreIndex[2*i] = j;
+                        ganreIndex[2*i] = tmp;
                     }
 
                     forInsert++;
