@@ -96,8 +96,8 @@ public class Tank {
         int next = tankH;
 
         if (difference > 0) {
+            turn(RIGHT);
             while(difference > 0) {
-                turn(RIGHT);
                 next++;
 
                 if (battlefield.isQuadrantDestructable(next, tankV)) {
@@ -109,8 +109,8 @@ public class Tank {
             }
         }
         else if (difference < 0) {
+            turn(LEFT);
             while(difference < 0) {
-                turn(LEFT);
                 next--;
 
                 if (battlefield.isQuadrantDestructable(next, tankV)) {
@@ -123,12 +123,12 @@ public class Tank {
         }
 
         difference = battlefield.getDifferenceV(tankV, v);
-       // tankH = battlefield.getQuadrantH(x);
+       tankH = battlefield.getQuadrantH(x);
         next = tankV;
 
         if (difference > 0) {
+            turn(DOWN);
             while(difference > 0) {
-                turn(DOWN);
                 next++;
 
                 if (battlefield.isQuadrantDestructable(tankH, next)) {
@@ -140,8 +140,8 @@ public class Tank {
             }
         }
         else if (difference < 0) {
+            turn(UP);
             while (difference < 0) {
-                turn(UP);
                 next--;
 
                 if (battlefield.isQuadrantDestructable(tankH, next)) {

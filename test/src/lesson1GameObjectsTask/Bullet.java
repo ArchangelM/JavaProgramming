@@ -24,7 +24,6 @@ public class Bullet {
 
         this.direction = direction;
 
-        parking();
         speed = 5;
     }
 
@@ -41,7 +40,7 @@ public class Bullet {
         y += deltaY;
     }
 
-    //getters & setters
+   //getters & setters
 
     public int getX() {
         return x;

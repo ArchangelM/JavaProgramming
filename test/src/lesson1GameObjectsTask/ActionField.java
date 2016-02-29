@@ -58,7 +58,7 @@ public class ActionField extends JPanel {
 
 
 
-
+        mainTank.moveToQuadrant(2, 2);
         mainTank.moveToQuadrant(1, 6);
 
         mainTank.moveToQuadrant(1, 3);
@@ -67,6 +67,7 @@ public class ActionField extends JPanel {
         mainTank.moveToQuadrant(4, 4);
 
         mainTank.moveToQuadrant(4, 2);
+        mainTank. clean();
 
     }
 
@@ -86,9 +87,9 @@ public class ActionField extends JPanel {
     }
 
 
-    private boolean processInterception() throws Exception {
-        if (mainTank.getY() < 0 || mainTank.getY() > battleField.getBF_HEIGHT()) return false;
-        if (mainTank.getX() < 0 || mainTank.getX() > battleField.getBF_WIDTH()) return false;
+    private boolean processInterception(Bullet bullet) throws Exception {
+       // if (mainTank.getY() < 0 || mainTank.getY() > battleField.getBF_HEIGHT()) return false;
+      //  if (mainTank.getX() < 0 || mainTank.getX() > battleField.getBF_WIDTH()) return false;
 
         //String bulletQuadrant = getQuadrant(tankBullet.getX(), tankBullet.getY());
 
@@ -96,16 +97,20 @@ public class ActionField extends JPanel {
 
         //if (isQuadrantEqual(bulletQuadrant, curentBulletPosition)) return false;
         //else curentBulletPosition = bulletQuadrant;
-
-        if (isDestructable(tankBullet.getX() , tankBullet.getY())) {
-            destroyQuadrant(tankBullet.getX(), tankBullet.getY());
+        int bH = battleField.getQuadrantH(bullet.getX());
+        int bV = battleField.getQuadrantV(bullet.getY());
+        //if (isDestructable(battleField.getQuadrantH(bullet.getX()), battleField.getQuadrantV(bullet.getY()))) {
+        //    destroyQuadrant(battleField.getQuadrantH(bullet.getX()), battleField.getQuadrantV(bullet.getY()));
+        if (isDestructable(bullet.getX(), bullet.getY())) {
+            destroyQuadrant(bV, bH);
             return true;
         }
         return false;
     }
 
     private boolean isDestructable(int x, int y) {
-        String field = battleField.scanQuadrant(x / PIXELS_IN_CELL + 1, y / PIXELS_IN_CELL + 1);
+        //String field = battleField.scanQuadrant(x / PIXELS_IN_CELL + 1, y / PIXELS_IN_CELL + 1);
+        String field = battleField.scanQuadrant(y / PIXELS_IN_CELL, x / PIXELS_IN_CELL);
         if (DESTRUCTABLE.indexOf(field) >= 0) return true;
         else return false;
     }
@@ -281,7 +286,9 @@ public class ActionField extends JPanel {
         switch (bullet.getDirection()) {
             case UP:
                 //if (mainTank.getY() != upBorder) {
-                while (checkUpBorder(bullet.getY(), upBorder) && !processInterception()) {
+                while (checkUpBorder(bullet.getY(), upBorder) && !processInterception(bullet)) {
+                    bullet.updateY(-1);
+                    tankBullet = bullet;
                     repaint();
                     Thread.sleep(bullet.getSpeed());
                 }
@@ -292,7 +299,9 @@ public class ActionField extends JPanel {
             case DOWN:
                 //if (mainTank.getY() != downBorder) {
 
-                while (checkDownBorder(bullet.getY(), downBorder) && !processInterception()) {
+                while (checkDownBorder(bullet.getY(), downBorder) && !processInterception(bullet)) {
+                    bullet.updateY(1);
+                    tankBullet = bullet;
                     repaint();
                     Thread.sleep(bullet.getSpeed());
                 }
@@ -303,7 +312,9 @@ public class ActionField extends JPanel {
             case LEFT:
                 //if (mainTank.getX() != leftBorder) {
 
-                while (checkLeftBorder(bullet.getX(), leftBorder) && !processInterception()) {
+                while (checkLeftBorder(bullet.getX(), leftBorder) && !processInterception(bullet)) {
+                    bullet.updateX(-1);
+                    tankBullet = bullet;
                     repaint();
                     Thread.sleep(bullet.getSpeed());
                 }
@@ -313,7 +324,9 @@ public class ActionField extends JPanel {
             case RIGHT:
                 //if (mainTank.getX() != rightBorder) {
 
-                while (checkRightBorder(bullet.getX(), rightBorder) && !processInterception()) {
+                while (checkRightBorder(bullet.getX(), rightBorder) && !processInterception(bullet)) {
+                    bullet.updateX(1);
+                    tankBullet = bullet;
                     repaint();
                     Thread.sleep(bullet.getSpeed());
                 }
