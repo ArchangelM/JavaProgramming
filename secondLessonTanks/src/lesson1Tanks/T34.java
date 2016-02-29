@@ -5,7 +5,7 @@ package lesson1Tanks;
  */
 public class T34 extends Tank {
     public T34() {
-        super("маскировка", 4, 50, "км/ч");
+        super("зелёный", 4, 50, "км/ч");
     }
 
     public T34(String color, int crew, int maxSpeed, String speedUnit) {

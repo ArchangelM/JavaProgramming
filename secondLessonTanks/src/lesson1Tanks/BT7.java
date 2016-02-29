@@ -5,7 +5,7 @@ package lesson1Tanks;
  */
 public class BT7 extends Tank {
     public BT7() {
-        super("маскировка", 3, 72, "км/ч");
+        super("белый", 3, 72, "км/ч");
     }
 
     public BT7(String color, int crew, int maxSpeed, String speedUnit) {

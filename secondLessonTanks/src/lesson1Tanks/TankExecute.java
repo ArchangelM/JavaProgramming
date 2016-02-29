@@ -6,7 +6,7 @@ package lesson1Tanks;
 public class TankExecute {
     public static void main(String[] args) {
 
-        Tank [] tanks = new Tank[3];
+        Tank [] tanks = new Tank[2];
         tankInit(tanks);
 
         printTankInfo(tanks);
@@ -19,31 +19,28 @@ public class TankExecute {
         BT7 firstBt = new BT7();
         T34 firstT = new T34();
 
-
-
-    }
-
-    public static void printTankInfo(Tank tank) {
-        if (tank != null) {
-            System.out.println("Танк цвета " + tank.getColor() + ". ");
-            System.out.println("Экипаж составляет " + tank.getCrew() + " человека. ");
-            System.out.println("Максимальная скорость " + tank.getMaxSpeed() + " " + tank.getSpeedUnit() + ".");
-        }
-        else {
-            System.out.print("Пустой танк.");
-        }
+        firstTiger.printTankInfo();
+        firstBt.printTankInfo();
+        firstT.printTankInfo();
     }
 
     public static void printTankInfo(Tank [] tanks) {
         if (tanks != null) {
             for(Tank currentTank:tanks) {
-                printTankInfo(currentTank);
-                System.out.println();
+                if (currentTank != null) {
+                    currentTank.printTankInfo();
+                    System.out.println();
+                }
+                else {
+                    System.out.println("Пустые танки.");
+                    System.out.println();
+                }
             }
 
         }
         else {
-            System.out.println("Пустой массив.");
+            System.out.println("Пустой массив танков.");
+            System.out.println();
         }
 
     }
