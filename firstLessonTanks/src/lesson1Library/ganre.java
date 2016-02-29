@@ -3,7 +3,8 @@ package lesson1Library;
 /**
  * Created by Rodichka on 23.02.2016.
  */
-public enum Ganre {
+//public enum Ganre 
+enum Ganre {
     FANTASY, COMPUTERS, FICTION, FOOD, HISTORY;
 
     private final static int num = 5;

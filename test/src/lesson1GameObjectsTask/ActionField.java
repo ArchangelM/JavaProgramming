@@ -67,7 +67,7 @@ public class ActionField extends JPanel {
         mainTank.moveToQuadrant(4, 4);
 
         mainTank.moveToQuadrant(4, 2);
-        mainTank. clean();
+        mainTank.clean();
 
     }
 
