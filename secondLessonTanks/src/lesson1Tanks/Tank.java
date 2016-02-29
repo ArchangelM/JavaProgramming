@@ -9,15 +9,19 @@ public class Tank {
     private int maxSpeed;
     private String speedUnit;
 
+    private int directionDegrees;
+
     public  Tank() {
-        this("маскировка", 3, 30, "км/ч");
+        this("маскировка", 3, 30, "км/ч", 123);
     }
 
-    public Tank(String color, int crew, int maxSpeed, String speedUnit) {
+    public Tank(String color, int crew, int maxSpeed, String speedUnit, int directionDegrees) {
         this.color = color;
         this.crew = crew;
         this.setMaxSpeed(maxSpeed);
         this.speedUnit = speedUnit;
+
+        this.directionDegrees = directionDegrees;
     }
 
     public void printTankInfo() {
@@ -47,10 +51,21 @@ public class Tank {
         else this.maxSpeed = maxSpeed;
     }
 
+    public void move() {
+        System.out.print(toString());
+        System.out.println(" Танк переместился в направлении " + directionDegrees + " градуса/ов.");
+    }
+
+    @Override
+    public String toString() {
+        String tankIdent = color + " танк c экипажем " + crew + " человека. Развивает макс скорость: " + maxSpeed;
+        return tankIdent;
+    }
+
+
     public int getMaxSpeed() {
         return maxSpeed;
     }
-
 
     public void setSpeedUnit(String speedUnit) {
         this.speedUnit = speedUnit;
@@ -58,5 +73,9 @@ public class Tank {
 
     public String getSpeedUnit() {
         return speedUnit;
+    }
+
+    public int getDirectionDegrees() {
+        return directionDegrees;
     }
 }

@@ -19,9 +19,21 @@ public class TankExecute {
         BT7 firstBt = new BT7();
         T34 firstT = new T34();
 
+        /*
         firstTiger.printTankInfo();
         firstBt.printTankInfo();
         firstT.printTankInfo();
+        */
+
+        System.out.println(tanks[0]);
+        System.out.println(firstTiger);
+        System.out.println(firstBt);
+        System.out.println(firstT);
+
+        firstTiger.move();
+        firstBt.move();
+        firstT.move();
+
     }
 
     public static void printTankInfo(Tank [] tanks) {

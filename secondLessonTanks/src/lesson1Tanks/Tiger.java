@@ -7,12 +7,12 @@ public class Tiger  extends Tank {
     private int armor;
 
     public Tiger() {
-        super("чёрный", 4, 36, "км/ч");
+        super("чёрный", 4, 36, "км/ч", 24);
         armor = 1;
     }
 
-    public Tiger(String color, int crew, int maxSpeed, String speedUnit, int armor) {
-        super(color, crew, maxSpeed, speedUnit);
+    public Tiger(String color, int crew, int maxSpeed, String speedUnit, int armor, int directionDegrees) {
+        super(color, crew, maxSpeed, speedUnit, directionDegrees);
         this.armor = armor;
     }
 
@@ -22,5 +22,15 @@ public class Tiger  extends Tank {
 
     }
 
+    @Override
+    public String toString() {
+        String tigerIdent = "Тигр. " + super.toString() + ". Броня " + armor + ". ";
+        return tigerIdent;
+    }
 
+    @Override
+    public void move() {
+        System.out.print(toString());
+        System.out.println(" Тигр переместился в направлении " + super.getDirectionDegrees() + " градуса/ов.");
+    }
 }
