@@ -7,12 +7,6 @@ import java.util.Random;
 
 public class Tank {
 
-    /*
-    final static int UP    = 1;
-    final static int DOWN  = 2;
-    final static int LEFT  = 3;
-    final static int RIGHT = 4;
-    */
     //private Direction direction;
     protected Direction direction;
 

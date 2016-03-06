@@ -14,12 +14,7 @@ import javax.swing.WindowConstants;
 import java.util.Random;
 
 import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
-/*
-import static lesson1GameObjectsTask.Tank.UP;
-import static lesson1GameObjectsTask.Tank.DOWN;
-import static lesson1GameObjectsTask.Tank.LEFT;
-import static lesson1GameObjectsTask.Tank.RIGHT;
-*/
+
 import static lesson1GameObjectsTask.BattleField.X_MAX;
 import static lesson1GameObjectsTask.BattleField.Y_MAX;
 
@@ -29,14 +24,6 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 //import static lesson1GameObjectsTask.Bullet.BULLET_Y_DIMENTION;
 
 public class ActionField extends JPanel {
-
-    /*
-    //directions
-    final static int UP    = 1;
-    final static int DOWN  = 2;
-    final static int LEFT  = 3;
-    final static int RIGHT = 4;
-    */
 
     private final boolean COLORDED_MODE = false;
 
