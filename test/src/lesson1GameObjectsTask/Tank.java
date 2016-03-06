@@ -13,17 +13,23 @@ public class Tank {
     final static int LEFT  = 3;
     final static int RIGHT = 4;
     */
-    private Direction direction;
+    //private Direction direction;
+    protected Direction direction;
 
-    private int x;
-    private int y;
+    //private int x;
+    //private int y;
+    protected int x;
+    protected int y;
 
-    private int speed;
-    private final int step = 1;
-    private boolean isDestructed;
+    //private int speed;
+    //private final int step = 1;
+    //private boolean isDestructed;
+    protected int speed;
+    protected final int step = 1;
+    protected boolean isDestructed;
 
-    ActionField engine;
-    BattleField battlefield;
+    protected ActionField engine;
+    protected BattleField battlefield;
 
     public Tank(ActionField af, BattleField bf) {
         this(af, bf, 128, 512, Direction.UP);
