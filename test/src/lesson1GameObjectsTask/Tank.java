@@ -52,6 +52,12 @@ public class Tank {
         engine.processFire(bullet);
     }
 
+    public void destroy() throws Exception {
+        engine.destroyTank(x, y);
+        x = -100;
+        y = -100;
+    }
+
     public void move() throws Exception {
                 engine.processMove(this);
 		/*

@@ -61,6 +61,8 @@ public class ActionField extends JPanel {
         mainTank.moveToQuadrant(2, 2);
         mainTank.moveToQuadrant(1, 6);
 
+        mainTank.destroy();
+
         mainTank.moveToQuadrant(1, 3);
 
         mainTank.moveToQuadrant(4, 3);
@@ -122,6 +124,18 @@ public class ActionField extends JPanel {
         Thread.sleep(EXPLOSIVE);
         battleField.updateQuadrant(x, y, " ");
         repaint();
+    }
+
+    public void destroyTank(int x, int y) throws Exception {
+        destroyQuadrant(x, y);
+        /*
+        battleField.updateQuadrant(x, y, "X");
+        tankBullet.parking();
+        repaint();
+        Thread.sleep(EXPLOSIVE);
+        battleField.updateQuadrant(x, y, " ");
+        repaint();
+        */
     }
 
     public String getQuadrant(int x, int y) {
