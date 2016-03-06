@@ -58,8 +58,8 @@ public class ActionField extends JPanel {
 
 
 
-        mainTank.moveToQuadrant(2, 2);
-        mainTank.moveToQuadrant(1, 6);
+        mainTank.moveToQuadrant(2, 4);
+       // mainTank.moveToQuadrant(1, 6);
 
         mainTank.destroy();
 
@@ -119,7 +119,7 @@ public class ActionField extends JPanel {
 
     private void destroyQuadrant(int x, int y) throws Exception {
         battleField.updateQuadrant(x, y, "X");
-        tankBullet.parking();
+        if (tankBullet != null) tankBullet.parking();
         repaint();
         Thread.sleep(EXPLOSIVE);
         battleField.updateQuadrant(x, y, " ");
@@ -127,8 +127,8 @@ public class ActionField extends JPanel {
     }
 
     public void destroyTank(int x, int y) throws Exception {
-        destroyQuadrant(x, y);
-        /*
+        destroyQuadrant(getQuadrantV(y), getQuadrantH(x));
+        /*getQuadrantV
         battleField.updateQuadrant(x, y, "X");
         tankBullet.parking();
         repaint();
@@ -136,6 +136,14 @@ public class ActionField extends JPanel {
         battleField.updateQuadrant(x, y, " ");
         repaint();
         */
+    }
+
+    private int getQuadrantV(int y) {
+        return battleField.getQuadrantV(y);
+    }
+
+    private int getQuadrantH(int x) {
+        return battleField.getQuadrantH(x);
     }
 
     public String getQuadrant(int x, int y) {
@@ -429,19 +437,22 @@ public class ActionField extends JPanel {
             }
         }
 
-        g.setColor(new Color(255, 0, 0));
-        g.fillRect(mainTank.getX(), mainTank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
+        if (!battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X")) {
+            g.setColor(new Color(255, 0, 0));
+            g.fillRect(mainTank.getX(), mainTank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
 
-        g.setColor(new Color(0, 255, 0));
-        if (mainTank.getDirection() == 1) {
-            g.fillRect(mainTank.getX() + 20, mainTank.getY(), 24, 34);
-        } else if (mainTank.getDirection() == 2) {
-            g.fillRect(mainTank.getX() + 20, mainTank.getY() + 30, 24, 34);
-        } else if (mainTank.getDirection() == 3) {
-            g.fillRect(mainTank.getX(), mainTank.getY() + 20, 34, 24);
-        } else {
-            g.fillRect(mainTank.getX() + 30, mainTank.getY() + 20, 34, 24);
+            g.setColor(new Color(0, 255, 0));
+            if (mainTank.getDirection() == 1) {
+                g.fillRect(mainTank.getX() + 20, mainTank.getY(), 24, 34);
+            } else if (mainTank.getDirection() == 2) {
+                        g.fillRect(mainTank.getX() + 20, mainTank.getY() + 30, 24, 34);
+            } else if (mainTank.getDirection() == 3) {
+                        g.fillRect(mainTank.getX(), mainTank.getY() + 20, 34, 24);
+            } else {
+                g.fillRect(mainTank.getX() + 30, mainTank.getY() + 20, 34, 24);
+            }
         }
+
 
         g.setColor(new Color(255, 255, 0));
         g.fillRect(tankBullet.getX(), tankBullet.getY(), BULLET_X_DIMENTION, BULLET_Y_DIMENTION);

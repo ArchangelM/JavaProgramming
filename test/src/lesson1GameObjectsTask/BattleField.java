@@ -105,6 +105,10 @@ public class BattleField {
         return battleField[qx][qy];
     }
 
+    public String scanQuadrantScreenCoords(int x, int y) {
+        return battleField[getQuadrantH(x)][getQuadrantV(y)];
+    }
+
     public void updateQuadrant(int qx, int qy, String newField) {
         battleField[qx][qy] = newField;
     }

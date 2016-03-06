@@ -95,6 +95,9 @@ public class Tank {
     }
 
     void moveToQuadrant(int v, int h) throws Exception {
+        if ((x < 0) || (y < 0)) {
+            return;
+        }
         int tankV = battlefield.getQuadrantV(y);
         int tankH = battlefield.getQuadrantH(x);
 
