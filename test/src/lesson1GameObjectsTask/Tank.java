@@ -1,5 +1,5 @@
 /**
- * Created by Rodichka on 21.02.2016.
+ * Created by Osipov on 21.02.2016.
  */
 package lesson1GameObjectsTask;
 
