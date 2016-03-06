@@ -61,6 +61,7 @@ public class Tank {
             engine.destroyTank(x, y);
             x = -100;
             y = -100;
+            direction = Direction.NONE;
         }
 
     }

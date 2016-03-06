@@ -30,6 +30,8 @@ public class Bullet {
     public void parking() {
         x = -100;
         y = -100;
+
+        direction = Direction.NONE;
     }
 
     public void updateX(int deltaX) {
