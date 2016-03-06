@@ -14,11 +14,12 @@ import javax.swing.WindowConstants;
 import java.util.Random;
 
 import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
+/*
 import static lesson1GameObjectsTask.Tank.UP;
 import static lesson1GameObjectsTask.Tank.DOWN;
 import static lesson1GameObjectsTask.Tank.LEFT;
 import static lesson1GameObjectsTask.Tank.RIGHT;
-
+*/
 import static lesson1GameObjectsTask.BattleField.X_MAX;
 import static lesson1GameObjectsTask.BattleField.Y_MAX;
 
@@ -29,11 +30,13 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 public class ActionField extends JPanel {
 
+    /*
     //directions
     final static int UP    = 1;
     final static int DOWN  = 2;
     final static int LEFT  = 3;
     final static int RIGHT = 4;
+    */
 
     private final boolean COLORDED_MODE = false;
 
@@ -171,7 +174,7 @@ public class ActionField extends JPanel {
 
         int vihod;
 
-        if (tank.getDirection() == UP) {
+        if (tank.getDirection() == Direction.UP) {
             int next = 0;
 
             if (tank.getY() != upBorder) {
@@ -199,7 +202,7 @@ public class ActionField extends JPanel {
                 vihod = 0;
             }
 
-        } else if (tank.getDirection() == DOWN) {
+        } else if (tank.getDirection() == Direction.DOWN) {
             int next = 0;
 
             if (tank.getY() != downBorder) {
@@ -228,7 +231,7 @@ public class ActionField extends JPanel {
                 vihod = 0;
             }
 
-        } else if (tank.getDirection() == LEFT) {
+        } else if (tank.getDirection() == Direction.LEFT) {
             int  next = 0;
 
             if (tank.getX() != leftBorder) {
@@ -259,9 +262,9 @@ public class ActionField extends JPanel {
                 vihod = 0;
             }
 
-        } else if (tank.getDirection() == RIGHT) {
+        } else if (tank.getDirection() == Direction.RIGHT) {
             int  next = 0;
-            tank.setDirection(RIGHT);
+            tank.setDirection(Direction.RIGHT);
 
             if (tank.getX() != rightBorder) {
                 next = tank.getX() + PIXELS_IN_CELL;
@@ -446,11 +449,11 @@ public class ActionField extends JPanel {
                 g.fillRect(mainTank.getX(), mainTank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
 
                 g.setColor(new Color(0, 255, 0));
-                if (mainTank.getDirection() == 1) {
+                if (mainTank.getDirection() == Direction.UP) {
                     g.fillRect(mainTank.getX() + 20, mainTank.getY(), 24, 34);
-                } else if (mainTank.getDirection() == 2) {
+                } else if (mainTank.getDirection() == Direction.DOWN) {
                     g.fillRect(mainTank.getX() + 20, mainTank.getY() + 30, 24, 34);
-                } else if (mainTank.getDirection() == 3) {
+                } else if (mainTank.getDirection() == Direction.LEFT) {
                     g.fillRect(mainTank.getX(), mainTank.getY() + 20, 34, 24);
                 } else {
                     g.fillRect(mainTank.getX() + 30, mainTank.getY() + 20, 34, 24);

@@ -9,16 +9,16 @@ public class Bullet {
 
     private int speed;
 
-    private int direction;
+    private Direction direction;
 
     public Bullet() {
-        direction = 1;
+        direction = Direction.UP;
 
         parking();
         speed = 5;
     }
 
-    public Bullet(int x, int y, int direction) {
+    public Bullet(int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
 
@@ -54,7 +54,7 @@ public class Bullet {
         return speed;
     }
 
-    public int getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 }

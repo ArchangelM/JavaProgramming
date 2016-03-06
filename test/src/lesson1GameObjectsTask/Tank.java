@@ -7,12 +7,13 @@ import java.util.Random;
 
 public class Tank {
 
+    /*
     final static int UP    = 1;
     final static int DOWN  = 2;
     final static int LEFT  = 3;
     final static int RIGHT = 4;
-
-    private int direction;
+    */
+    private Direction direction;
 
     private int x;
     private int y;
@@ -25,12 +26,12 @@ public class Tank {
     BattleField battlefield;
 
     public Tank(ActionField af, BattleField bf) {
-        this(af, bf, 128, 512, 1);
+        this(af, bf, 128, 512, Direction.UP);
         speed = 10;
         isDestructed = false;
     }
 
-    public Tank(ActionField af, BattleField bf, int x, int y, int direction) {
+    public Tank(ActionField af, BattleField bf, int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
 
@@ -43,7 +44,7 @@ public class Tank {
         battlefield = bf;
     }
 
-    public void turn(int direction) throws Exception {
+    public void turn(Direction direction) throws Exception {
         this.direction = direction;
         engine.processTurn(this);
     }
@@ -99,7 +100,21 @@ public class Tank {
         while (true) {
             randomDirection = r.nextInt(5);
             if (randomDirection > 0) {
-                turn(randomDirection);
+
+                switch (randomDirection) {
+                    case 1:
+                        turn(Direction.UP);
+                        break;
+                    case 2:
+                        turn(Direction.DOWN);
+                        break;
+                    case 3:
+                        turn(Direction.LEFT);
+                        break;
+                    case 4:
+                        turn(Direction.RIGHT);
+                        break;
+                }
                 move();
             }
         }
@@ -116,7 +131,7 @@ public class Tank {
         int next = tankH;
 
         if (difference > 0) {
-            turn(RIGHT);
+            turn(Direction.RIGHT);
             while(difference > 0) {
                 next++;
 
@@ -129,7 +144,7 @@ public class Tank {
             }
         }
         else if (difference < 0) {
-            turn(LEFT);
+            turn(Direction.LEFT);
             while(difference < 0) {
                 next--;
 
@@ -147,7 +162,7 @@ public class Tank {
         next = tankV;
 
         if (difference > 0) {
-            turn(DOWN);
+            turn(Direction.DOWN);
             while(difference > 0) {
                 next++;
 
@@ -160,7 +175,7 @@ public class Tank {
             }
         }
         else if (difference < 0) {
-            turn(UP);
+            turn(Direction.UP);
             while (difference < 0) {
                 next--;
 
@@ -179,7 +194,7 @@ public class Tank {
         if (x > 0 && y > 0) {
             while (battlefield.getDimentionY() >= moveY) {
                 moveToQuadrant(0, moveY);
-                turn(DOWN);
+                turn(Direction.DOWN);
                 clearWay(8);
                 moveY++;
             }
@@ -277,11 +292,11 @@ public class Tank {
     }
 
     //getters & setters
-    void setDirection(int direction) {
+    void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    public int getDirection() {
+    public Direction getDirection() {
         return direction;
     }
     public int getX() {
