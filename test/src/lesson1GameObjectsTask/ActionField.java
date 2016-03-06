@@ -57,7 +57,6 @@ public class ActionField extends JPanel {
         //clean(); //bricks destruction
 
 
-
         mainTank.moveToQuadrant(2, 4);
        // mainTank.moveToQuadrant(1, 6);
 
@@ -437,22 +436,27 @@ public class ActionField extends JPanel {
             }
         }
 
-        if (!battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X")) {
-            g.setColor(new Color(255, 0, 0));
-            g.fillRect(mainTank.getX(), mainTank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
+        int x = mainTank.getX();
+        int y = mainTank.getY();
+        // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");
 
-            g.setColor(new Color(0, 255, 0));
-            if (mainTank.getDirection() == 1) {
-                g.fillRect(mainTank.getX() + 20, mainTank.getY(), 24, 34);
-            } else if (mainTank.getDirection() == 2) {
-                        g.fillRect(mainTank.getX() + 20, mainTank.getY() + 30, 24, 34);
-            } else if (mainTank.getDirection() == 3) {
-                        g.fillRect(mainTank.getX(), mainTank.getY() + 20, 34, 24);
-            } else {
-                g.fillRect(mainTank.getX() + 30, mainTank.getY() + 20, 34, 24);
+        if (!mainTank.isDestroyed()) {
+            if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
+                g.setColor(new Color(255, 0, 0));
+                g.fillRect(mainTank.getX(), mainTank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
+
+                g.setColor(new Color(0, 255, 0));
+                if (mainTank.getDirection() == 1) {
+                    g.fillRect(mainTank.getX() + 20, mainTank.getY(), 24, 34);
+                } else if (mainTank.getDirection() == 2) {
+                    g.fillRect(mainTank.getX() + 20, mainTank.getY() + 30, 24, 34);
+                } else if (mainTank.getDirection() == 3) {
+                    g.fillRect(mainTank.getX(), mainTank.getY() + 20, 34, 24);
+                } else {
+                    g.fillRect(mainTank.getX() + 30, mainTank.getY() + 20, 34, 24);
+                }
             }
         }
-
 
         g.setColor(new Color(255, 255, 0));
         g.fillRect(tankBullet.getX(), tankBullet.getY(), BULLET_X_DIMENTION, BULLET_Y_DIMENTION);

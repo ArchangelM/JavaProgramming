@@ -19,6 +19,7 @@ public class Tank {
 
     private int speed;
     private final int step = 1;
+    private boolean isDestructed;
 
     ActionField engine;
     BattleField battlefield;
@@ -26,7 +27,7 @@ public class Tank {
     public Tank(ActionField af, BattleField bf) {
         this(af, bf, 128, 512, 1);
         speed = 10;
-
+        isDestructed = false;
     }
 
     public Tank(ActionField af, BattleField bf, int x, int y, int direction) {
@@ -34,6 +35,7 @@ public class Tank {
         this.y = y;
 
         speed = 10;
+        isDestructed = false;
 
         this.direction = direction;
 
@@ -53,9 +55,18 @@ public class Tank {
     }
 
     public void destroy() throws Exception {
-        engine.destroyTank(x, y);
-        x = -100;
-        y = -100;
+        if (x >= 0 && y >= 0) {
+            isDestructed = true;
+            engine.destroyTank(x, y);
+            x = -100;
+            y = -100;
+        }
+
+    }
+
+    public boolean isDestroyed() {
+        return isDestructed || x < 0 || y < 0;
+
     }
 
     public void move() throws Exception {
@@ -165,12 +176,13 @@ public class Tank {
 
     void clean() throws Exception {
         int moveY = 0;
-
-        while(battlefield.getDimentionY() >= moveY) {
-            moveToQuadrant(0, moveY);
-            turn(DOWN);
-            clearWay(8);
-            moveY++;
+        if (x > 0 && y > 0) {
+            while (battlefield.getDimentionY() >= moveY) {
+                moveToQuadrant(0, moveY);
+                turn(DOWN);
+                clearWay(8);
+                moveY++;
+            }
         }
 
     }
