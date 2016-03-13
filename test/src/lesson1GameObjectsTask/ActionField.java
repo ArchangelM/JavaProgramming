@@ -37,6 +37,7 @@ public class ActionField extends JPanel {
     private final String UN_DESTRUCTABLE = "WS"; //коды не разрушаемых объектов: вода, камни
 
     private final int EXPLOSIVE = 1000;
+    private final int RESURECTION = 3000;
 
     private BattleField battleField;
     private Tank mainTank;
@@ -49,11 +50,17 @@ public class ActionField extends JPanel {
         //clean(); //bricks destruction
 
 
-        mainTank.moveToQuadrant(2, 4);
+        mainTank.moveToQuadrant(1, 4);
        // mainTank.moveToQuadrant(1, 6);
+        mainTank.turn(Direction.LEFT);
+        mainTank.fire();
+        mainTank.fire();
 
-        mainTank.destroy();
+        //aggressor.destroy();
 
+        //mainTank.destroy();
+
+        /*
         mainTank.moveToQuadrant(1, 3);
 
         mainTank.moveToQuadrant(4, 3);
@@ -61,6 +68,7 @@ public class ActionField extends JPanel {
 
         mainTank.moveToQuadrant(4, 2);
         mainTank.clean();
+        */
 
     }
 
@@ -69,7 +77,7 @@ public class ActionField extends JPanel {
         mainTank = new Tank(this, battleField);
         tankBullet = new Bullet();
 
-        aggressor = new Tank(this, battleField, TankType.AGGESSOR);
+        aggressor = new Tank(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
 
         JFrame frame = new JFrame("BATTLE FIELD, DAY 2");
         frame.setLocation(500, 150);
@@ -86,8 +94,8 @@ public class ActionField extends JPanel {
        // if (mainTank.getY() < 0 || mainTank.getY() > battleField.getBF_HEIGHT()) return false;
       //  if (mainTank.getX() < 0 || mainTank.getX() > battleField.getBF_WIDTH()) return false;
 
+        //Interception function
         //String bulletQuadrant = getQuadrant(tankBullet.getX(), tankBullet.getY());
-
         //if (isQuadrantEqual(bulletQuadrant, getQuadrant(mainTank.getX(), mainTank.getY()))) return false;
 
         //if (isQuadrantEqual(bulletQuadrant, curentBulletPosition)) return false;
@@ -100,6 +108,13 @@ public class ActionField extends JPanel {
             destroyQuadrant(bV, bH);
             return true;
         }
+
+        if (Interception(aggressor, bullet)) {
+            aggressor.destroy();
+            Thread.sleep(RESURECTION);
+            aggressor = new Tank(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+            return true;
+        }
         return false;
     }
 
@@ -107,7 +122,18 @@ public class ActionField extends JPanel {
         //String field = battleField.scanQuadrant(x / PIXELS_IN_CELL + 1, y / PIXELS_IN_CELL + 1);
         String field = battleField.scanQuadrant(y / PIXELS_IN_CELL, x / PIXELS_IN_CELL);
         if (DESTRUCTABLE.indexOf(field) >= 0) return true;
-        else return false;
+        else {
+            return false;
+        }
+    }
+
+    private boolean Interception(Tank tank, Bullet bullet) {
+        if (tank.myBullet(bullet)) return false;
+        String bulletQuadrant = getQuadrant(bullet.getX(), bullet.getY());
+
+        if (bulletQuadrant.equals(getQuadrant(tank.getX(), tank.getY()))) return true;
+
+        return false;
     }
 
     private void destroyQuadrant(int x, int y) throws Exception {

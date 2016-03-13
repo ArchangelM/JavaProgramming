@@ -3,6 +3,8 @@
  */
 package lesson1GameObjectsTask;
 
+import java.util.Random;
+
 public class BattleField {
     private final int BF_WIDTH = 576;
     private final int BF_HEIGHT = 576;
@@ -94,6 +96,25 @@ public class BattleField {
         if (finishV < 0 || finishV > Y_MAX) return 0;
         else return finishV - curV;
 
+    }
+
+    public String getRandomLocationAggressor() {
+        Random r = new Random();
+        int randomPlace = r.nextInt(3);
+
+        return "64_64"; //for test
+/*
+        switch (randomPlace) {
+            case 0:
+                return "128_0";
+            case 1:
+                return "384_0";
+            case 2:
+                return "64_64";
+        }
+
+        return "128_0";
+        */
     }
 
 

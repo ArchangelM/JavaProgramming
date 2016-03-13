@@ -25,42 +25,19 @@ public class Tank {
     protected ActionField engine;
     protected BattleField battlefield;
 
+    private Bullet bullet;
+
     public Tank(ActionField af, BattleField bf) {
         this(af, bf, 128, 512, Direction.UP);
         speed = 10;
         isDestructed = false;
     }
 
-    public Tank(ActionField af, BattleField bf, TankType tankType) {
-        this(af, bf, 128, 512, Direction.DOWN);
-        switch (tankType) {
-            case AGGESSOR:
-                Random r = new Random();
-                int randomPlace = r.nextInt(3);
-
-                 switch (randomPlace) {
-                     case 0:
-                         x = 128;
-                         y = 0;
-                         break;
-                     case 1:
-                         x = 384;
-                         y = 0;
-                         break;
-                     case 2:
-                         x = 64;
-                         y = 64;
-                         break;
-                 }
-                break;
-            case PLAYERTANK:
-                direction = Direction.UP;
-                break;
-
-
-        }
-
+    public Tank(ActionField af, BattleField bf, String coord, Direction direction) {
+        this(af, bf, Integer.parseInt(coord.split("_")[0]), Integer.parseInt(coord.split("_")[1]), direction);
     }
+
+
 
     public Tank(ActionField af, BattleField bf, int x, int y, Direction direction) {
         this.x = x;
@@ -82,7 +59,8 @@ public class Tank {
 
 
     public void fire() throws Exception {
-        Bullet bullet = new Bullet(x+25, y+25, direction);
+        //Bullet bullet = new Bullet(x+25, y+25, direction);
+        bullet = new Bullet(x+25, y+25, direction);
         engine.processFire(bullet);
     }
 
@@ -95,6 +73,11 @@ public class Tank {
             direction = Direction.NONE;
         }
 
+    }
+
+    public boolean myBullet(Bullet bullet) {
+        if (bullet == this.bullet) return true;
+        else return false;
     }
 
     public boolean isDestroyed() {
