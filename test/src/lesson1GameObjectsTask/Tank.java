@@ -31,6 +31,37 @@ public class Tank {
         isDestructed = false;
     }
 
+    public Tank(ActionField af, BattleField bf, TankType tankType) {
+        this(af, bf, 128, 512, Direction.DOWN);
+        switch (tankType) {
+            case AGGESSOR:
+                Random r = new Random();
+                int randomPlace = r.nextInt(3);
+
+                 switch (randomPlace) {
+                     case 0:
+                         x = 128;
+                         y = 0;
+                         break;
+                     case 1:
+                         x = 384;
+                         y = 0;
+                         break;
+                     case 2:
+                         x = 64;
+                         y = 64;
+                         break;
+                 }
+                break;
+            case PLAYERTANK:
+                direction = Direction.UP;
+                break;
+
+
+        }
+
+    }
+
     public Tank(ActionField af, BattleField bf, int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
