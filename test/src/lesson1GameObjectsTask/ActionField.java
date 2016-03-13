@@ -55,6 +55,7 @@ public class ActionField extends JPanel {
         mainTank.turn(Direction.LEFT);
         mainTank.fire();
         mainTank.fire();
+        repaint();
 
         //aggressor.destroy();
 
