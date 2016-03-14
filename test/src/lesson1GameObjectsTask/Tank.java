@@ -64,15 +64,20 @@ public class Tank {
         engine.processFire(bullet);
     }
 
-    public void destroy() throws Exception {
+    public boolean destroy() throws Exception {
         if (x >= 0 && y >= 0) {
             isDestructed = true;
             engine.destroyTank(x, y);
             x = -100;
             y = -100;
             direction = Direction.NONE;
+            return true;
         }
+        return false;
+    }
 
+    public boolean hit() throws Exception {
+        return destroy();
     }
 
     public boolean myBullet(Bullet bullet) {

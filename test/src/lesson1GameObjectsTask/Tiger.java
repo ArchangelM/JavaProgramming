@@ -19,4 +19,17 @@ public class Tiger extends Tank {
         this(af, bf, Integer.parseInt(coord.split("_")[0]), Integer.parseInt(coord.split("_")[1]), direction);
     }
 
+    @Override
+    public boolean destroy() throws Exception {
+        if(armor > 0) {
+            armor --;
+            return false;
+        }
+        else return super.destroy();
+    }
+
+    @Override
+    public boolean hit() throws Exception {
+        return destroy();
+    }
 }

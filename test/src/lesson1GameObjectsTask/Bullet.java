@@ -34,6 +34,10 @@ public class Bullet {
         direction = Direction.NONE;
     }
 
+    public void hit() {
+        parking();
+    }
+
     public void updateX(int deltaX) {
         x += deltaX;
     }

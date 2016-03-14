@@ -55,6 +55,7 @@ public class ActionField extends JPanel {
         mainTank.turn(Direction.LEFT);
         mainTank.fire();
         mainTank.fire();
+        mainTank.fire();
         repaint();
 
         //aggressor.destroy();
@@ -110,11 +111,15 @@ public class ActionField extends JPanel {
             return true;
         }
 
-        if (Interception(aggressor, bullet)) {
-            aggressor.destroy();
-            Thread.sleep(RESURECTION);
-            aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
-            return true;
+        if (checkInterception(aggressor, bullet)) {
+            if (aggressor.destroy()) {
+                Thread.sleep(RESURECTION);
+                aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+                return true;
+            } else {
+                bullet.hit();
+                return false;
+            }
         }
         return false;
     }
@@ -128,7 +133,7 @@ public class ActionField extends JPanel {
         }
     }
 
-    private boolean Interception(Tank tank, Bullet bullet) {
+    private boolean checkInterception(Tank tank, Bullet bullet) {
         if (tank.myBullet(bullet)) return false;
         String bulletQuadrant = getQuadrant(bullet.getX(), bullet.getY());
 
