@@ -31,6 +31,6 @@ public class Tiger extends Tank {
             System.out.println("Попадание в тигр!");
             return false;
         }
-        else return destroy();
+        else return super.destroy();
     }
 }
