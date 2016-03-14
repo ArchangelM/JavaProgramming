@@ -21,15 +21,16 @@ public class Tiger extends Tank {
 
     @Override
     public boolean destroy() throws Exception {
-        if(armor > 0) {
-            armor --;
-            return false;
-        }
-        else return super.destroy();
+        return super.destroy();
     }
 
     @Override
-    public boolean hit() throws Exception {
-        return destroy();
+    public boolean stricken() throws Exception {
+        if(armor > 0) {
+            armor --;
+            System.out.println("Попадание в тигр!");
+            return false;
+        }
+        else return destroy();
     }
 }

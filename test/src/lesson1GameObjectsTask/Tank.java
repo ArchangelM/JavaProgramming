@@ -71,12 +71,13 @@ public class Tank {
             x = -100;
             y = -100;
             direction = Direction.NONE;
+            System.out.println("Танк уничтожен!");
             return true;
         }
         return false;
     }
 
-    public boolean hit() throws Exception {
+    public boolean stricken() throws Exception {
         return destroy();
     }
 

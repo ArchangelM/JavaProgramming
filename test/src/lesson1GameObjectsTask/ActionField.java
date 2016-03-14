@@ -112,7 +112,7 @@ public class ActionField extends JPanel {
         }
 
         if (checkInterception(aggressor, bullet)) {
-            if (aggressor.destroy()) {
+            if (aggressor.stricken()) {
                 Thread.sleep(RESURECTION);
                 aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
                 return true;
