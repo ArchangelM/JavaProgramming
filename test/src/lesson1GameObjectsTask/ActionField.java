@@ -43,7 +43,7 @@ public class ActionField extends JPanel {
     private Tank mainTank;
     private Bullet tankBullet;
 
-    private Tank aggressor;
+    private Tiger aggressor;
 
 
     public void runTheGame() throws Exception {
@@ -78,7 +78,7 @@ public class ActionField extends JPanel {
         mainTank = new Tank(this, battleField);
         tankBullet = new Bullet();
 
-        aggressor = new Tank(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+        aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
 
         JFrame frame = new JFrame("BATTLE FIELD, DAY 2");
         frame.setLocation(500, 150);
@@ -113,7 +113,7 @@ public class ActionField extends JPanel {
         if (Interception(aggressor, bullet)) {
             aggressor.destroy();
             Thread.sleep(RESURECTION);
-            aggressor = new Tank(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+            aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
             return true;
         }
         return false;

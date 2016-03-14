@@ -14,4 +14,9 @@ public class Tiger extends Tank {
         super(af, bf, x, y, direction);
         armor = 1;
     }
+
+    public Tiger(ActionField af, BattleField bf, String coord, Direction direction) {
+        this(af, bf, Integer.parseInt(coord.split("_")[0]), Integer.parseInt(coord.split("_")[1]), direction);
+    }
+
 }

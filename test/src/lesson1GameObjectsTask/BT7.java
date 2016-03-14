@@ -12,4 +12,8 @@ public class BT7 extends Tank {
         super(af, bf, x, y, direction);
         speed /= 2;
     }
+
+    public BT7(ActionField af, BattleField bf, String coord, Direction direction) {
+        this(af, bf, Integer.parseInt(coord.split("_")[0]), Integer.parseInt(coord.split("_")[1]), direction);
+    }
 }
