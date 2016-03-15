@@ -7,4 +7,9 @@ public class Shape {
     public void draw() {
         System.out.println("I can draw!");
     }
+
+    public void colorDraw(String color) {
+        System.out.println("I drew " + color + "  the figure!");
+    }
+
 }
