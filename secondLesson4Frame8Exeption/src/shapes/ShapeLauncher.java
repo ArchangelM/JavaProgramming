@@ -5,6 +5,11 @@ package shapes;
  */
 public class ShapeLauncher {
     public static void main(String[] args) throws Exception,InterruptedException {
+        Shape[] shape = null;
+
+        ShapesTemplate field = new ShapesTemplate(shape);
+
+        /*
         Shape shape = new Shape();
         Triangle triangle = new Triangle();
         Rectangle rectangle = new Rectangle();
@@ -37,6 +42,6 @@ public class ShapeLauncher {
         shape_circle.draw();
         shape_circle.colorDraw("black");
         System.out.println("");
-
+*/
     }
 }
