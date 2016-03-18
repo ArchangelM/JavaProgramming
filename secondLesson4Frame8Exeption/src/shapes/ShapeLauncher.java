@@ -4,7 +4,7 @@ package shapes;
  * Created by Osipov on 16.03.2016.
  */
 public class ShapeLauncher {
-    final static int NUM_SHAPES = 3;
+    final static int NUM_SHAPES = 4;
 
     public static void main(String[] args) throws Exception,InterruptedException {
         Shape[] shapes = new Shape[NUM_SHAPES];

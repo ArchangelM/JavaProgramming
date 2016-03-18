@@ -10,6 +10,7 @@ public class ShapeInit {
             shapes[0] = new Circle();
             shapes[1] = new Triangle();
             shapes[2] = new Rectangle();
+            shapes[3] = new Square();
 
         }
     }
