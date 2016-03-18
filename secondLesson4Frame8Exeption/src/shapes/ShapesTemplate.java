@@ -21,7 +21,7 @@ public class ShapesTemplate extends JPanel {
         }
 
         JFrame frame = new JFrame("DAY 6, 2D Graphics");
-        frame.setLocation(750, 150);
+        frame.setLocation(550, 150);
         frame.setMinimumSize(new Dimension(600, 400));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().add(this);
