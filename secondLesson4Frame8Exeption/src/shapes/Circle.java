@@ -1,8 +1,7 @@
 package shapes;
 
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -14,7 +13,11 @@ public class Circle extends Shape {
     @Override
     public void draw(Graphics g) {
         System.out.println("I`m draw circle");
-        g.drawOval(80, 100, 70, 10);
-        repaint();
+
+        g.setColor(new Color(100, 200, 100));
+        g.drawOval(80, 100, 100, 100);
+        g.setColor(new Color(50, 250, 50));
+        g.fillOval(85, 105, 90, 90);
+
     }
 }

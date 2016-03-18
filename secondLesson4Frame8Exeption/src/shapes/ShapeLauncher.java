@@ -4,10 +4,14 @@ package shapes;
  * Created by Osipov on 16.03.2016.
  */
 public class ShapeLauncher {
-    public static void main(String[] args) throws Exception,InterruptedException {
-        Shape[] shape = null;
+    final static int NUM_SHAPES = 3;
 
-        ShapesTemplate field = new ShapesTemplate(shape);
+    public static void main(String[] args) throws Exception,InterruptedException {
+        Shape[] shapes = new Shape[NUM_SHAPES];
+
+        ShapeInit init = new ShapeInit(shapes);
+
+        ShapesTemplate field = new ShapesTemplate(shapes);
 
         /*
         Shape shape = new Shape();

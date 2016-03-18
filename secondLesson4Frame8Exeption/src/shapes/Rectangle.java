@@ -9,7 +9,10 @@ public class Rectangle  extends Shape {
     @Override
     public void draw(Graphics g) {
         System.out.println("I`m draw rectangle");
-        g.drawRect(300, 300, 40,80);
 
+        g.setColor(new Color(100, 100, 200));
+        g.drawRect(300, 150, 70, 120);
+        g.setColor(new Color(50, 50, 250));
+        g.fillRect(305, 155, 60, 110);
     }
 }

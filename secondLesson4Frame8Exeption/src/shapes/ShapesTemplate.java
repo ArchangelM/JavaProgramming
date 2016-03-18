@@ -28,7 +28,7 @@ public class ShapesTemplate extends JPanel {
         frame.pack();
         frame.setVisible(true);
 
-        repaint();
+       repaint();
     }
 
     @Override
