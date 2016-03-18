@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Created by Osipov on 19.03.2016.
  */
-public class Square extends Shape {
+public class Square extends Rectangle {
 
     @Override
     public void draw(Graphics g) {
@@ -14,5 +14,5 @@ public class Square extends Shape {
         g.setColor(new Color(0, 0, 0));
         g.fillRect(205, 55, 80, 80);
     }
-    
+
 }
