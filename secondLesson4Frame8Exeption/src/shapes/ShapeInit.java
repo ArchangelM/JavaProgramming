@@ -5,7 +5,7 @@ package shapes;
  */
 public class ShapeInit {
 
-     public ShapeInit(Shape[] shapes) {
+     public ShapeInit(AbstractShape[] shapes) {
         if (shapes != null) {
             shapes[0] = new Circle();
             shapes[1] = new Triangle();

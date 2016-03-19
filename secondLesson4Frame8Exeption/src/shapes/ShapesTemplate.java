@@ -12,12 +12,12 @@ import javax.swing.WindowConstants;
 
 public class ShapesTemplate extends JPanel {
 
-    private Shape[] shapes;
+    private AbstractShape[] shapes;
 
-    public ShapesTemplate(Shape[] shapes) {
+    public ShapesTemplate(AbstractShape[] shapes) {
         this.shapes = shapes;
         if (shapes == null || shapes.length < 1) {
-            this.shapes = new Shape[0];
+            this.shapes = new AbstractShape[0];
         }
 
         JFrame frame = new JFrame("DAY 6, 2D Graphics");
@@ -33,7 +33,7 @@ public class ShapesTemplate extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        for (Shape s : shapes) {
+        for (AbstractShape s : shapes) {
             s.draw(g);
         }
     }

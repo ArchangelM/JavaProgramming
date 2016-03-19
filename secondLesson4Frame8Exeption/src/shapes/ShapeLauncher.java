@@ -7,19 +7,19 @@ public class ShapeLauncher {
     final static int NUM_SHAPES = 4;
 
     public static void main(String[] args) throws Exception,InterruptedException {
-        Shape[] shapes = new Shape[NUM_SHAPES];
+        AbstractShape[] shapes = new AbstractShape[NUM_SHAPES];
 
         ShapeInit init = new ShapeInit(shapes);
 
         ShapesTemplate field = new ShapesTemplate(shapes);
 
         /*
-        Shape shape = new Shape();
+        AbstractShape shape = new AbstractShape();
         Triangle triangle = new Triangle();
         Rectangle rectangle = new Rectangle();
         Circle circle = new Circle();
 
-        System.out.print("Shape draw: ");
+        System.out.print("AbstractShape draw: ");
         shape.draw();
         shape.colorDraw("green");
         System.out.println("");
@@ -36,7 +36,7 @@ public class ShapeLauncher {
         shape.colorDraw("red");
         System.out.println("");
 
-        Shape shape_circle = new Circle();
+        AbstractShape shape_circle = new Circle();
         System.out.print("Circle draw: ");
         circle.draw();
         circle.colorDraw("yellow");
