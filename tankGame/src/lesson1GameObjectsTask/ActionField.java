@@ -218,7 +218,7 @@ public class ActionField extends JPanel {
             }
             else {
                 System.out.println("Граница поля.");
-                vihod = 0;
+                //vihod = 0;
             }
 
         } else if (tank.getDirection() == Direction.DOWN) {
