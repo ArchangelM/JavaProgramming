@@ -12,7 +12,8 @@ import javax.swing.WindowConstants;
 
 public class ShapesTemplate extends JPanel {
 
-    private AbstractShape[] shapes;
+    //private AbstractShape[] shapes;
+    private Drawable[] shapes;
 
     public ShapesTemplate(AbstractShape[] shapes) {
         this.shapes = shapes;
@@ -33,7 +34,7 @@ public class ShapesTemplate extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        for (AbstractShape s : shapes) {
+        for (Drawable s : shapes) {
             s.draw(g);
         }
     }
