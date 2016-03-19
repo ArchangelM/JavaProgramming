@@ -5,12 +5,12 @@ import java.awt.*;
 /**
  * Created by Osipov on 16.03.2016.
  */
-public abstract class AbstractShape {
+public abstract class AbstractShape implements Drawable {
     protected Color color;
     protected Stroke stroke;
     protected int shapeDepth;
 
-    public abstract void draw(Graphics g);
+   // public abstract void draw(Graphics g);
 
     /*
     public void draw(Graphics g) {

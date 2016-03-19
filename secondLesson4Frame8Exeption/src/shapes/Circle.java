@@ -11,7 +11,7 @@ public class Circle extends AbstractShape {
     public Circle() {
         color = new Color(100, 200, 100);
         setShapeDepth(3);
-        stroke =new BasicStroke(getShapeDepth());
+        stroke = new BasicStroke(getShapeDepth());
     }
 
     @Override

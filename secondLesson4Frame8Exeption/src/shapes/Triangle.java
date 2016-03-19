@@ -11,7 +11,7 @@ public class Triangle  extends AbstractShape {
     private int[] yPos;
 
     public Triangle() {
-        color = new Color(200, 100, 200);
+        color = new Color(0, 100, 200);
         setShapeDepth(2);
         stroke = new BasicStroke(getShapeDepth());
 
