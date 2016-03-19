@@ -10,7 +10,7 @@ public class LauncherGlyph {
 
         System.out.println();
 
-        glyph = new ArrayGlyths();
+        //glyph = new ArrayGlyths();
         glyph.draw();
     }
 
