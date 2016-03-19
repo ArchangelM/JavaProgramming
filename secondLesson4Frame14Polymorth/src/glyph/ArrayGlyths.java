@@ -5,15 +5,20 @@ package glyph;
  */
 public class ArrayGlyths extends Glyph {
     private Glyph[] glyphs;
-    private  String name = "Misha";
+    private String name ="Misha";
 
     public ArrayGlyths() {
     }
 
     @Override
     public void draw() {
-
         name.length();
+/*
+        for (Glyph glyph:
+             glyphs) {
 
+
+        }
+*/
     }
 }

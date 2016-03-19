@@ -10,11 +10,17 @@ public class RoundGlyph extends Glyph {
         System.out.println("RoundGlyph@constructor ");
         draw();
         this.radius = radius;
+        paint();
     }
 
     @Override
     public void draw() {
         System.out.println("RoundGlyph@draw ");
         System.out.println("RoundGlyph [radius:" + radius + "]");
+    }
+
+    @Override
+    public void paint() {
+        System.out.println("RoundGlyph@paint public");
     }
 }
