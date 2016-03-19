@@ -3,12 +3,14 @@
  */
 package lesson1GameObjectsTask;
 
+import java.awt.*;
 import java.util.Random;
 
-public abstract class AbstractTank {
+public abstract class AbstractTank implements Drawable, Destroyable {
 
     //private Direction direction;
     protected Direction direction;
+    protected Color color;
 
     //private int x;
     //private int y;
@@ -23,7 +25,7 @@ public abstract class AbstractTank {
     protected boolean isDestructed;
 
     protected ActionField engine;
-    protected BattleField battlefield;
+    protected BattleField battleField;
 
     private Bullet bullet;
 
@@ -47,7 +49,7 @@ public abstract class AbstractTank {
         this.direction = direction;
 
         engine = af;
-        battlefield = bf;
+        battleField = bf;
     }
 
     public void turn(Direction direction) throws Exception {
@@ -143,10 +145,10 @@ public abstract class AbstractTank {
         if ((x < 0) || (y < 0)) {
             return;
         }
-        int tankV = battlefield.getQuadrantV(y);
-        int tankH = battlefield.getQuadrantH(x);
+        int tankV = battleField.getQuadrantV(y);
+        int tankH = battleField.getQuadrantH(x);
 
-        int difference = battlefield.getDifferenceH(tankH, h);
+        int difference = battleField.getDifferenceH(tankH, h);
         int next = tankH;
 
         if (difference > 0) {
@@ -154,7 +156,7 @@ public abstract class AbstractTank {
             while(difference > 0) {
                 next++;
 
-                if (battlefield.isQuadrantDestructable(next, tankV)) {
+                if (battleField.isQuadrantDestructable(next, tankV)) {
                     fire();
                 }
 
@@ -167,7 +169,7 @@ public abstract class AbstractTank {
             while(difference < 0) {
                 next--;
 
-                if (battlefield.isQuadrantDestructable(next, tankV)) {
+                if (battleField.isQuadrantDestructable(next, tankV)) {
                     fire();
                 }
 
@@ -176,8 +178,8 @@ public abstract class AbstractTank {
             }
         }
 
-        difference = battlefield.getDifferenceV(tankV, v);
-       tankH = battlefield.getQuadrantH(x);
+        difference = battleField.getDifferenceV(tankV, v);
+       tankH = battleField.getQuadrantH(x);
         next = tankV;
 
         if (difference > 0) {
@@ -185,7 +187,7 @@ public abstract class AbstractTank {
             while(difference > 0) {
                 next++;
 
-                if (battlefield.isQuadrantDestructable(tankH, next)) {
+                if (battleField.isQuadrantDestructable(tankH, next)) {
                     fire();
                 }
 
@@ -198,7 +200,7 @@ public abstract class AbstractTank {
             while (difference < 0) {
                 next--;
 
-                if (battlefield.isQuadrantDestructable(tankH, next)) {
+                if (battleField.isQuadrantDestructable(tankH, next)) {
                     fire();
                 }
 
@@ -211,7 +213,7 @@ public abstract class AbstractTank {
     void clean() throws Exception {
         int moveY = 0;
         if (x > 0 && y > 0) {
-            while (battlefield.getDimentionY() >= moveY) {
+            while (battleField.getDimentionY() >= moveY) {
                 moveToQuadrant(0, moveY);
                 turn(Direction.DOWN);
                 clearWay(8);
@@ -229,14 +231,14 @@ public abstract class AbstractTank {
 
     boolean radar(int length) {
         int leftBorder = 0;
-        int rightBorder = battlefield.getDimentionX();
+        int rightBorder = battleField.getDimentionX();
         int upBorder = 0;
-        int downBorder = battlefield.getDimentionY();
+        int downBorder = battleField.getDimentionY();
 
         int beam;
 
-        int tankV = battlefield.getQuadrantV(y);
-        int tankH = battlefield.getQuadrantH(x);
+        int tankV = battleField.getQuadrantV(y);
+        int tankH = battleField.getQuadrantH(x);
 
         switch (direction) {
             case UP:
@@ -244,7 +246,7 @@ public abstract class AbstractTank {
                 if (tankV != upBorder) {
                     beam = tankV;
                     while (beam >= upBorder && (tankV - beam) <= length) {
-                        if(battlefield.isQuadrantDestructable(tankH, beam)) return true;
+                        if(battleField.isQuadrantDestructable(tankH, beam)) return true;
                         beam--;
                     }
                 }
@@ -254,7 +256,7 @@ public abstract class AbstractTank {
                 if (tankV != downBorder) {
                     beam = tankV;
                     while (beam <= downBorder && (beam - tankV) <= length) {
-                        if(battlefield.isQuadrantDestructable(tankH, beam)) return true;
+                        if(battleField.isQuadrantDestructable(tankH, beam)) return true;
                         beam++;
                     }
                 }
@@ -264,7 +266,7 @@ public abstract class AbstractTank {
                 if (tankH != leftBorder) {
                     beam = tankH;
                     while (beam >= leftBorder && (tankH - beam) <= length) {
-                        if(battlefield.isQuadrantDestructable(beam, tankV)) return true;
+                        if(battleField.isQuadrantDestructable(beam, tankV)) return true;
                         beam--;
                     }
                 }
@@ -274,7 +276,7 @@ public abstract class AbstractTank {
                 if (tankH != rightBorder) {
                     beam = tankH;
                     while (beam <= rightBorder && (beam - tankH) <= length) {
-                        if(battlefield.isQuadrantDestructable(beam, tankV)) return true;
+                        if(battleField.isQuadrantDestructable(beam, tankV)) return true;
                         beam++;
                     }
                 }

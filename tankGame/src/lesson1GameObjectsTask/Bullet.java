@@ -3,19 +3,30 @@
  */
 package lesson1GameObjectsTask;
 
-public class Bullet {
+import java.awt.*;
+
+public class Bullet implements Drawable {
+    public static final int BULLET_X_DIMENTION = 14;
+    public static final int BULLET_Y_DIMENTION = 14;
+
+
     private int x;
     private int y;
+    private Color color;
 
     private int speed;
 
     private Direction direction;
 
     public Bullet() {
+        this(-100, -100, Direction.UP);
+        /*
         direction = Direction.UP;
+        color = new Color(255, 255, 0);
 
         parking();
         speed = 5;
+        */
     }
 
     public Bullet(int x, int y, Direction direction) {
@@ -23,6 +34,7 @@ public class Bullet {
         this.y = y;
 
         this.direction = direction;
+        color = new Color(255, 255, 0);
 
         speed = 5;
     }
@@ -62,5 +74,10 @@ public class Bullet {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(color);
+        g.fillRect(x, y, BULLET_X_DIMENTION, BULLET_Y_DIMENTION);
     }
 }

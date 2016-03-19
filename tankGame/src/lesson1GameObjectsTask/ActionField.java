@@ -15,9 +15,10 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 import static lesson1GameObjectsTask.BattleField.X_MAX;
 import static lesson1GameObjectsTask.BattleField.Y_MAX;
+//import static lesson1GameObjectsTask.Bullet.*;
 
-//import static lesson1GameObjectsTask.Bullet.BULLET_X_DIMENTION;
-//import static lesson1GameObjectsTask.Bullet.BULLET_Y_DIMENTION;
+import static lesson1GameObjectsTask.Bullet.BULLET_X_DIMENTION;
+import static lesson1GameObjectsTask.Bullet.BULLET_Y_DIMENTION;
 
 public class ActionField extends JPanel {
 
@@ -26,8 +27,7 @@ public class ActionField extends JPanel {
     private final int BULLET_X_DELTA = 25;
     private final int BULLET_Y_DELTA = 25;
 
-    private final int BULLET_X_DIMENTION = 14;
-    private final int BULLET_Y_DIMENTION = 14;
+
 
     private final String DESTRUCTABLE = "BCE"; //коды разрушаемых объектов: кирпич, танк компьютера, штаб
     private final String UN_DESTRUCTABLE = "WS"; //коды не разрушаемых объектов: вода, камни
@@ -458,50 +458,27 @@ public class ActionField extends JPanel {
             }
         }
 
-        /*
-        int x = mainTank.getX();
-        int y = mainTank.getY();
-        // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");
+        //draw(g, mainTank);
+        //draw(g, aggressor);
+        mainTank.draw(g);
+        aggressor.draw(g);
 
-        if (!mainTank.isDestroyed()) {
-            if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
-                g.setColor(new Color(255, 0, 0));
-                g.fillRect(mainTank.getX(), mainTank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
+        //paintBullet(g, tankBullet);
+        tankBullet.draw(g);
 
-                g.setColor(new Color(0, 255, 0));
-                if (mainTank.getDirection() == Direction.UP) {
-                    g.fillRect(mainTank.getX() + 20, mainTank.getY(), 24, 34);
-                } else if (mainTank.getDirection() == Direction.DOWN) {
-                    g.fillRect(mainTank.getX() + 20, mainTank.getY() + 30, 24, 34);
-                } else if (mainTank.getDirection() == Direction.LEFT) {
-                    g.fillRect(mainTank.getX(), mainTank.getY() + 20, 34, 24);
-                } else {
-                    g.fillRect(mainTank.getX() + 30, mainTank.getY() + 20, 34, 24);
-                }
-            }
-        }
-*/
-        paintTank(g, mainTank);
-        paintTank(g, aggressor);
-
-        paintBullet(g, tankBullet);
-        /*
-        g.setColor(new Color(255, 255, 0));
-        g.fillRect(tankBullet.getX(), tankBullet.getY(), BULLET_X_DIMENTION, BULLET_Y_DIMENTION);
-        */
     }
-
-    protected void paintTank(Graphics g, AbstractTank tank) {
+/*
+    protected void draw(Graphics g, AbstractTank tank) {
         int x = tank.getX();
         int y = tank.getY();
         // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");
 
         if (!tank.isDestroyed()) {
             if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
-                g.setColor(new Color(255, 0, 0));
+                g.setColor(new TankColor(255, 0, 0));
                 g.fillRect(tank.getX(), tank.getY(), PIXELS_IN_CELL, PIXELS_IN_CELL);
 
-                g.setColor(new Color(0, 255, 0));
+                g.setColor(new TankColor(0, 255, 0));
                 if (tank.getDirection() == Direction.UP) {
                     g.fillRect(tank.getX() + 20, tank.getY(), 24, 34);
                 } else if (tank.getDirection() == Direction.DOWN) {
@@ -519,5 +496,5 @@ public class ActionField extends JPanel {
         g.setColor(new Color(255, 255, 0));
         g.fillRect(bullet.getX(), bullet.getY(), BULLET_X_DIMENTION, BULLET_Y_DIMENTION);
     }
-
+*/
 }
