@@ -15,10 +15,10 @@ public class ShapesTemplate extends JPanel {
     //private AbstractShape[] shapes;
     private Drawable[] shapes;
 
-    public ShapesTemplate(AbstractShape[] shapes) {
+    public ShapesTemplate(Drawable[] shapes) {
         this.shapes = shapes;
         if (shapes == null || shapes.length < 1) {
-            this.shapes = new AbstractShape[0];
+            this.shapes = new Drawable[0];
         }
 
         JFrame frame = new JFrame("DAY 6, 2D Graphics");
