@@ -5,7 +5,7 @@ package old;
  */
 public class ActionField {
 /*
-    public void processMove(Tank tank) throws Exception {
+    public void processMove(AbstractTank tank) throws Exception {
         int leftBorder = 0;
         int rightBorder = X_MAX*PIXELS_IN_CELL;
         int upBorder = 0;

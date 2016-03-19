@@ -11,14 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import java.util.Random;
-
 import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 import static lesson1GameObjectsTask.BattleField.X_MAX;
 import static lesson1GameObjectsTask.BattleField.Y_MAX;
-
-import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 //import static lesson1GameObjectsTask.Bullet.BULLET_X_DIMENTION;
 //import static lesson1GameObjectsTask.Bullet.BULLET_Y_DIMENTION;
@@ -40,7 +36,7 @@ public class ActionField extends JPanel {
     private final int RESURECTION = 3000;
 
     private BattleField battleField;
-    private Tank mainTank;
+    private AbstractTank mainTank;
     private Bullet tankBullet;
 
     private Tiger aggressor;
@@ -76,7 +72,7 @@ public class ActionField extends JPanel {
 
     public ActionField() throws Exception {
         battleField = new BattleField();
-        mainTank = new Tank(this, battleField);
+        mainTank = new AbstractTank(this, battleField);
         tankBullet = new Bullet();
 
         aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
@@ -133,7 +129,7 @@ public class ActionField extends JPanel {
         }
     }
 
-    private boolean checkInterception(Tank tank, Bullet bullet) {
+    private boolean checkInterception(AbstractTank tank, Bullet bullet) {
         if (tank.myBullet(bullet)) return false;
         String bulletQuadrant = getQuadrant(bullet.getX(), bullet.getY());
 
@@ -185,11 +181,11 @@ public class ActionField extends JPanel {
     }
 
 
-    public void processTurn(Tank tank) throws Exception {
+    public void processTurn(AbstractTank tank) throws Exception {
         repaint();
     }
 
-    public void processMove(Tank tank) throws Exception {
+    public void processMove(AbstractTank tank) throws Exception {
         int leftBorder = 0;
         int rightBorder = X_MAX*PIXELS_IN_CELL;
         int upBorder = 0;
@@ -495,7 +491,7 @@ public class ActionField extends JPanel {
         */
     }
 
-    protected void paintTank(Graphics g, Tank tank) {
+    protected void paintTank(Graphics g, AbstractTank tank) {
         int x = tank.getX();
         int y = tank.getY();
         // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");

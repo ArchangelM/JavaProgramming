@@ -5,7 +5,7 @@ package lesson1GameObjectsTask;
 
 import java.util.Random;
 
-public class Tank {
+public class AbstractTank {
 
     //private Direction direction;
     protected Direction direction;
@@ -27,19 +27,17 @@ public class Tank {
 
     private Bullet bullet;
 
-    public Tank(ActionField af, BattleField bf) {
+    public AbstractTank(ActionField af, BattleField bf) {
         this(af, bf, 128, 512, Direction.UP);
         speed = 10;
         isDestructed = false;
     }
 
-    public Tank(ActionField af, BattleField bf, String coord, Direction direction) {
+    public AbstractTank(ActionField af, BattleField bf, String coord, Direction direction) {
         this(af, bf, Integer.parseInt(coord.split("_")[0]), Integer.parseInt(coord.split("_")[1]), direction);
     }
 
-
-
-    public Tank(ActionField af, BattleField bf, int x, int y, Direction direction) {
+    public AbstractTank(ActionField af, BattleField bf, int x, int y, Direction direction) {
         this.x = x;
         this.y = y;
 

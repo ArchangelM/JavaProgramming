@@ -3,7 +3,7 @@ package lesson1GameObjectsTask;
 /**
  * Created by Osipov on 07.03.2016.
  */
-public class Tiger extends Tank {
+public class Tiger extends AbstractTank {
     private int armor;
 
     public Tiger(ActionField af, BattleField bf) {
@@ -17,11 +17,6 @@ public class Tiger extends Tank {
 
     public Tiger(ActionField af, BattleField bf, String coord, Direction direction) {
         this(af, bf, Integer.parseInt(coord.split("_")[0]), Integer.parseInt(coord.split("_")[1]), direction);
-    }
-
-    @Override
-    public boolean destroy() throws Exception {
-        return super.destroy();
     }
 
     @Override

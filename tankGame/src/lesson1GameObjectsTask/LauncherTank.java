@@ -3,7 +3,7 @@
  */
 package lesson1GameObjectsTask;
 
-public class Launcher {
+public class LauncherTank {
         public static void main(String[] args) throws Exception {
             // TODO Auto-generated method stub
             ActionField myGame = new ActionField();
