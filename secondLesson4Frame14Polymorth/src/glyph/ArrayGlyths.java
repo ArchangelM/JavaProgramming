@@ -4,7 +4,8 @@ package glyph;
  * Created by Rodichka on 19.03.2016.
  */
 public class ArrayGlyths extends Glyph {
-    Glyph[] glyphs;
+    private Glyph[] glyphs;
+    private  String name = "Misha";
 
     public ArrayGlyths() {
     }
@@ -12,10 +13,7 @@ public class ArrayGlyths extends Glyph {
     @Override
     public void draw() {
 
-        for (Glyph glyph:
-             glyphs) {
-
-        }
+        name.length();
 
     }
 }
