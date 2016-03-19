@@ -5,7 +5,7 @@ package lesson1GameObjectsTask;
 
 import java.util.Random;
 
-public class AbstractTank {
+public abstract class AbstractTank {
 
     //private Direction direction;
     protected Direction direction;
