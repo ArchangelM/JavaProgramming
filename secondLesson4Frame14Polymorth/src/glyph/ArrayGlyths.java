@@ -4,7 +4,7 @@ package glyph;
  * Created by Rodichka on 19.03.2016.
  */
 public class ArrayGlyths extends Glyph {
-    Glyph[] glyphs;
+    private Glyph[] glyphs;
 
     public ArrayGlyths() {
     }
