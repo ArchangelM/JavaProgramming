@@ -16,6 +16,7 @@ public class Tiger extends AbstractTank {
         super(af, bf, x, y, direction);
         armor = 1;
         color = new Color(255, 0, 0);
+        towerColor = new Color(0, 255, 0);
     }
 
     public Tiger(ActionField af, BattleField bf, String coord, Direction direction) {
@@ -32,25 +33,4 @@ public class Tiger extends AbstractTank {
         else return super.destroy();
     }
 
-    public void draw(Graphics g) {
-         // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");
-
-        if (!isDestroyed()) {
-            if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
-                g.setColor(color);
-                g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
-
-                g.setColor(new Color(0, 255, 0));
-                if (direction == Direction.UP) {
-                    g.fillRect(x + 20, y, 24, 34);
-                } else if (direction == Direction.DOWN) {
-                    g.fillRect(x + 20, y + 30, 24, 34);
-                } else if (direction == Direction.LEFT) {
-                    g.fillRect(x, y + 20, 34, 24);
-                } else {
-                    g.fillRect(x + 30, y + 20, 34, 24);
-                }
-            }
-        }
-    }
 }

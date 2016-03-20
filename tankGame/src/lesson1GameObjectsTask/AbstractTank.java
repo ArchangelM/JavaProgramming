@@ -11,6 +11,7 @@ public abstract class AbstractTank implements Drawable, Destroyable {
     //private Direction direction;
     protected Direction direction;
     protected Color color;
+    protected Color towerColor;
 
     //private int x;
     //private int y;
@@ -328,6 +329,28 @@ public abstract class AbstractTank implements Drawable, Destroyable {
     }
     public int getSpeed() {
         return speed;
+    }
+
+    public void draw(Graphics g) {
+        // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");
+
+        if (!isDestroyed()) {
+            if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
+                g.setColor(color);
+                g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
+
+                g.setColor(towerColor);
+                if (direction == Direction.UP) {
+                    g.fillRect(x + 20, y, 24, 34);
+                } else if (direction == Direction.DOWN) {
+                    g.fillRect(x + 20, y + 30, 24, 34);
+                } else if (direction == Direction.LEFT) {
+                    g.fillRect(x, y + 20, 34, 24);
+                } else {
+                    g.fillRect(x + 30, y + 20, 34, 24);
+                }
+            }
+        }
     }
 
 }
