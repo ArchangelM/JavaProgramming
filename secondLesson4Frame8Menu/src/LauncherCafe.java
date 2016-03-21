@@ -3,6 +3,7 @@
  */
 public class LauncherCafe {
     public static void main(String[] args) throws Exception,InterruptedException {
+        Cafe cafe = new Cafe();
 
     }
 }

@@ -1,9 +1,12 @@
 /**
- * Created by Rodichka on 21.03.2016.
+ * Created by Osipov on 21.03.2016.
  */
 public class CafeInit {
 
-    public void storageInit(Ingridient[] ingridients){
+   // public void storageInit(Ingridient[] ingridients){
+   public Ingridient[] storageInit(){
+       Ingridient[] ingridients = new Ingridient[8];
+
         ingridients[0] = new Ingridient("Water", 20*1000d, 0.5/10, 100d, "UAH", "gram");
         ingridients[1] = new Ingridient("Coffee", 500, 5d, 5d, "UAH", "gram");
         ingridients[2] = new Ingridient("Black tea", 100d, 0.45, 1d, "UAH", "gram");
@@ -12,6 +15,8 @@ public class CafeInit {
         ingridients[5] = new Ingridient("Milk", 1000d, 1d, 50d, "UAH", "gram");
         ingridients[6] = new Ingridient("Berhamot", 15d, 5.0, 1d, "UAH", "gram");
         ingridients[7] = new Ingridient("Icecream", 2000, 10, 50d, "UAH", "gram");
+
+       return ingridients;
     }
 
     public void menuInit(Offer[] offers, Ingridient[] ingridients){
@@ -46,7 +51,7 @@ public class CafeInit {
     }
 
     public GoodIngridient[] receptCappuchino(Ingridient[] ingridients){
-        GoodIngridient[] composition = new GoodIngridient[3];
+        GoodIngridient[] composition = new GoodIngridient[4];
 
         composition[0] = new GoodIngridient(ingridients[0], 1);
         composition[1] = new GoodIngridient(ingridients[1], 1);
@@ -57,7 +62,7 @@ public class CafeInit {
     }
 
     public GoodIngridient[] receptMoccachino(Ingridient[] ingridients){
-        GoodIngridient[] composition = new GoodIngridient[3];
+        GoodIngridient[] composition = new GoodIngridient[4];
 
         composition[0] = new GoodIngridient(ingridients[0], 1);
         composition[1] = new GoodIngridient(ingridients[1], 1);
@@ -68,7 +73,7 @@ public class CafeInit {
     }
 
     public GoodIngridient[] receptCoffeeMilk(Ingridient[] ingridients){
-        GoodIngridient[] composition = new GoodIngridient[3];
+        GoodIngridient[] composition = new GoodIngridient[4];
 
         composition[0] = new GoodIngridient(ingridients[0], 1);
         composition[1] = new GoodIngridient(ingridients[1], 1);
@@ -99,7 +104,7 @@ public class CafeInit {
     }
 
     public GoodIngridient[] receptTeaBerhamout(Ingridient[] ingridients){
-        GoodIngridient[] composition = new GoodIngridient[3];
+        GoodIngridient[] composition = new GoodIngridient[4];
 
         composition[0] = new GoodIngridient(ingridients[0], 1);
         composition[1] = new GoodIngridient(ingridients[2], 1);

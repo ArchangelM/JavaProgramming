@@ -31,6 +31,10 @@ public class Storage {
         ingridients[ingridients.length-1] = ingridient;
     }
 
+    public Ingridient[] getIngridients() {
+        return ingridients;
+    }
+
     public Ingridient getIngridient(String ingrName) {
         int i = 0;
 
@@ -42,33 +46,53 @@ public class Storage {
     }
 
     public double getIngridientCost(Ingridient ingridient) {
-        int i = 0;
+        Ingridient ingrTmp= isIngridientInStorage(ingridient);
 
-        while (i < ingridients.length && !ingridient.equals(ingridients[i])) {
-            i++;
-        }
-        if (i < ingridients.length) return ingridients[i].getCost();
+        if (ingrTmp != null) return ingrTmp.getCost();
         return -1d;
     }
 
     public double getIngridientQuantity(Ingridient ingridient) {
-        int i = 0;
+        Ingridient ingrTmp= isIngridientInStorage(ingridient);
 
-        while (i < ingridients.length && !ingridient.equals(ingridients[i])) {
-            i++;
-        }
-        if (i < ingridients.length) return ingridients[i].getQuantity();
+        if (ingrTmp != null) return ingrTmp.getQuantity();
         return -1d;
     }
 
-    public double substractIngridient(Ingridient ingridient) {
-        int i = 0;
+    public void substractIngridient(Ingridient ingridient, double count) {
+        Ingridient ingrTmp= isIngridientInStorage(ingridient);
 
-        while (i < ingridients.length && !ingridient.equals(ingridients[i])) {
-            i++;
+        if (ingrTmp != null) {
+            double quantity = ingrTmp.getQuantity();
+            if (quantity >= count) {
+                ingrTmp.setQuantity(quantity - count);
+            } else {
+                System.out.println("Not enoth " + ingrTmp.getName());
+            }
+        } else {
+            System.out.println("Ingridient " + ingridient.getName() + " not found.");
         }
-        if (i < ingridients.length) return ingridients[i].getQuantity();
-        return -1d;
+
+    }
+
+    public Ingridient isIngridientInStorage(Ingridient ingridient) {
+        for (Ingridient tmp:
+                ingridients) {
+            if (tmp.equals(ingridient)) {
+                return tmp;
+            }
+        }
+        return null;
+    }
+
+    public Ingridient isIngridientInStorage(String ingrName) {
+        for (Ingridient tmp:
+                ingridients) {
+            if (ingrName.equals(tmp.getName())) {
+                return tmp;
+            }
+        }
+        return null;
     }
 
 }
