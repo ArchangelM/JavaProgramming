@@ -1,4 +1,4 @@
-package lesson1GameObjectsTask.Utils;
+package lesson1GameObjectsTask.utils;
 
 import lesson1GameObjectsTask.fields.*;
 

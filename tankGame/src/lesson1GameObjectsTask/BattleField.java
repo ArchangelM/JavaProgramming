@@ -3,7 +3,7 @@
  */
 package lesson1GameObjectsTask;
 
-import lesson1GameObjectsTask.Utils.Utils;
+import lesson1GameObjectsTask.utils.Utils;
 import lesson1GameObjectsTask.fields.FieldCell;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.interfaces.Drawable;
