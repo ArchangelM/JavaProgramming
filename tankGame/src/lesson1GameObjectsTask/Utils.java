@@ -1,7 +1,7 @@
 package lesson1GameObjectsTask;
 
 /**
- * Created by Rodichka on 26.03.2016.
+ * Created by Odsipov on 26.03.2016.
  */
 public class Utils {
 
