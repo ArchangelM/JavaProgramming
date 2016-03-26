@@ -3,6 +3,8 @@
  */
 package lesson1GameObjectsTask;
 
+import lesson1GameObjectsTask.interfaces.Drawable;
+
 import java.awt.*;
 
 public class Bullet implements Drawable {

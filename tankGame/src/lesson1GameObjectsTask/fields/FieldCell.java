@@ -1,4 +1,6 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.fields;
+
+import lesson1GameObjectsTask.interfaces.Drawable;
 
 import java.awt.*;
 
@@ -7,7 +9,7 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 /**
  * Created by Osipov on 26.03.2016.
  */
-public class FieldCell implements Drawable{
+public class FieldCell implements Drawable {
     protected int x;
     protected int y;
 

@@ -1,4 +1,6 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.Utils;
+
+import lesson1GameObjectsTask.fields.*;
 
 /**
  * Created by Odsipov on 26.03.2016.

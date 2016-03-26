@@ -1,4 +1,9 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.tanks;
+
+import lesson1GameObjectsTask.AbstractTank;
+import lesson1GameObjectsTask.ActionField;
+import lesson1GameObjectsTask.BattleField;
+import lesson1GameObjectsTask.Direction;
 
 import java.awt.*;
 

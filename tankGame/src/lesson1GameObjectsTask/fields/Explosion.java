@@ -1,8 +1,6 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.fields;
 
 import java.awt.*;
-
-import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 /**
  * Created by Osipov on 26.03.2016.

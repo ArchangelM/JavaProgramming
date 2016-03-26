@@ -3,6 +3,11 @@
  */
 package lesson1GameObjectsTask;
 
+import lesson1GameObjectsTask.Utils.Utils;
+import lesson1GameObjectsTask.fields.FieldCell;
+import lesson1GameObjectsTask.interfaces.Destroyable;
+import lesson1GameObjectsTask.interfaces.Drawable;
+
 import java.awt.*;
 import java.util.Random;
 
@@ -10,7 +15,7 @@ public class BattleField implements Drawable {
     private final int BF_WIDTH = 576;
     private final int BF_HEIGHT = 576;
 
-    final static int PIXELS_IN_CELL = 64;
+    public final static int PIXELS_IN_CELL = 64;
 
     final static int X_MAX = 8;
     final static int Y_MAX = 8;

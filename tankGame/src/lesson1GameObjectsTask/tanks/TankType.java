@@ -1,4 +1,4 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.tanks;
 
 /**
  * Created by Rodichka on 14.03.2016.

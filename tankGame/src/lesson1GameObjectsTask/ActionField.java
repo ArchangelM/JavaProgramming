@@ -3,6 +3,12 @@
  */
 package lesson1GameObjectsTask;
 
+import lesson1GameObjectsTask.fields.Explosion;
+import lesson1GameObjectsTask.fields.FieldCell;
+import lesson1GameObjectsTask.interfaces.Destroyable;
+import lesson1GameObjectsTask.tanks.T34;
+import lesson1GameObjectsTask.tanks.Tiger;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

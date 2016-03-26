@@ -3,6 +3,10 @@
  */
 package lesson1GameObjectsTask;
 
+import lesson1GameObjectsTask.fields.Explosion;
+import lesson1GameObjectsTask.interfaces.Destroyable;
+import lesson1GameObjectsTask.interfaces.Drawable;
+
 import java.awt.*;
 import java.util.Random;
 

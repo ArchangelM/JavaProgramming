@@ -1,16 +1,17 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.fields;
+
+import lesson1GameObjectsTask.interfaces.Destroyable;
 
 import java.awt.*;
-import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 /**
  * Created by Osipov on 26.03.2016.
  */
-public class Brick extends FieldCell implements Destroyable {
+public class Eagle extends FieldCell implements Destroyable {
 
-    public Brick(int x, int y) {
+    public Eagle(int x, int y) {
         super (x, y);
-        color = new Color(0, 0, 255);
+        color = new Color(200, 0, 200);
     }
 
 

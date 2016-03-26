@@ -1,4 +1,4 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.interfaces;
 
 import java.awt.*;
 

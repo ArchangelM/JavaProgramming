@@ -1,7 +1,9 @@
-package lesson1GameObjectsTask;
+package lesson1GameObjectsTask.fields;
+
+import lesson1GameObjectsTask.fields.FieldCell;
+import lesson1GameObjectsTask.interfaces.Destroyable;
 
 import java.awt.*;
-import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
 /**
  * Created by Rodichka on 26.03.2016.
