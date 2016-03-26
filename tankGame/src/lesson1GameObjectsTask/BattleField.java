@@ -3,9 +3,10 @@
  */
 package lesson1GameObjectsTask;
 
+import java.awt.*;
 import java.util.Random;
 
-public class BattleField {
+public class BattleField implements Drawable {
     private final int BF_WIDTH = 576;
     private final int BF_HEIGHT = 576;
 
@@ -17,7 +18,7 @@ public class BattleField {
     final String DESTRUCTABLE = "BCE"; //коды разрушаемых объектов: кирпич, танк компьютера, штаб
     final String UN_DESTRUCTABLE = "WS"; //коды не разрушаемых объектов: вода, камни
 
-    private FieldCell[][] battleFieldC;
+    private FieldCell[][] battleFieldCell;
 
     private String[][] battleField = {
             {"B", "B", " ", "B", "W", "B", " ", "B", "B"},
@@ -32,24 +33,41 @@ public class BattleField {
     };
 
     public BattleField() {
-        battleFieldC = new FieldCell[X_MAX][Y_MAX];
-        Utils.Init(battleFieldC, battleField);
+        battleFieldCell = new FieldCell[X_MAX+1][Y_MAX+1];
+        Utils.Init(battleFieldCell, battleField);
 
     }
 
-
-/*
-    boolean isQuadrantDestructable(int[] quadrantCoord) {
-        if (DESTRUCTABLE.indexOf(battleField[quadrantCoord[QY]][quadrantCoord[QX]]) >= 0) {
-            return true;
-        }
-        else {
-            return false;
+    @Override
+    public void draw(Graphics g) {
+        for (int i = 0; i < battleFieldCell.length; i++) {
+            for (int j = 0; j < battleFieldCell[i].length; j++) {
+                battleFieldCell[i][j].draw(g);
+            }
         }
     }
-*/
+
+    /*
+        boolean isQuadrantDestructable(int[] quadrantCoord) {
+            if (DESTRUCTABLE.indexOf(battleField[quadrantCoord[QY]][quadrantCoord[QX]]) >= 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        boolean isQuadrantDestructable(int x, int y) {
+            if (x <= X_MAX && y <= Y_MAX && DESTRUCTABLE.indexOf(battleField[y][x]) >= 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    */
     boolean isQuadrantDestructable(int x, int y) {
-        if (x <= X_MAX && y <= Y_MAX && DESTRUCTABLE.indexOf(battleField[y][x]) >= 0) {
+        if (x <= X_MAX && y <= Y_MAX && battleFieldCell[y][x] instanceof Destroyable) {
             return true;
         }
         else {
@@ -123,11 +141,11 @@ public class BattleField {
         */
     }
 
-
+/*
     public BattleField(String [][] battleField) {
         this.battleField = battleField;
     }
-
+/*
     public String scanQuadrant(int qx, int qy) {
         return battleField[qx][qy];
     }
@@ -138,6 +156,19 @@ public class BattleField {
 
     public void updateQuadrant(int qx, int qy, String newField) {
         battleField[qx][qy] = newField;
+    }
+*/
+
+    public FieldCell scanQuadrant(int qx, int qy) {
+    return battleFieldCell[qx][qy];
+}
+
+    public FieldCell scanQuadrantScreenCoords(int x, int y) {
+        return battleFieldCell[getQuadrantH(x)][getQuadrantV(y)];
+    }
+
+    public void updateQuadrant(int qx, int qy, FieldCell newField) {
+        battleFieldCell[qx][qy] = newField;
     }
 
     public int getDimentionX() {

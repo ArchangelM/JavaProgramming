@@ -7,7 +7,7 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
  * Created by Osipov on 26.03.2016.
  */
 public class Eagle extends FieldCell implements Destroyable, Drawable {
-    private Color color;
+    //private Color color;
 
     public Eagle(int x, int y) {
         super (x, y);

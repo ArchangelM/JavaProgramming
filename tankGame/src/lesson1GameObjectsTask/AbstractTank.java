@@ -331,11 +331,13 @@ public abstract class AbstractTank implements Drawable, Destroyable {
         return speed;
     }
 
+    //changed
     public void draw(Graphics g) {
         // boolean tmp = battleField.scanQuadrantScreenCoords(mainTank.getX(), mainTank.getY()).equals("X");
 
         if (!isDestroyed()) {
-            if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
+            //if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
+            if (!(battleField.scanQuadrantScreenCoords(x, y) instanceof Explosion)) {
                 g.setColor(color);
                 g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
 

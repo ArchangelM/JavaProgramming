@@ -119,7 +119,7 @@ public class ActionField extends JPanel {
         }
         return false;
     }
-
+/*
     private boolean isDestructable(int x, int y) {
         //String field = battleField.scanQuadrant(x / PIXELS_IN_CELL + 1, y / PIXELS_IN_CELL + 1);
         String field = battleField.scanQuadrant(y / PIXELS_IN_CELL, x / PIXELS_IN_CELL);
@@ -128,6 +128,18 @@ public class ActionField extends JPanel {
             return false;
         }
     }
+*/
+    //change
+private boolean isDestructable(int x, int y) {
+    //String field = battleField.scanQuadrant(x / PIXELS_IN_CELL + 1, y / PIXELS_IN_CELL + 1);
+    FieldCell field = battleField.scanQuadrant(y / PIXELS_IN_CELL, x / PIXELS_IN_CELL);
+    if (field instanceof Destroyable) return true;
+    else {
+        return false;
+    }
+
+    //return battleField.isQuadrantDestructable(y / PIXELS_IN_CELL, x / PIXELS_IN_CELL);
+}
 
     private boolean checkInterception(AbstractTank tank, Bullet bullet) {
         if (tank.myBullet(bullet)) return false;
@@ -137,13 +149,13 @@ public class ActionField extends JPanel {
 
         return false;
     }
-
+//change
     private void destroyQuadrant(int x, int y) throws Exception {
-        battleField.updateQuadrant(x, y, "X");
+        battleField.updateQuadrant(x, y, new Explosion(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
         if (tankBullet != null) tankBullet.parking();
         repaint();
         Thread.sleep(EXPLOSIVE);
-        battleField.updateQuadrant(x, y, " ");
+        battleField.updateQuadrant(x, y, new FieldCell(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
         repaint();
     }
 
@@ -423,8 +435,10 @@ public class ActionField extends JPanel {
             }
         }
 
+        battleField.draw(g);
+        /*
         for (int j = 0; j < battleField.getDimentionX(); j++) {
-            for (int k = 0; k <battleField.getDimentionY(); k++) {
+            for (int k = 0; k < battleField.getDimentionY(); k++) {
                 if (battleField.scanQuadrant(j, k).equals("B")) {
                     String coordinates = getQuadrantXY(j + 1, k + 1);
                     int separator = coordinates.indexOf("_");
@@ -455,9 +469,10 @@ public class ActionField extends JPanel {
                     g.setColor(new Color(250, 160, 40));
                     g.fillRect(x, y, PIXELS_IN_CELL, PIXELS_IN_CELL);
                 }
+
             }
         }
-
+*/
         //draw(g, mainTank);
         //draw(g, aggressor);
         mainTank.draw(g);

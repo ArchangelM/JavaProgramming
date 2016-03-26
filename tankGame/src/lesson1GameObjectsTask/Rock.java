@@ -7,7 +7,7 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
  * Created by Rodichka on 26.03.2016.
  */
 public class Rock extends FieldCell implements Destroyable, Drawable {
-    private Color color;
+    //private Color color;
 
     public Rock(int x, int y) {
         super (x, y);
