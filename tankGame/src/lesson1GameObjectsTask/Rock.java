@@ -6,8 +6,7 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 /**
  * Created by Rodichka on 26.03.2016.
  */
-public class Rock extends FieldCell implements Destroyable, Drawable {
-    //private Color color;
+public class Rock extends FieldCell implements Destroyable {
 
     public Rock(int x, int y) {
         super (x, y);
@@ -23,11 +22,5 @@ public class Rock extends FieldCell implements Destroyable, Drawable {
     @Override
     public boolean stricken() throws Exception {
         return false;
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillRect(x, y, PIXELS_IN_CELL, PIXELS_IN_CELL);
     }
 }
