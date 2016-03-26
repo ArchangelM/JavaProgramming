@@ -17,21 +17,27 @@ public class BattleField {
     final String DESTRUCTABLE = "BCE"; //коды разрушаемых объектов: кирпич, танк компьютера, штаб
     final String UN_DESTRUCTABLE = "WS"; //коды не разрушаемых объектов: вода, камни
 
+    private FieldCell[][] battleFieldC;
+
     private String[][] battleField = {
-            {"B", "B", " ", "B", " ", "B", " ", "B", "B"},
-            {"B", " ", " ", "B", " ", "B", " ", " ", "B"},
-            {" ", " ", " ", " ", " ", " ", " ", " ", " "},
+            {"B", "B", " ", "B", "W", "B", " ", "B", "B"},
+            {"B", " ", " ", "B", "W", "B", " ", " ", "B"},
+            {"G", "G", " ", " ", "W", " ", " ", " ", " "},
             {"B", "B", "B", " ", " ", " ", "B", "B", "B"},
             {"B", " ", "B", "B", "B", "B", " ", " ", " "},
             {" ", " ", " ", " ", " ", " ", " ", " ", " "},
-            {"B", " ", " ", " ", " ", " ", " ", "B", "B"},
+            {"B", "G", "G", " ", " ", " ", " ", "B", "B"},
             {"B", "B", "B", "B", " ", "B", "B", "B", "B"},
-            {"B", " ", " ", " ", " ", "B", " ", "B", "B"}
+            {"B", " ", " ", " ", "E", "B", " ", "B", "B"}
     };
 
     public BattleField() {
+        battleFieldC = new FieldCell[X_MAX][Y_MAX];
+        Utils.Init(battleFieldC, battleField);
 
     }
+
+
 /*
     boolean isQuadrantDestructable(int[] quadrantCoord) {
         if (DESTRUCTABLE.indexOf(battleField[quadrantCoord[QY]][quadrantCoord[QX]]) >= 0) {
