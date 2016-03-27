@@ -54,6 +54,7 @@ public class Classroom {
     }
 
     public List<Student> getStudents() {
-        return students;
+        //return students;
+        return new ArrayList<>(students);
     }
 }

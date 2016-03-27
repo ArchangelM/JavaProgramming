@@ -4,8 +4,8 @@ package lists;
  * Created by Osipov on 27.03.2016.
  */
 public class Student {
-    String name;
-    String soname;
+    private String name;
+    private String soname;
 
     public Student() {
     }
