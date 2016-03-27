@@ -27,8 +27,8 @@ public class Student implements Serializable {
         if (obj instanceof Student) {
             Student student = (Student) obj;
 
-            if (name.equals(student.getName())) {
-                if (soname.equals(student.getSoname())) {
+            if (name != null && name.equals(student.getName())) {
+                if (soname != null && soname.equals(student.getSoname())) {
                     return true;
                 }
             }
