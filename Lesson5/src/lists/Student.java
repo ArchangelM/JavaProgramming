@@ -1,9 +1,11 @@
 package lists;
 
+import java.io.Serializable;
+
 /**
  * Created by Osipov on 27.03.2016.
  */
-public class Student {
+public class Student implements Serializable {
     private String name;
     private String soname;
 
