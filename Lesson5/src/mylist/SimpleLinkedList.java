@@ -12,15 +12,22 @@ public class SimpleLinkedList {
     }
 
     public void addFirst(Object item) {
-
+        if (root != null && item != null) {
+            Node n = new Node(item, root);
+            root = n;
+        }
     }
 
     public void addList(Object item) {
+        if (root != null && item != null) {
 
+        }
     }
 
     public void addAfter(Object item, Object previous) {
+        if (root != null && item != null && previous != null) {
 
+        }
     }
 
     public Node getNodeList() {
@@ -41,8 +48,15 @@ public class SimpleLinkedList {
 
 
     private class Node {
-        Object o;
+        Object obj;
         Node node;
 
+        public Node() {
+        }
+
+        public Node(Object obj, Node node) {
+            this.obj = obj;
+            this.node = node;
+        }
     }
 }
