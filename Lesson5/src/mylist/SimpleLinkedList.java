@@ -9,13 +9,16 @@ public class SimpleLinkedList {
 
     public SimpleLinkedList() {
         size = 0;
+        root = null;
     }
 
     public void addFirst(Object item) {
-        if (item != null) {
+        //if (item != null) {
             Node n = new Node(item, root);
             root = n;
-        }
+            size++;
+       // }
+
     }
 
     public void addList(Object item) {
