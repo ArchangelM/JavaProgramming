@@ -1,4 +1,4 @@
-package mylist;
+package lists;
 
 /**
  * Created by Osipov on 28.03.2016.
