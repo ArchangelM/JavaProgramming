@@ -12,15 +12,17 @@ public class SimpleLinkedList {
     }
 
     public void addFirst(Object item) {
-        if (root != null && item != null) {
+        if (item != null) {
             Node n = new Node(item, root);
             root = n;
         }
     }
 
     public void addList(Object item) {
-        if (root != null && item != null) {
+        if (item != null) {
+            if (root != null) {
 
+            }
         }
     }
 
