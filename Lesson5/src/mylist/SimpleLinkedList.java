@@ -22,11 +22,18 @@ public class SimpleLinkedList {
     }
 
     public void addList(Object item) {
-        if (item != null) {
-            if (root != null) {
-
+        Node n = new Node(item, null);
+        if (root == null) {
+            root = n;
+        } else {
+            Node tmp = root;
+            for (int i = 1;i < size;i++) {
+                tmp = tmp.node;
             }
+            tmp.node = n;
         }
+        size++;
+
     }
 
     public void addAfter(Object item, Object previous) {
