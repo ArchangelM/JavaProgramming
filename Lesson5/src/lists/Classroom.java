@@ -30,7 +30,7 @@ public class Classroom {
     public int getStudentCount() {
         return students.size();
     }
-
+/*
     public boolean isPresent(String name, String soname) {
         Student student = new Student(name, soname);
 
@@ -42,6 +42,11 @@ public class Classroom {
         }
 
         return false;
+    }
+   */
+    public boolean isPresent(String name, String soname) {
+        Student student = new Student(name, soname);
+        return students.contains(student);
     }
 
     public void printStudentInfo() {

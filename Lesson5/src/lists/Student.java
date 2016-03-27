@@ -17,19 +17,35 @@ public class Student implements Serializable {
         this.soname = soname;
     }
 
+    /*
     public boolean compare(Student student) {
        if (name.equals(student.getName())) {
            if (soname.equals(student.getSoname())) {
                return true;
            }
        }
-
         return false;
     }
-
+*/
     @Override
     public String toString() {
         return name + " " + soname;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Student) {
+            Student student = (Student) obj;
+
+            if (name.equals(student.getName())) {
+                if (soname.equals(student.getSoname())) {
+                    return true;
+                }
+            }
+            return false;
+
+        } else return super.equals(obj);
+
     }
 
     public String getName() {
