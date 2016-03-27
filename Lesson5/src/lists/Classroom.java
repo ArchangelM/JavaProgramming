@@ -30,20 +30,7 @@ public class Classroom {
     public int getStudentCount() {
         return students.size();
     }
-/*
-    public boolean isPresent(String name, String soname) {
-        Student student = new Student(name, soname);
 
-        int i = 0;
-
-        while(i < students.size()) {
-            if (students.get(i).compare(student)) return true;
-            i++;
-        }
-
-        return false;
-    }
-   */
     public boolean isPresent(String name, String soname) {
         return students.contains(new Student(name, soname));
     }

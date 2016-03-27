@@ -17,16 +17,6 @@ public class Student implements Serializable {
         this.soname = soname;
     }
 
-    /*
-    public boolean compare(Student student) {
-       if (name.equals(student.getName())) {
-           if (soname.equals(student.getSoname())) {
-               return true;
-           }
-       }
-        return false;
-    }
-*/
     @Override
     public String toString() {
         return name + " " + soname;
