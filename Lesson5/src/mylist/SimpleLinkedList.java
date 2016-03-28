@@ -37,9 +37,29 @@ public class SimpleLinkedList {
     }
 
     public void addAfter(Object item, Object previous) {
-        if (root != null && item != null && previous != null) {
+        if (previous == null) {
+            throw new IllegalStateException();
+        }
+        Node n = new Node(item, null);
+        if (root == null) {
+            root = n;
+        } else {
+            Node current = root;
+
+            while(current.node != null && !current.equals(previous)) {
+                current = current.node;
+            }
+
+            if(!current.equals(previous)) {
+                throw new IllegalStateException();
+            }
+
+            n.node = current.node;
+            current.node = n;
 
         }
+
+        size++;
     }
 
     public Node getNodeList() {
@@ -69,6 +89,15 @@ public class SimpleLinkedList {
         public Node(Object obj, Node node) {
             this.obj = obj;
             this.node = node;
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            if (obj.equals(object)) {
+                        return true;
+            }
+
+            return false;
         }
     }
 }
