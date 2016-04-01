@@ -1,9 +1,12 @@
 package mylist;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Created by Osipov on 28.03.2016.
  */
-public class SimpleLinkedList {
+public class SimpleLinkedList implements Iterable {
     private Node root;
     private int size;
 
@@ -99,5 +102,73 @@ public class SimpleLinkedList {
 
             return false;
         }
+    }
+
+    public SLLIterator getIterator() {
+        return new SLLIterator();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new SLLIterator();
+    }
+
+    private class SLLIterator {
+        int cur;
+
+        public SLLIterator() {
+            cur = 0;
+        }
+
+        public SLLIterator(int cur) {
+            if (cur >= 0 && cur < size) this.cur = cur;
+        }
+
+        public boolean hasNext() {
+            return (cur != size);
+        }
+
+        public Node next() {
+            if (cur >= size) throw new NoSuchElementException();
+
+            Node tmp = root;
+
+            for (int i = 1; i < cur; i++) {
+                tmp = tmp.node;
+            }
+            if(tmp == null) throw new NoSuchElementException();
+            cur++;
+            return tmp;
+        }
+
+
+
+
+         /*Node link;
+
+        public SLLIterator() {
+
+        }
+
+        public SLLIterator(Node link) {
+            this.link = link;
+        }
+
+        public boolean hasNext() {
+            if(link.node != null) {
+                return true;
+            }
+            return false;
+
+        }
+
+        public Node next() {
+            if (hasNext()) {
+                link = link.node;
+                return link;
+            }
+            return null;
+        }
+        */
     }
 }
