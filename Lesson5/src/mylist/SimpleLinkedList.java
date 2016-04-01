@@ -21,7 +21,7 @@ public class SimpleLinkedList {
 
     }
 
-    public void addList(Object item) {
+    public void addLast(Object item) {
         Node n = new Node(item, null);
         if (root == null) {
             root = n;
@@ -37,7 +37,7 @@ public class SimpleLinkedList {
     }
 
     public void addAfter(Object item, Object previous) {
-        if (previous == null) {
+        if (previous == null || item == null) {
             throw new IllegalStateException();
         }
         Node n = new Node(item, null);
