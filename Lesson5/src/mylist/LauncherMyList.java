@@ -20,7 +20,7 @@ public class LauncherMyList {
 
         SimpleLinkedList slla = new SimpleLinkedList();
         slla.addAfter("hgk1", "hgk2");
-        slla.addAfter("hgk1", "hgk2");
+        slla.addAfter("hgk4", "hgk1");
 
 
     }
