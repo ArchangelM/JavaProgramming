@@ -1,5 +1,7 @@
 package mylist;
 
+import lists.Node;
+
 /**
  * Created by Osipov on 28.03.2016.
  */
@@ -22,6 +24,8 @@ public class LauncherMyList {
         slla.addAfter("hgk1", "hgk2");
         slla.addAfter("hgk4", "hgk1");
 
-
+        for (Object line : slll) {
+            System.out.println(line);
+        }
     }
 }

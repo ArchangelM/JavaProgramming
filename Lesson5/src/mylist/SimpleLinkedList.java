@@ -2,11 +2,12 @@ package mylist;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  * Created by Osipov on 28.03.2016.
  */
-public class SimpleLinkedList implements Iterable {
+public class SimpleLinkedList implements Iterable<Object> {
     private Node root;
     private int size;
 
@@ -82,6 +83,8 @@ public class SimpleLinkedList implements Iterable {
     }
 
 
+
+
     private class Node {
         Object obj;
         Node node;
@@ -102,6 +105,16 @@ public class SimpleLinkedList implements Iterable {
 
             return false;
         }
+
+        @Override
+        public String toString() {
+            return obj.toString();
+        }
+
+        public Object getObject() {
+            return obj;
+        }
+
     }
 
     public SLLIterator getIterator() {
@@ -109,11 +122,11 @@ public class SimpleLinkedList implements Iterable {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<Object> iterator() {
         return new SLLIterator();
     }
 
-    private class SLLIterator {
+    private class SLLIterator implements Iterator<Object>{
         int cur;
 
         public SLLIterator() {
