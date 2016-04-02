@@ -66,6 +66,32 @@ public class SimpleLinkedList implements Iterable<Object> {
         size++;
     }
 
+    public void remove(Object unNeeded) {
+        if (root == null || unNeeded == null) {
+            throw new IllegalStateException();
+        }
+
+        Node current = root;
+        Node previous = null;
+
+        while(current.node != null && !current.equals(unNeeded)) {
+            previous = current;
+            current = current.node;
+        }
+
+        if(!current.equals(unNeeded)) {
+            throw new IllegalStateException();
+        }
+        if (previous == null) {
+            root = root.node;
+        } else {
+            previous.node = current.node;
+        }
+
+        size--;
+
+    }
+
     public Node getNodeList() {
         return root;
     }
@@ -132,12 +158,13 @@ public class SimpleLinkedList implements Iterable<Object> {
 
         public SLLIterator() {
             cur = 0;
+            current = root;
         }
-
+/*
         public SLLIterator(int cur) {
             if (cur >= 0 && cur < size) this.cur = cur;
         }
-
+*/
         public boolean hasNext() {
             return (cur != size);
         }
@@ -147,7 +174,7 @@ public class SimpleLinkedList implements Iterable<Object> {
 
             Node tmp = root;
 
-            for (int i = 1; i < cur; i++) {
+            for (int i = 0; i < cur; i++) {
                 tmp = tmp.node;
             }
             if(tmp == null) throw new NoSuchElementException();
@@ -155,7 +182,6 @@ public class SimpleLinkedList implements Iterable<Object> {
             current = tmp;
             return tmp;
         }
-
 
 
 

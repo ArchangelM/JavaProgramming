@@ -39,5 +39,26 @@ public class LauncherMyList {
             Object tmp = it.next();
             System.out.println(tmp);
         }
+
+        System.out.println("");
+
+        slll.remove("hgk1");
+        slll.remove("hgk4");
+        slll.remove("hgk2");
+        System.out.println("");
+        System.out.println("List after remove");
+
+        for (Object line : slll) {
+            System.out.println(line);
+        }
+
+        slll.remove("hgk3");
+
+        System.out.println("");
+        System.out.println("List after all remove");
+
+        for (Object line : slll) {
+            System.out.println(line);
+        }
     }
 }
