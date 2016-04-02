@@ -2,6 +2,8 @@ package mylist;
 
 import lists.Node;
 
+import java.util.Iterator;
+
 /**
  * Created by Osipov on 28.03.2016.
  */
@@ -24,8 +26,18 @@ public class LauncherMyList {
         slla.addAfter("hgk1", "hgk2");
         slla.addAfter("hgk4", "hgk1");
 
+        System.out.println("First list");
+
         for (Object line : slll) {
             System.out.println(line);
+        }
+
+        System.out.println("");
+        System.out.println("Next list");
+
+        for(Iterator<Object> it = sll.iterator(); it.hasNext();) {
+            Object tmp = it.next();
+            System.out.println(tmp);
         }
     }
 }

@@ -127,7 +127,8 @@ public class SimpleLinkedList implements Iterable<Object> {
     }
 
     private class SLLIterator implements Iterator<Object>{
-        int cur;
+        private int cur;
+        private Node current;
 
         public SLLIterator() {
             cur = 0;
@@ -151,6 +152,7 @@ public class SimpleLinkedList implements Iterable<Object> {
             }
             if(tmp == null) throw new NoSuchElementException();
             cur++;
+            current = tmp;
             return tmp;
         }
 
