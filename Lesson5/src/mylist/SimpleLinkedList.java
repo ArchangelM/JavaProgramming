@@ -155,10 +155,10 @@ public class SimpleLinkedList implements Iterable<Object> {
     private class SLLIterator implements Iterator<Object>{
         private int cur;
         private Node current;
+        private Node prev;
 
         public SLLIterator() {
             cur = 0;
-            current = root;
         }
 /*
         public SLLIterator(int cur) {
@@ -175,6 +175,7 @@ public class SimpleLinkedList implements Iterable<Object> {
             Node tmp = root;
 
             for (int i = 0; i < cur; i++) {
+                prev = tmp;
                 tmp = tmp.node;
             }
             if(tmp == null) throw new NoSuchElementException();
@@ -183,9 +184,29 @@ public class SimpleLinkedList implements Iterable<Object> {
             return tmp;
         }
 
+        @Override
+        public void remove() {
+            if(!hasNext() && prev == null) {
+                root = null;
+                current = null;
+                cur = 0;
+            } else if (!hasNext() && prev != null) {
+                prev.node = null;
+                current = prev;
+                cur--;
+            } else if (hasNext() && prev == null) {
+                root = next();
+                current = root;
+            } else {
+                prev.node = current.node;
+                current = prev;
+                cur--;
+            }
 
+            size--;
+        }
 
-         /*Node link;
+        /*Node link;
 
         public SLLIterator() {
 

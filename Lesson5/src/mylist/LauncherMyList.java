@@ -60,5 +60,66 @@ public class LauncherMyList {
         for (Object line : slll) {
             System.out.println(line);
         }
+
+        slll.addLast("hgk1");
+
+        for(Iterator<Object> it = slll.iterator(); it.hasNext();) {
+            it.next();
+            it.remove();
+            break;
+        }
+
+        System.out.println("");
+        System.out.println("List 1 element. Del");
+
+        for (Object line : slll) {
+            System.out.println(line);
+        }
+
+
+        for(Iterator<Object> it = sll.iterator(); it.hasNext();) {
+            it.next();
+            it.remove();
+            break;
+        }
+
+        System.out.println("");
+        System.out.println("List. First element del");
+
+        sll.addFirst("hgk8");
+        sll.addFirst("hgk11");
+        sll.addLast("hgk17");
+
+        for (Object line : sll) {
+            System.out.println(line);
+        }
+
+        int i = 0;
+
+        for(Iterator<Object> it = sll.iterator(); it.hasNext()  && i < 3; i++) {
+            it.next();
+            if(i == 2) it.remove();
+        }
+
+        System.out.println("");
+        System.out.println("List. Middle element del");
+
+        for (Object line : sll) {
+            System.out.println(line);
+        }
+
+        i = 0;
+
+        for(Iterator<Object> it = sll.iterator(); it.hasNext()  && i < sll.getSize(); i++) {
+            it.next();
+            if(i == (sll.getSize()-1)) it.remove();
+        }
+
+        System.out.println("");
+        System.out.println("List. Last element del");
+
+        for (Object line : sll) {
+            System.out.println(line);
+        }
     }
 }
