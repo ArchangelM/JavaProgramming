@@ -12,6 +12,7 @@ public class LauncherHash {
         System.out.println("1. " + pers1.getName() + " hash: " + pers1.hashCode());
         System.out.println("2. " + pers2.getName() + " hash: " + pers2.hashCode());
         System.out.println("3. " + pers3.getName() + " hash: " + pers3.hashCode());
+        System.err.println("1&3 Obj 1 is equal Obj 2 " + (pers1.equals(pers3)));
         System.err.println("1&3 hash 1: " + pers1.hashCode() + " 2: " + pers3.hashCode() + " and hash equal is " +
                 (pers1.hashCode() == pers3.hashCode()));
     }

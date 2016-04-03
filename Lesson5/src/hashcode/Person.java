@@ -28,6 +28,19 @@ public class Person {
         return result;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null ) {
+            Person pers = (Person) obj;
+            if(name.equals(pers.getName()) && age == pers.getAge() && salary == getSalary()) {
+                return true;
+            }
+        }
+
+
+        return false;
+    }
+
     public Person() {
     }
 
