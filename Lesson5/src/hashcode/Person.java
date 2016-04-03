@@ -30,10 +30,12 @@ public class Person {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj != null ) {
-            Person pers = (Person) obj;
-            if(name.equals(pers.getName()) && age == pers.getAge() && salary == getSalary()) {
-                return true;
+        if(obj != null && name != null) {
+            if (obj instanceof Person) {
+                Person pers = (Person) obj;
+                if(name.equals(pers.getName()) && age == pers.getAge() && salary == getSalary()) {
+                    return true;
+                }
             }
         }
 
