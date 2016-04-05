@@ -9,6 +9,10 @@ public class Person {
     private long salary;
     private Address adr;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public int hashCode() {
         final int basis = 37;
@@ -47,6 +51,11 @@ public class Person {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "People: " + name + ", " + age + " years old, with salary " + salary + ". " + adr;
     }
 
     public Person() {

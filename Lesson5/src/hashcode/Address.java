@@ -44,6 +44,11 @@ public class Address {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Adress: " + city + ", " + street + ", ap." + house;
+    }
+
     public Address(String city, String street, int house) {
         this.city = city;
         this.street = street;
