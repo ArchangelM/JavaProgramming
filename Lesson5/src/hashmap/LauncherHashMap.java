@@ -6,6 +6,7 @@ import hashcode.Person;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.Collections;
 
 /**
  * Created by Osipov on 04.04.2016.
@@ -54,6 +55,8 @@ public class LauncherHashMap {
                 keys) {
             System.out.println(personMap.get(key));
         }
+
+        //Collections.;
     }
 
 
