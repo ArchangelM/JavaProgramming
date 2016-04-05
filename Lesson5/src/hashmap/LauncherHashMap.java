@@ -56,6 +56,20 @@ public class LauncherHashMap {
             System.out.println(personMap.get(key));
         }
 
+        Map<Integer, Person> perIntMap = new HashMap<>();
+        perIntMap.put(pers1.hashCode(), pers1);
+        perIntMap.put(pers2.hashCode(), pers2);
+        perIntMap.put(pers3.hashCode(), pers3);
+
+        System.out.println("Hash map hash: ");
+
+        Set<Integer> intKeys = perIntMap.keySet();
+
+        for (Integer key :
+                intKeys) {
+            System.out.println(perIntMap.get(key));
+        }
+
         //Collections.;
     }
 
