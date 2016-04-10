@@ -29,12 +29,21 @@ public class SimpleArrayList implements Iterable<Object> {
             tmp[i+smeshForInsert] = list[i];
         }
 
-        if(last < list.length) {
-            //tmp[last] = list[last];
-            for(int i = last+1; i < list.length;i++) {
-                tmp[i] = list[i-1];
+        if (list.length < tmp.length) {
+            if(last < list.length) {
+                //tmp[last] = list[last];
+                for(int i = last+1; i < list.length ;i++) {
+                    tmp[i] = list[i-1];
+                }
+            }
+        } else {
+            if(last < tmp.length) {
+                for(int i = last; i < tmp.length ;i++) {
+                    tmp[i] = list[i+1];
+                }
             }
         }
+
     }
 
 
@@ -189,20 +198,24 @@ public class SimpleArrayList implements Iterable<Object> {
             if(list == null) {
                 return;
             }
+
             if(!hasNext() && cur == 0) {
                 list = null;
                 cur = 0;
             } else if (!hasNext() && cur > 0) {
-                prev.node = null;
-                current = prev;
+                Object[] tmpList = new Object[list.length - 1];
+                listCopy(tmpList,0, tmpList.length, 0);
                 cur--;
-            } else if (hasNext() && cur > 0) {
-                root = next();
-                current = root;
+                list = tmpList;
+            } else if (hasNext() && cur == 0) {
+                Object[] tmpList = new Object[list.length - 1];
+                listCopy(tmpList,1, tmpList.length, -1);
+                list = tmpList;
+
             } else {
-                prev.node = current.node;
-                current = prev;
-                cur--;
+                Object[] tmpList = new Object[list.length - 1];
+                listCopy(tmpList,0, cur, 0);
+                list = tmpList;
             }
 
         }
