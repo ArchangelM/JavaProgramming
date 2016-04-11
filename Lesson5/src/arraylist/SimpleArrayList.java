@@ -16,15 +16,15 @@ public class SimpleArrayList implements Iterable<Object> {
     }
 
     private void listCopy(Object[] tmp, int first, int last, int smeshForInsert) {
-        for(int i = first; i < last;i++) {
+        for(int i = first; i <= last;i++) {
             tmp[i+smeshForInsert] = list[i];
         }
 
         if (list.length < tmp.length) {
-            if(last < list.length) {
+            if(last < list.length-1) {
                 //tmp[last] = list[last];
-                for(int i = last+1; i < list.length ;i++) {
-                    tmp[i] = list[i-1];
+                for(int i = last; i < list.length ;i++) {
+                    tmp[i+1] = list[i];
                 }
             }
         } else {
@@ -46,7 +46,7 @@ public class SimpleArrayList implements Iterable<Object> {
             Object[] tmpList = new Object[list.length+1];
             tmpList[0] = item;
 
-            listCopy(tmpList,0, list.length, 1);
+            listCopy(tmpList,0, list.length-1, 1);
             list = tmpList;
 
         }
@@ -60,7 +60,7 @@ public class SimpleArrayList implements Iterable<Object> {
         } else {
             Object[] tmpList = new Object[list.length + 1];
             tmpList[tmpList.length - 1] = item;
-            listCopy(tmpList,0, list.length,  0);
+            listCopy(tmpList,0, list.length-1,  0);
             list = tmpList;
         }
 
@@ -101,9 +101,8 @@ public class SimpleArrayList implements Iterable<Object> {
             if (i < list.length) {
                 Object[] tmpList = new Object[list.length + 1];
 
-                tmpList[i] = item;
                 listCopy(tmpList,0, i, 0);
-                tmpList[i] = item;
+                tmpList[i+1] = item;
                 list = tmpList;
             } else {
                 throw new IllegalStateException();
@@ -123,7 +122,23 @@ public class SimpleArrayList implements Iterable<Object> {
         }
 
         if (i < list.length) {
+            if((i+1)>=list.length && i == 0) {
+                list = null;
+            } else if ((i+1)>=list.length && i > 0) {
+                Object[] tmpList = new Object[list.length - 1];
+                listCopy(tmpList,0, tmpList.length, 0);
 
+                list = tmpList;
+            } else if ((i+1)<list.length && i == 0) {
+                Object[] tmpList = new Object[list.length - 1];
+                listCopy(tmpList,1, tmpList.length, -1);
+                list = tmpList;
+
+            } else {
+                Object[] tmpList = new Object[list.length - 1];
+                listCopy(tmpList,0, i, 0);
+                list = tmpList;
+            }
         }  else {
             throw new IllegalStateException();
         }
@@ -182,18 +197,18 @@ public class SimpleArrayList implements Iterable<Object> {
         private int cur;
 
         public SLLIterator() {
-            cur = 0;
+            cur = -1;
         }
 
         public boolean hasNext() {
-            return (cur != list.length);
+            return (cur != (list.length-1));
         }
 
         public Object next() {
-            if (cur >= list.length) throw new NoSuchElementException();
-
+            if (cur >= list.length) return null;//throw new NoSuchElementException();
             cur++;
             return list[cur];
+
         }
 
         @Override

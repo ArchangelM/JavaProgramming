@@ -38,9 +38,9 @@ public class LauncherMyList {
 
         System.out.println("");
 
-        slll.remove("hgk1");
         slll.remove("hgk4");
         slll.remove("hgk2");
+        slll.remove("hgk3");
         System.out.println("");
         System.out.println("List after remove");
 
