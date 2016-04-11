@@ -15,15 +15,6 @@ public class SimpleArrayList implements Iterable<Object> {
         list = new Object[num];
     }
 
-    public void SimpleArrayList(Object item) {
-        list = new Object[1];
-        list[0] = item;
-    }
-
-    public void SimpleArrayList(Object[] objs) {
-        list = objs;
-    }
-
     private void listCopy(Object[] tmp, int first, int last, int smeshForInsert) {
         for(int i = first; i < last;i++) {
             tmp[i+smeshForInsert] = list[i];
@@ -48,18 +39,30 @@ public class SimpleArrayList implements Iterable<Object> {
 
 
     public void addFirst(Object item) {
-        Object[] tmpList = new Object[list.length+1];
-        tmpList[0] = item;
-        listCopy(tmpList,0, list.length, 1);
-        list = tmpList;
+        if (list == null) {
+            list = new Object[1];
+            list[0] = item;
+        } else {
+            Object[] tmpList = new Object[list.length+1];
+            tmpList[0] = item;
+
+            listCopy(tmpList,0, list.length, 1);
+            list = tmpList;
+
+        }
 
     }
 
     public void addLast(Object item) {
-        Object[] tmpList = new Object[list.length + 1];
-        tmpList[tmpList.length - 1] = item;
-        listCopy(tmpList,0, list.length,  0);
-        list = tmpList;
+        if (list == null) {
+            list = new Object[1];
+            list[0] = item;
+        } else {
+            Object[] tmpList = new Object[list.length + 1];
+            tmpList[tmpList.length - 1] = item;
+            listCopy(tmpList,0, list.length,  0);
+            list = tmpList;
+        }
 
     }
 
@@ -98,7 +101,7 @@ public class SimpleArrayList implements Iterable<Object> {
             if (i < list.length) {
                 Object[] tmpList = new Object[list.length + 1];
 
-                tmpList[tmpList.length - 1] = item;
+                tmpList[i] = item;
                 listCopy(tmpList,0, i, 0);
                 tmpList[i] = item;
                 list = tmpList;
