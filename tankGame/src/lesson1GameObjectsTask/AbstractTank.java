@@ -7,7 +7,9 @@ import lesson1GameObjectsTask.fields.Explosion;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.interfaces.Drawable;
 
+import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.Random;
 
 public abstract class AbstractTank implements Drawable, Destroyable {
@@ -32,6 +34,9 @@ public abstract class AbstractTank implements Drawable, Destroyable {
     protected ActionField engine;
     protected BattleField battleField;
 
+    protected String[] spritesTankFilesName;
+    protected Image[] imgTank;
+
     private Bullet bullet;
 
     public AbstractTank(ActionField af, BattleField bf) {
@@ -55,6 +60,17 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
         engine = af;
         battleField = bf;
+    }
+
+    public void loadSpritesTank() {
+        File f;
+        imgTank = new Image[spritesTankFilesName.length];
+        for(int i = 0; i < spritesTankFilesName.length; i++) {
+            f = new File(spritesTankFilesName[i]);
+            if (f.exists()) imgTank[i] = new ImageIcon(spritesTankFilesName[i]).getImage();
+        }
+
+
     }
 
     public void turn(Direction direction) throws Exception {

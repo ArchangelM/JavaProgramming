@@ -2,7 +2,9 @@ package lesson1GameObjectsTask.fields;
 
 import lesson1GameObjectsTask.interfaces.Drawable;
 
+import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 
@@ -12,6 +14,9 @@ import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
 public class FieldCell implements Drawable {
     protected int x;
     protected int y;
+
+    protected String spriteFieldFileName;
+    protected Image imgField;
 
     protected Color color;
 
@@ -26,10 +31,19 @@ public class FieldCell implements Drawable {
         color = new Color(180, 180, 180);
     }
 
+    public void loadSpriteField() {
+        File f = new File(spriteFieldFileName);
+        if (f.exists())	imgField = new ImageIcon(spriteFieldFileName).getImage();
+    }
+
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillRect(x, y, PIXELS_IN_CELL, PIXELS_IN_CELL);
+
+        if(imgField != null) g.drawImage(imgField, x, y, null);
+        else {
+            g.setColor(color);
+            g.fillRect(x, y, PIXELS_IN_CELL, PIXELS_IN_CELL);
+        }
     }
 
     public int getX() {

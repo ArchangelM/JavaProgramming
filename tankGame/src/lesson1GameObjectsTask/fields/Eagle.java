@@ -12,6 +12,9 @@ public class Eagle extends FieldCell implements Destroyable {
     public Eagle(int x, int y) {
         super (x, y);
         color = new Color(200, 0, 200);
+
+        super.spriteFieldFileName = "sprites\\eagle64.jpg";
+        super.loadSpriteField();
     }
 
 

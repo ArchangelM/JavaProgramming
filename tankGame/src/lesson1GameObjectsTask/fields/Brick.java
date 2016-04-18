@@ -12,6 +12,9 @@ public class Brick extends FieldCell implements Destroyable {
     public Brick(int x, int y) {
         super (x, y);
         color = new Color(0, 0, 255);
+
+        super.spriteFieldFileName = "sprites\\brick64.jpg";
+        super.loadSpriteField();
     }
 
 

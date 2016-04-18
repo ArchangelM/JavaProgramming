@@ -5,12 +5,16 @@ package lesson1GameObjectsTask;
 
 import lesson1GameObjectsTask.interfaces.Drawable;
 
+import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class Bullet implements Drawable {
     public static final int BULLET_X_DIMENTION = 14;
     public static final int BULLET_Y_DIMENTION = 14;
 
+    private String spriteBulletFileName;
+    private Image imgBullet;
 
     private int x;
     private int y;
@@ -39,6 +43,9 @@ public class Bullet implements Drawable {
         color = new Color(255, 255, 0);
 
         speed = 5;
+
+        spriteBulletFileName = "sprites\\bullet64.jpg";
+        loadSprite();
     }
 
     public void parking() {
@@ -78,8 +85,19 @@ public class Bullet implements Drawable {
         return direction;
     }
 
+    private void loadSprite() {
+        File f = new File(spriteBulletFileName);
+        if (f.exists()) imgBullet= new ImageIcon(spriteBulletFileName).getImage();
+
+    }
+
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillRect(x, y, BULLET_X_DIMENTION, BULLET_Y_DIMENTION);
+
+        if(imgBullet != null) g.drawImage(imgBullet, x, y, null);
+        else {
+            g.setColor(color);
+            g.fillRect(x, y, BULLET_X_DIMENTION, BULLET_Y_DIMENTION);
+        }
+
     }
 }

@@ -23,6 +23,8 @@ public class Utils {
                 } else if (battleFieldS[i][j].equals("E")) {
                     battleField[i][j] = new Eagle(i, j);
 
+                } else if (battleFieldS[i][j].equals("R")) {
+                    battleField[i][j] = new Rock(i, j);
                 } else {
                     battleField[i][j] = new FieldCell(i, j);
                 }

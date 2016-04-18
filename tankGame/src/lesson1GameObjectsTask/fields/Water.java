@@ -13,5 +13,8 @@ public class Water extends FieldCell implements UnMovable {
     public Water(int x, int y) {
         super (x, y);
         color = new Color(0, 200, 200);
+
+        super.spriteFieldFileName = "sprites\\water64.jpg";
+        super.loadSpriteField();
     }
 }
