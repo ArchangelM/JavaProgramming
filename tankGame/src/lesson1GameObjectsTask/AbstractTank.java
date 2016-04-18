@@ -96,27 +96,38 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
     }
 
+    public void moveForvard() throws Exception {
+
+    }
+
     public void move() throws Exception {
-                engine.processMove(this);
-		/*
+
 		switch (direction) {
 		case UP:
-				y--;
+            if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x), battleField.getQuadrantV(y)-1)){
+                fire();
+            }
 
 			break;
 		case DOWN:
-				y++;
+            if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x), battleField.getQuadrantV(y)+1)){
+                fire();
+            }
 
-			break;
+        break;
 		case LEFT:
-				x--;
-
+            if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x)-1, battleField.getQuadrantV(y))){
+                fire();
+            }
 			break;
 		case RIGHT:
-				x++;
+            if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x)+1, battleField.getQuadrantV(y))){
+                fire();
+            }
 
 			break;
-		}*/
+		}
+        engine.processMove(this);
     }
 
 

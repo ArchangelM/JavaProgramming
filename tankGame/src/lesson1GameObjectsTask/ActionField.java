@@ -3,9 +3,11 @@
  */
 package lesson1GameObjectsTask;
 
+import lesson1GameObjectsTask.ai.AI;
 import lesson1GameObjectsTask.fields.Explosion;
 import lesson1GameObjectsTask.fields.FieldCell;
 import lesson1GameObjectsTask.interfaces.Destroyable;
+import lesson1GameObjectsTask.tanks.BT7;
 import lesson1GameObjectsTask.tanks.T34;
 import lesson1GameObjectsTask.tanks.Tiger;
 
@@ -45,13 +47,23 @@ public class ActionField extends JPanel {
     private AbstractTank mainTank;
     private Bullet tankBullet;
 
-    private Tiger aggressor;
+    private AbstractTank aggressor;
 
 
     public void runTheGame() throws Exception {
         //clean(); //bricks destruction
 
+        AI ai = new AI();
+        Direction[] path = ai.pathFinder(battleField, 2, 2, 9, 5);
 
+        for (Direction direction:
+             path) {
+            aggressor.turn(direction);
+            aggressor.move();
+
+        }
+        //aggressor.move();
+/*
         mainTank.moveToQuadrant(1, 4);
        // mainTank.moveToQuadrant(1, 6);
         mainTank.turn(Direction.LEFT);
@@ -59,7 +71,7 @@ public class ActionField extends JPanel {
         mainTank.fire();
         mainTank.fire();
         repaint();
-
+*/
         //aggressor.destroy();
 
         //mainTank.destroy();
@@ -81,7 +93,10 @@ public class ActionField extends JPanel {
         mainTank = new T34(this, battleField);
         tankBullet = new Bullet();
 
-        aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+        //aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+        aggressor = new BT7(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+
+
 
         JFrame frame = new JFrame("BATTLE FIELD, DAY 2");
         frame.setLocation(500, 150);
