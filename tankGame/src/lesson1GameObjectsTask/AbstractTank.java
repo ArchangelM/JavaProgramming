@@ -369,21 +369,68 @@ public abstract class AbstractTank implements Drawable, Destroyable {
         if (!isDestroyed()) {
             //if (!battleField.scanQuadrantScreenCoords(x, y).equals("X")) {
             if (!(battleField.scanQuadrantScreenCoords(x, y) instanceof Explosion)) {
-                g.setColor(color);
-                g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
 
-                g.setColor(towerColor);
+
                 if (direction == Direction.UP) {
-                    g.fillRect(x + 20, y, 24, 34);
+                    if(imgTank[0] != null) {
+                        g.drawImage(imgTank[0], x, y, null);
+                    }
+                    else {
+                        g.setColor(color);
+                        g.setColor(towerColor);
+                        g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
+                        g.fillRect(x + 20, y, 24, 34);
+                    }
                 } else if (direction == Direction.DOWN) {
-                    g.fillRect(x + 20, y + 30, 24, 34);
+                    if(imgTank[1] != null) {
+                        g.drawImage(imgTank[1], x, y, null);
+                    }
+                    else {
+                        g.setColor(color);
+                        g.setColor(towerColor);
+                        g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
+                        g.fillRect(x + 20, y + 30, 24, 34);
+                    }
                 } else if (direction == Direction.LEFT) {
-                    g.fillRect(x, y + 20, 34, 24);
+                    if(imgTank[2] != null) {
+                        g.drawImage(imgTank[2], x, y, null);
+                    }
+                    else {
+                        g.setColor(color);
+                        g.setColor(towerColor);
+                        g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
+                        g.fillRect(x, y + 20, 34, 24);
+                    }
                 } else {
-                    g.fillRect(x + 30, y + 20, 34, 24);
+                    if(imgTank[3] != null) {
+                        g.drawImage(imgTank[3], x, y, null);
+                    }
+                    else {
+                        g.setColor(color);
+                        g.setColor(towerColor);
+                        g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
+                        g.fillRect(x + 30, y + 20, 34, 24);
+                    }
                 }
             }
         }
     }
 
 }
+
+/*
+if (tankDirection == 1) {
+			if(imgTank[0] != null) g.drawImage(imgTank[0], tankX, tankY, null);
+			else g.fillRect(tankX + 20, tankY, 24, 34);
+
+		} else if (tankDirection == 2) {
+			if(imgTank[1] != null) g.drawImage(imgTank[1], tankX, tankY, null);
+			else g.fillRect(tankX + 20, tankY + 30, 24, 34);
+		} else if (tankDirection == 3) {
+			if(imgTank[2] != null) g.drawImage(imgTank[2], tankX, tankY, null);
+			else g.fillRect(tankX, tankY + 20, 34, 24);
+		} else {
+			if(imgTank[3] != null) g.drawImage(imgTank[3], tankX, tankY, null);
+			else g.fillRect(tankX + 30, tankY + 20, 34, 24);
+		}
+ */

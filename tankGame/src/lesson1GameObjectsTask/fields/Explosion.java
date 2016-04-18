@@ -15,7 +15,7 @@ public class Explosion extends FieldCell {
         super (x, y);
         color = new Color(250, 160, 40);
 
-        super.spriteFieldFileName ="sprites\\explosione64.jpg";
+        super.spriteFieldFileName ="sprites\\explosione64.png";
         super.loadSpriteField();
     }
 /*

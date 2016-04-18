@@ -101,7 +101,7 @@ public class ActionField extends JPanel {
         JFrame frame = new JFrame("BATTLE FIELD, DAY 2");
         frame.setLocation(500, 150);
         //frame.setMinimumSize(new Dimension(BF_WIDTH+15, BF_HEIGHT + 38));
-        frame.setMinimumSize(new Dimension(battleField.getBF_WIDTH(), battleField.getBF_HEIGHT() + 22));
+        frame.setMinimumSize(new Dimension(battleField.getBF_WIDTH(), battleField.getBF_HEIGHT() + 35));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.getContentPane().add(this);
         frame.pack();
@@ -175,7 +175,7 @@ private boolean isDestructable(int x, int y) {
         battleField.updateQuadrant(x, y, new Explosion(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
         if (tankBullet != null) tankBullet.parking();
         repaint();
-        Thread.sleep(EXPLOSIVE);
+        Thread.sleep(EXPLOSIVE*4);
         battleField.updateQuadrant(x, y, new FieldCell(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
         repaint();
     }

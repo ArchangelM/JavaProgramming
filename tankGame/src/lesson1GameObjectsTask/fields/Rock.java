@@ -14,7 +14,7 @@ public class Rock extends FieldCell implements Destroyable {
         super (x, y);
         color = new Color(0, 0, 0);
 
-        super.spriteFieldFileName = "sprites\\rock64.jpg";
+        super.spriteFieldFileName = "sprites\\rock64.png";
         super.loadSpriteField();
     }
 

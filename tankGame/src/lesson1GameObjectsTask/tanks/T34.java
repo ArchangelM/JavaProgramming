@@ -47,17 +47,3 @@ public class T34 extends AbstractTank {
 
 
 }
-
-/*
-
-final String[] STR_FIELD = {
-			"sprites\\brick64.jpg",
-			"sprites\\water64.jpg",
-			"sprites\\grass64.jpg"
-		 };
-
-
-	Image imgBrick, imgWater, imgGrass;
-
-
- */
