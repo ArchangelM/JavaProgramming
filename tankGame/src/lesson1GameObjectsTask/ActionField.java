@@ -6,6 +6,7 @@ package lesson1GameObjectsTask;
 import lesson1GameObjectsTask.ai.AI;
 import lesson1GameObjectsTask.fields.Explosion;
 import lesson1GameObjectsTask.fields.FieldCell;
+import lesson1GameObjectsTask.fields.Grass;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.tanks.BT7;
 import lesson1GameObjectsTask.tanks.T34;
@@ -172,11 +173,12 @@ private boolean isDestructable(int x, int y) {
     }
 //change
     private void destroyQuadrant(int x, int y) throws Exception {
-        battleField.updateQuadrant(x, y, new Explosion(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
+        battleField.updateQuadrant(x, y, new Explosion(x, y));
         if (tankBullet != null) tankBullet.parking();
         repaint();
-        Thread.sleep(EXPLOSIVE*4);
-        battleField.updateQuadrant(x, y, new FieldCell(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
+        Thread.sleep(EXPLOSIVE);
+        //battleField.updateQuadrant(x, y, new FieldCell(x * PIXELS_IN_CELL, y * PIXELS_IN_CELL));
+        battleField.updateQuadrant(x, y, new Grass(x, y));
         repaint();
     }
 

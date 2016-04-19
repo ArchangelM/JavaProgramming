@@ -26,6 +26,18 @@ public class BattleField implements Drawable {
     private FieldCell[][] battleFieldCell;
 
     private String[][] battleField = {
+            {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
+            {"B", "G", "G", "B", "W", "B", "G", "G", "B"},
+            {"G", "G", "G", "G", "W", "G", "G", "G", " "},
+            {"B", "B", "B", "G", "G", "G", "B", "B", "B"},
+            {"B", "G", "B", "B", "B", "B", "G", "G", "G"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
+            {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
+            {"B", "R", "R", "R", "R", "B", "B", "B", "B"},
+            {"B", "G", "G", "G", "E", "B", "G", "B", "B"}
+    };
+
+    private String[][] battleField2 = {
             {"B", "B", " ", "B", "W", "B", " ", "B", "B"},
             {"B", " ", " ", "B", "W", "B", " ", " ", "B"},
             {"G", "G", " ", " ", "W", " ", " ", " ", " "},
