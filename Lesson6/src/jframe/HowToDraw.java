@@ -6,7 +6,7 @@ import java.awt.*;
 public class HowToDraw extends JPanel {
 
     public HowToDraw() {
-        JFrame secondWindow = new JFrame("My window");
+        JFrame secondWindow = new JFrame("My blue window");
 
         secondWindow.setMinimumSize(new Dimension(800,600));
         secondWindow.setLocation(100,100);
@@ -18,17 +18,20 @@ public class HowToDraw extends JPanel {
         secondWindow.pack();
         secondWindow.setVisible(true);
 
-        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
         g.setColor(Color.BLUE);
-        g.fillRect(50, 50, 300, 300);
+        g.fillRect(0, 0, 800, 600);
     }
 
     public static void main(String[] args) {
-        new HowToDraw();
+        HowToDraw myWindw = new HowToDraw();
+
+        myWindw.repaint();
 
     }
 }
