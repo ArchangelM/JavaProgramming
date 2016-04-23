@@ -53,7 +53,7 @@ public class ActionField extends JPanel {
 
     public void runTheGame() throws Exception {
         //clean(); //bricks destruction
-
+        Thread.sleep(2000);
         AI ai = new AI();
         Direction[] path = ai.pathFinder(battleField, 2, 2, 9, 5);
 

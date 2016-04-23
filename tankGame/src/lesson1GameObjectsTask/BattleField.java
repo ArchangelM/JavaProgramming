@@ -28,7 +28,7 @@ public class BattleField implements Drawable {
     private String[][] battleField = {
             {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
             {"B", "G", "G", "B", "W", "B", "G", "G", "B"},
-            {"G", "G", "G", "G", "W", "G", "G", "G", " "},
+            {"G", "G", "G", "G", "W", "G", "G", "G", "G"},
             {"B", "B", "B", "G", "G", "G", "B", "B", "B"},
             {"B", "G", "B", "B", "B", "B", "G", "G", "G"},
             {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
