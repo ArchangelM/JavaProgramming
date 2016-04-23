@@ -33,5 +33,12 @@ public class HowToDraw extends JPanel {
 
         myWindw.repaint();
 
+        JTextField text = new JTextField("My first text field ion the panel.");
+
+        text.setFont(new Font("TimesNewRoman", Font.BOLD, 16));
+        ///myWindw.getContentPane
+
+
+
     }
 }
