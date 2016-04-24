@@ -1,8 +1,5 @@
 package text;
 
-
-import com.sun.deploy.panel.JavaPanel;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
