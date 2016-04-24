@@ -2,7 +2,9 @@ package date;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class BirthDay {
 
@@ -21,6 +23,10 @@ public class BirthDay {
 
     }
 
+    public Date getMyBirthDate() {
+        return myBirthDate;
+    }
+
     @Override
     public String toString() {
         myBirth.applyPattern("dd MMM yyyy");
@@ -28,9 +34,19 @@ public class BirthDay {
     }
 
        public static void main(String[] args) {
-        BirthDay myBD = new BirthDay();
+           BirthDay myBD = new BirthDay();
 
-        System.out.println(myBD);
+           System.out.println(myBD);
+
+           Calendar c = new GregorianCalendar();
+
+           c.set(Calendar.MONTH, 0);
+           c.set(Calendar.SECOND, 0);
+
+
+           c.setTime(myBD.getMyBirthDate());
+
+           System.out.println("Day of week: " + c.get(Calendar.DAY_OF_WEEK));
 
     }
 }
