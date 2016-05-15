@@ -7,9 +7,11 @@ import lesson1GameObjectsTask.fields.Explosion;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.interfaces.Drawable;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 public abstract class AbstractTank implements Drawable, Destroyable {
@@ -64,13 +66,20 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
     public void loadSpritesTank() {
         File f;
+
+
         imgTank = new Image[spritesTankFilesName.length];
-        for(int i = 0; i < spritesTankFilesName.length; i++) {
+        for (int i = 0; i < spritesTankFilesName.length; i++) {
             f = new File(spritesTankFilesName[i]);
             if (f.exists()) imgTank[i] = new ImageIcon(spritesTankFilesName[i]).getImage();
         }
 
-
+        /*
+        try {
+            imgTank[0] = ImageIO.read(new File("tankleft64.png")).getAbsoluteFile());
+        } catch (IOException e) {
+            throw new IllegalStateException("Can't find spites");
+        }*/
     }
 
     public void turn(Direction direction) throws Exception {
