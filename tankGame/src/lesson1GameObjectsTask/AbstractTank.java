@@ -10,6 +10,7 @@ import lesson1GameObjectsTask.interfaces.Drawable;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 import java.util.Random;
@@ -423,6 +424,20 @@ public abstract class AbstractTank implements Drawable, Destroyable {
                 }
             }
         }
+        //another draw part of big picture
+        /*
+        g.drawImage(imgTank[0], getX(), getY(), getX() + 64, getY() + 64, getX(), getY(), getX() + 64, getY() + 64,
+                new ImageObserver() {
+                    @Override
+                    public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                        return false;
+                    }
+                })
+
+
+
+
+         */
     }
 
 }
