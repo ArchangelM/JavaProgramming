@@ -27,9 +27,33 @@ public class BattleField implements Drawable {
 
     private String[][] battleField = {
             {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
+            {"B", "W", "G", "B", "W", "B", "G", "G", "B"},
+            {"G", "G", "G", "G", "W", "G", "G", "G", "G"},
+            {"B", "B", "B", "G", "B", "G", "G", "B", "B"},
+            {"B", "B", "B", "B", "B", "B", "G", "G", "G"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
+            {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
+            {"B", "R", "R", "R", "R", "B", "B", "B", "B"},
+            {"B", "G", "G", "G", "E", "B", "G", "B", "B"}
+    };
+
+    private String[][] battleField3 = {
+            {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
             {"B", "G", "G", "B", "W", "B", "G", "G", "B"},
             {"G", "G", "G", "G", "W", "G", "G", "G", "G"},
             {"B", "B", "B", "G", "G", "G", "B", "B", "B"},
+            {"B", "G", "B", "B", "B", "B", "G", "G", "G"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
+            {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
+            {"B", "R", "R", "R", "R", "B", "B", "B", "B"},
+            {"B", "G", "G", "G", "E", "B", "G", "B", "B"}
+    };
+
+    private String[][] battleField4 = {
+            {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
+            {"B", "G", "G", "B", "W", "B", "G", "G", "B"},
+            {"G", "G", "G", "G", "W", "G", "G", "G", "G"},
+            {"B", "B", "B", "G", "G", "G", "G", "B", "B"},
             {"B", "G", "B", "B", "B", "B", "G", "G", "G"},
             {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
             {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
@@ -74,6 +98,10 @@ public class BattleField implements Drawable {
                 battleFieldCell[i][j].draw(g);
             }
         }
+    }
+
+    public void draw(Graphics g, int x, int y) {
+            battleFieldCell[getQuadrantH(x)][getQuadrantH(y)].draw(g);
     }
 
     /*

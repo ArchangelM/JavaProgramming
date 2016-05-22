@@ -4,6 +4,7 @@
 package lesson1GameObjectsTask;
 
 import lesson1GameObjectsTask.fields.Explosion;
+import lesson1GameObjectsTask.fields.Water;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.interfaces.Drawable;
 
@@ -420,6 +421,10 @@ public abstract class AbstractTank implements Drawable, Destroyable {
                         g.fillRect(x, y, BattleField.PIXELS_IN_CELL, BattleField.PIXELS_IN_CELL);
                         g.fillRect(x + 30, y + 20, 34, 24);
                     }
+                }
+
+                if ((battleField.scanQuadrantScreenCoords(x, y) instanceof Water)) {
+                    battleField.draw(g, x, y);
                 }
             }
         }

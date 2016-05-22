@@ -202,7 +202,8 @@ public class AI {
         } else if (cell instanceof Rock) {
             step = 1000;
         } else if (cell instanceof Water) {
-            step = 2000;
+            step = 5;
+            //step = 2000;
         } else {
             step = 2;
         }
