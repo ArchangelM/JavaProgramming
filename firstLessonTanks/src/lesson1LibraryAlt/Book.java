@@ -1,6 +1,6 @@
 package lesson1LibraryAlt;
 
-import lesson1Library.Ganre;
+import lesson1LibraryAlt.Ganre;
 
 /**
  * Created by Rodichka on 23.02.2016.

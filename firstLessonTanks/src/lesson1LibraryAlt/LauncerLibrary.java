@@ -1,7 +1,7 @@
 package lesson1LibraryAlt;
 
 import lesson1Library.Book;
-import lesson1Library.Ganre;
+import lesson1LibraryAlt.Ganre;
 import lesson1Library.Library;
 
 /**

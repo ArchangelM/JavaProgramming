@@ -1,9 +1,9 @@
 package lesson1LibraryAlt;
 
 import lesson1Library.Book;
-import lesson1Library.Ganre;
+import lesson1LibraryAlt.Ganre;
 
-import static lesson1Library.Ganre.getSpecGanre;
+import static lesson1LibraryAlt.Ganre.getSpecGanre;
 
 /**
  * Created by Rodichka on 27.02.2016.
@@ -14,7 +14,7 @@ public class Library {
 
     private int maxBooks;
     private Book[] library;
-    private lesson1Library.Ganre lastGanre; //последний жанр, который искали
+    private lesson1LibraryAlt.Ganre lastGanre; //последний жанр, который искали
     private int lastBookGanreSearch;
 
     private int [] ganreIndex;
@@ -26,12 +26,12 @@ public class Library {
         for(int i=0;i<maxBooks;i++) {
             String name = "Очень интересная книга " + Integer.toString(10+i);
             String author = "Эдгар По " + Integer.toString(i);
-            lesson1Library.Ganre ganre  = getSpecGanre(i);
+            lesson1LibraryAlt.Ganre ganre  = getSpecGanre(i);
             library[i] = new Book(name, author, ganre);
         }
         lastBookGanreSearch = -1;
 
-        ganreIndex = new int[2* lesson1Library.Ganre.getNum()];
+        ganreIndex = new int[2* lesson1LibraryAlt.Ganre.getNum()];
     }
 
     public Library(int max){
@@ -40,7 +40,7 @@ public class Library {
         for(int i=0;i<maxBooks;i++) {
             String name = "Очень интересная книга " + Integer.toString(10+i);
             String author = "Эдгар По " + Integer.toString(i);
-            lesson1Library.Ganre ganre  = getSpecGanre(i);
+            lesson1LibraryAlt.Ganre ganre  = getSpecGanre(i);
             library[i] = new Book(name, author, ganre);
         }
         lastBookGanreSearch = -1;
