@@ -1,6 +1,6 @@
 package lesson1LibraryAlt;
 
-import lesson1Library.Book;
+import lesson1LibraryAlt.Book;
 import lesson1LibraryAlt.Ganre;
 
 import static lesson1LibraryAlt.Ganre.getSpecGanre;
@@ -53,13 +53,13 @@ public class Library {
     }
 
     public void sortGanre() {
-        lesson1Library.Ganre ganre = lesson1Library.Ganre.getFirstGanre();
+        lesson1LibraryAlt.Ganre ganre = lesson1LibraryAlt.Ganre.getFirstGanre();
         Book tmpBook = new Book();
         //int counter = 0;
         int forInsert =0;
         int tmp = forInsert;
 
-        for(int i = 0; i< lesson1Library.Ganre.getNum(); i++) {
+        for(int i = 0; i< lesson1LibraryAlt.Ganre.getNum(); i++) {
             for(int j=forInsert;j<maxBooks;j++) {
                 if (library[j].getGanre() == ganre) {
                     library[forInsert].copyBook(tmpBook);
@@ -76,7 +76,7 @@ public class Library {
             }
             ganreIndex[2*i+1] = forInsert - 1;
             tmp = forInsert;
-            ganre = lesson1Library.Ganre.getNextGanre(ganre);
+            ganre = lesson1LibraryAlt.Ganre.getNextGanre(ganre);
         }
     }
 

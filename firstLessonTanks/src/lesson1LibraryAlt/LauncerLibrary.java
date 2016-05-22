@@ -1,8 +1,8 @@
 package lesson1LibraryAlt;
 
-import lesson1Library.Book;
+import lesson1LibraryAlt.Book;
 import lesson1LibraryAlt.Ganre;
-import lesson1Library.Library;
+import lesson1LibraryAlt.Library;
 
 /**
  * Created by Rodichka on 23.02.2016.
@@ -14,10 +14,10 @@ public class LauncerLibrary {
         Library library = new Library(35);
         library.sortGanre();
 
-        lesson1Library.Book myFavoriteAuthor = library.searchAuthor("Эдгар По 2");
+        lesson1LibraryAlt.Book myFavoriteAuthor = library.searchAuthor("Эдгар По 2");
         myFavoriteAuthor.printBook();
         System.out.println();
-        lesson1Library.Book myFavoriteBook = library.searchName("Очень интересная книга 15");
+        lesson1LibraryAlt.Book myFavoriteBook = library.searchName("Очень интересная книга 15");
         myFavoriteBook.printBook();
         System.out.println();
 
