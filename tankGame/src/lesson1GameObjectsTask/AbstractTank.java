@@ -139,6 +139,7 @@ public abstract class AbstractTank implements Drawable, Destroyable {
             if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x), battleField.getQuadrantV(y)+1)){
                 fire();
             }
+            //if (engine.checkTank(defender))
 
         break;
 		case LEFT:
@@ -156,6 +157,28 @@ public abstract class AbstractTank implements Drawable, Destroyable {
         engine.processMove(this);
     }
 
+    public Direction randomDirection(Direction current)throws Exception {
+        Random r = new Random();
+        int randomDirection = r.nextInt(5);
+
+        switch (randomDirection) {
+            case 1:
+                return Direction.UP;
+            case 2:
+                return Direction.DOWN;
+            case 3:
+                return Direction.LEFT;
+            case 4:
+                return Direction.RIGHT;
+            default:
+                fire();
+
+        }
+
+
+        return current;
+
+    }
 
     void moveRandom() throws Exception {
         Random r = new Random();

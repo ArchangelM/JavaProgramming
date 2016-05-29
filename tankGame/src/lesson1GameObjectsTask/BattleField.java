@@ -33,6 +33,30 @@ public class BattleField implements Drawable {
             {"B", "B", "B", "B", "B", "B", "G", "G", "G"},
             {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
             {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
+            {"B", "B", "B", "R", "R", "R", "R", "B", "B"},
+            {"B", "G", "G", "R", "E", "B", "G", "B", "B"}
+    };
+
+    private String[][] battleFieldT = {
+            {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
+            {"B", "W", "G", "B", "W", "B", "G", "G", "B"},
+            {"G", "G", "G", "G", "W", "G", "G", "G", "G"},
+            {"B", "B", "B", "G", "B", "G", "G", "B", "B"},
+            {"B", "B", "B", "B", "B", "B", "G", "G", "G"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
+            {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
+            {"B", "R", "R", "R", "R", "B", "B", "B", "B"},
+            {"B", "G", "G", "G", "E", "B", "G", "B", "B"}
+    };
+
+    private String[][] battleFieldW = {
+            {"B", "B", "G", "B", "W", "B", "G", "B", "B"},
+            {"B", "W", "G", "B", "W", "B", "G", "G", "B"},
+            {"G", "G", "G", "G", "W", "G", "G", "G", "G"},
+            {"B", "B", "B", "G", "B", "G", "G", "B", "B"},
+            {"B", "B", "B", "B", "B", "B", "G", "G", "G"},
+            {"G", "G", "G", "G", "G", "G", "G", "G", "G"},
+            {"B", "G", "G", "G", "G", "G", "G", "B", "B"},
             {"B", "R", "R", "R", "R", "B", "B", "B", "B"},
             {"B", "G", "G", "G", "E", "B", "G", "B", "B"}
     };
@@ -184,6 +208,26 @@ public class BattleField implements Drawable {
         int randomPlace = r.nextInt(3);
 
         return "64_64"; //for test
+/*
+        switch (randomPlace) {
+            case 0:
+                return "128_0";
+            case 1:
+                return "384_0";
+            case 2:
+                return "64_64";
+        }
+
+        return "128_0";
+        */
+    }
+
+    public String getRandomLocationAtacker() {
+        Random r = new Random();
+        int randomPlace = r.nextInt(3);
+
+       //return "384_64"; //for test
+        return "128_64"; //for test
 /*
         switch (randomPlace) {
             case 0:

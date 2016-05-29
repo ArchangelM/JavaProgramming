@@ -178,7 +178,6 @@ public class AI {
             i--;
         }
 
-
         return path;
     }
 

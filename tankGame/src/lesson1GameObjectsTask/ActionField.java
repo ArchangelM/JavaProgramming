@@ -49,20 +49,46 @@ public class ActionField extends JPanel {
     private Bullet tankBullet;
 
     private AbstractTank aggressor;
+    private AbstractTank atacker;
 
 
     public void runTheGame() throws Exception {
         //clean(); //bricks destruction
         Thread.sleep(2000);
         AI ai = new AI();
-        Direction[] path = ai.pathFinder(battleField, 2, 2, 9, 5);
 
+       Direction[] path = ai.pathFinder(battleField, getQuadrantV(atacker.getY())+1, getQuadrantH(atacker.getX())+1,
+               getQuadrantH(mainTank.getY())+1,  getQuadrantV(mainTank.getX())+1);
+//        Direction[] path = ai.pathFinder(battleField, getQuadrantV(atacker.getY())+1, getQuadrantH(atacker.getX())+1, 9,  3);
+/*      for (Direction direction:
+                path) {
+            atacker.turn(direction);
+            checkTank(atacker, mainTank);
+            atacker.move();
+
+        }
+*/
+
+        while (!mainTank.isDestroyed() && !atacker.isDestroyed() ) {
+            atacker.turn(path[0]);
+            checkTank(atacker, mainTank);
+            atacker.move();
+            //mainTank.turn(mainTank.randomDirection(mainTank.getDirection()));
+            mainTank.move();
+
+            path = ai.pathFinder(battleField, getQuadrantV(atacker.getY())+1, getQuadrantH(atacker.getX())+1,
+                    getQuadrantH(mainTank.getY())+1,  getQuadrantV(mainTank.getX())+1);
+
+        }
+/*
+        Direction[] pathAggr = ai.pathFinder(battleField, getQuadrantH(aggressor.getX())+1, getQuadrantV(aggressor.getY())+1, 9, 3);
         for (Direction direction:
-             path) {
+             pathAggr) {
             aggressor.turn(direction);
             aggressor.move();
 
         }
+*/
         //aggressor.move();
 /*
         mainTank.moveToQuadrant(1, 4);
@@ -96,6 +122,7 @@ public class ActionField extends JPanel {
 
         //aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
         aggressor = new BT7(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+        atacker = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
 
 
 
@@ -133,6 +160,17 @@ public class ActionField extends JPanel {
             if (aggressor.stricken()) {
                 Thread.sleep(RESURECTION);
                 aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+                return true;
+            } else {
+                bullet.hit();
+                return false;
+            }
+        }
+
+        if (checkInterception(mainTank, bullet)) {
+            if (mainTank.stricken()) {
+                Thread.sleep(RESURECTION);
+                mainTank = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
                 return true;
             } else {
                 bullet.hit();
@@ -434,6 +472,55 @@ private boolean isDestructable(int x, int y) {
         return false;
     }
 
+    public boolean checkTank(AbstractTank atacker, AbstractTank goal) throws Exception  {
+        switch (atacker.getDirection()) {
+            case UP:
+                if (atacker.getX() == goal.getX()) {
+                    if(atacker.getY() - PIXELS_IN_CELL == goal.getY()) {
+
+                        atacker.fire();
+                        return true;
+                    }
+                }
+
+                break;
+            case DOWN:
+                if (atacker.getX() == goal.getX()) {
+                    if(atacker.getY() + PIXELS_IN_CELL == goal.getY()) {
+
+                        atacker.fire();
+                        return true;
+                    }
+                }
+
+                break;
+            case LEFT:
+
+                if (atacker.getY() == goal.getY()) {
+                    if(atacker.getX() - PIXELS_IN_CELL == goal.getX()) {
+
+                        atacker.fire();
+                        return true;
+                    }
+                }
+                break;
+            case RIGHT:
+
+                if (atacker.getY() == goal.getY()) {
+                    if(atacker.getX() + PIXELS_IN_CELL == goal.getX()) {
+
+                        atacker.fire();
+                        return true;
+                    }
+                }
+
+
+                break;
+        }
+
+        return false;
+    }
+
     //Graphics
     @Override
     protected void paintComponent(Graphics g) {
@@ -500,6 +587,7 @@ private boolean isDestructable(int x, int y) {
         //draw(g, aggressor);
         mainTank.draw(g);
         aggressor.draw(g);
+        atacker.draw(g);
 
         //paintBullet(g, tankBullet);
         tankBullet.draw(g);
