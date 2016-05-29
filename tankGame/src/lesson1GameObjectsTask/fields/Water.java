@@ -4,6 +4,7 @@ import lesson1GameObjectsTask.interfaces.UnMovable;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.awt.image.RescaleOp;
 
 import static lesson1GameObjectsTask.BattleField.PIXELS_IN_CELL;
@@ -50,6 +51,20 @@ public class Water extends FieldCell implements UnMovable {
             g.setColor(color);
             g.fillRect(x, y, PIXELS_IN_CELL, PIXELS_IN_CELL);
         }
+    }
+
+    public void drawtrans(Graphics g) {
+        Graphics2D g2D =(Graphics2D) g;
+        Composite org = g2D.getComposite();
+        Composite transparent = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
+        g2D.setComposite(transparent);
+        g.drawImage(imgField, x, y, x + PIXELS_IN_CELL, y + PIXELS_IN_CELL, x, y, x + PIXELS_IN_CELL, y + PIXELS_IN_CELL, new ImageObserver() {
+            @Override
+            public boolean imageUpdate(Image img, int infoflags, int x, int y, int width, int height) {
+                return false;
+            }
+        });
+        g2D.setComposite(org);
     }
 
 
