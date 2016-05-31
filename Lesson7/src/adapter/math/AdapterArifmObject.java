@@ -13,7 +13,7 @@ public class AdapterArifmObject {
     }
 
     public int multiply(int a, int b) {
-        return lib.multiply(a, b, 1);
+        return lib.multiply(a, b);
     }
 
 

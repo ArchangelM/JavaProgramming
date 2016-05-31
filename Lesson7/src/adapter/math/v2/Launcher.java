@@ -9,7 +9,7 @@ import adapter.math.v2.calc.DefaultCalculator;
 public class Launcher {
 
 	public static void main(String[] args) {
-		Calculator calc = new DefaultCalculator();
+		Calculator calc = new ArifmeticsCalc();
 		
 		Operations o = new Operations();
 		o.setCalc(calc);
@@ -19,6 +19,7 @@ public class Launcher {
 			System.out.println(o.createSummaryReport(r.nextInt(100)));
 		}
 
+		/*
 		Calculator calc1 = new DefaultCalculator();
 		AdapterArifmClass adapter = new AdapterArifmClass();
 
@@ -28,5 +29,6 @@ public class Launcher {
 		for (int i = 0; i < 5; i++) {
 			System.out.println(adapter.summa(r.nextInt(100), r.nextInt(100)));
 		}
+		*/
 	}
 }
