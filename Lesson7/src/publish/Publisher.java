@@ -1,6 +1,7 @@
 package publish;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -24,6 +25,7 @@ public class Publisher {
 
     public void published(String name) {
         //Заглушка
+        magazines.get(0).setPublishingDate(new GregorianCalendar().getTime());
         magazines.get(0).notifyObservers(name);
     }
 }
