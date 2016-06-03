@@ -3,6 +3,7 @@ package publish;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Publisher {
     private List<Newspaper> newspapers;
     private List<Magazine> magazines;
@@ -23,7 +24,6 @@ public class Publisher {
 
     public void published(String name) {
         //Заглушка
-        //magazines.get(0).setPublishingDate();
         magazines.get(0).notifyObservers(name);
     }
 }
