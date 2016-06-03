@@ -9,7 +9,7 @@ public class Publisher {
     //надобы на Хеш мапы переделать
 
     public Publisher() {
-        newspapers = new ArrayList<>(2);
+        newspapers = new ArrayList<>();
         magazines = new ArrayList<>();
     }
 

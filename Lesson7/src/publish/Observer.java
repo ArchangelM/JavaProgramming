@@ -6,7 +6,7 @@ public class Observer {
     private String address;
 
     public void update(String event) {
-        System.out.println("Вас ожидает " + event);
+        System.out.println(name + " Вас ожидает " + event);
     }
 
     public String getName() {

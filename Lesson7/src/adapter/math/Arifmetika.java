@@ -12,7 +12,8 @@ public class Arifmetika {
 		return summa;
 	}
 	
-	public static int multiply(int number, int multiplier) {
+	//public static int multiply(int number, int multiplier) {
+	public int multiply(int number, int multiplier) {
 		int result = 0;
 		for (int i = 0; i < multiplier; i++) {
 			result *= multiplier;

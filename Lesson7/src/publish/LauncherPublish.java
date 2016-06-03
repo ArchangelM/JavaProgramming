@@ -1,7 +1,7 @@
 package publish;
 
 
-public class Launcher {
+public class LauncherPublish {
 
     public static void main(String[] args) {
         Publisher publisher = new Publisher();
@@ -13,8 +13,11 @@ public class Launcher {
         magazine1.setName("Forbes");
 
         Observer observer1 = new Observer();
+        observer1.setName("1");
         Observer observer2 = new Observer();
+        observer2.setName("3265");
         Observer observer3 = new Observer();
+        observer3.setName("2");
 
         newspaper1.add(observer1);
         newspaper1.add(observer3);
@@ -29,6 +32,6 @@ public class Launcher {
         publisher.add(newspaper2);
         publisher.add(magazine1);
 
-        publisher.published("Факты");
+        publisher.published("");
     }
 }

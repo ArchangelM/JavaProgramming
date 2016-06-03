@@ -10,6 +10,6 @@ public class AdapterArifmClass extends Arifmetika implements Calculator{
     }
 
     public int multiply(int a, int b) {
-        return super.multiply(a, b, 1);
+        return super.multiply(a, b);
     }
 }
