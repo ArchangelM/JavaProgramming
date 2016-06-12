@@ -14,12 +14,20 @@ public class AI {
     final static int FIELD_BORDER = 1000000;
 
     public Direction[] pathFinder(BattleField battleField, int qxStart, int qyStart, int qxFinish, int qyFinish) {
+        final int X_DIMENTION = battleField.getDimentionX()+2;
+        final int Y_DIMENTION = battleField.getDimentionY()+2;
+
+
         int pathLength = 0;
         CrossNode[] helix = {new CrossNode(0, 0), new CrossNode(1, 0), new CrossNode(1, -1), new CrossNode(0, -1),
                 new CrossNode(-1, -1), new CrossNode(-1, 0), new CrossNode(-1, 1), new CrossNode(0, 1), new CrossNode(1, 1)};
         CrossNode[] weigthStep = {new CrossNode(1, 0), new CrossNode(0, -1), new CrossNode(-1, 0), new CrossNode(0, 1)};
 
-        int[][] wayMap = new int[battleField.getDimentionX()+2][battleField.getDimentionY()+2];
+
+        int[][] wayMap = new int[X_DIMENTION][Y_DIMENTION];
+
+
+
         boolean exit = false;
 
         //qxFinish++;
@@ -48,6 +56,27 @@ public class AI {
         while(!exit) {
             exit = true;
 
+            //wayMap = helixMove(battleField, wayMap, qxStart, qyStart, xProhod, yProhod, qxFinish, qyFinish);
+            //printArray(wayMap);
+            for(int i = qxStart;i < wayMap.length-1;i++) {
+                int yBegin = qyStart+1;
+                if (i != qxStart) yBegin = 1;
+                for(int j = yBegin;j < wayMap[i].length-1;j++) {
+                    wayMap = helixMove(battleField, wayMap, qxStart, qyStart, i, j, qxFinish, qyFinish);
+
+                }
+            }
+            printArray(wayMap);
+            for(int i = qxStart;i >= 1;i--) {
+                int yBegin = qyStart-1;
+                if (i != qxStart) yBegin = wayMap[i].length-2;
+                for(int j = yBegin;j >= 1;j--) {
+                    wayMap = helixMove(battleField, wayMap, qxStart, qyStart, i, j, qxFinish, qyFinish);
+                }
+            }
+//            printArray(wayMap);
+
+/*
             for(int i=0;i < helix.length;i++) {
                 xCur = xProhod + helix[i].dx;
                 yCur = yProhod + helix[i].dy;
@@ -67,9 +96,9 @@ public class AI {
                             wayMap[cross.dx][cross.dy] = tmp;
                         }
                     }
-
+                    //printArray(wayMap);
                 }
-               // printArray(wayMap);
+               //printArray(wayMap);
 
                 //System.out.println();
                 /*int tmp = wayMap[xCur + helix[i].dx][yCur+helix[i].dy];
@@ -79,10 +108,16 @@ public class AI {
                     wayMap[xCur + helix[i].dx][yCur+helix[i].dy] =
                             fieldStep(battleField.scanQuadrant(qxStart, qyStart+1)) - directionOnEagle(qxStart, qyStart, qxFinish, qyFinish);
                 }*/
-            }
 
+/*            }
+*/
             //cur = wayMap[qxStart][qyStart];
             //int numOfStep = 2;//for max/2
+
+
+
+
+/* //Bad
             for(int numOfStep = 2; numOfStep < 8;numOfStep++) {
                 for(int i = -numOfStep;i < numOfStep;i++) {
                     for(int k = -numOfStep;k < numOfStep;k++) {
@@ -97,6 +132,9 @@ public class AI {
                                 cross = new CrossNode(xCur + weigthStep[j].dx, yCur + weigthStep[j].dy);
 
                                 if (wayMap[cross.dx][cross.dy] < 100000) {
+                                   if(i>-10) {
+                                       System.out.println(i);
+                                   }
                                     int tmp = cur + fieldStep(battleField.scanQuadrant(cross.dx-1, cross.dy-1)) -
                                             directionOnEagle(cross.dx-1, cross.dy-1, qxFinish-1, qyFinish-1);
                                     if((wayMap[cross.dx][cross.dy] == 0 && !(cross.dx == qxStart && cross.dy == qyStart))
@@ -116,7 +154,7 @@ public class AI {
                   //  System.out.println();
                 }
             }
-
+*/
             printArray(wayMap);
 
             System.out.println();
@@ -224,6 +262,67 @@ public class AI {
         } else {
             return Direction.RIGHT;
         }
+    }
+
+    //private boolean helixMove(int[][] wayMap, int qxStart, int qyStart, int qxFinish, int qyFinish) {
+    private int[][] helixMove(BattleField battleField, int[][] wayMap,
+                              int qxStart, int qyStart,
+                              int xProhod, int yProhod,
+                              int qxFinish, int qyFinish) {
+        CrossNode[] helix = {new CrossNode(0, 0), new CrossNode(1, 0), new CrossNode(1, -1), new CrossNode(0, -1),
+                new CrossNode(-1, -1), new CrossNode(-1, 0), new CrossNode(-1, 1), new CrossNode(0, 1), new CrossNode(1, 1)};
+        CrossNode[] weigthStep = {new CrossNode(1, 0), new CrossNode(0, -1), new CrossNode(-1, 0), new CrossNode(0, 1)};
+
+        //boolean exit = false;
+
+        int xCur = xProhod;
+        int yCur = yProhod;
+
+
+        for(int i=0;i < helix.length;i++) {
+            int cur = wayMap[xCur][yCur];
+
+            xCur = xProhod + helix[i].dx;
+            yCur = yProhod + helix[i].dy;
+            cur += wayMap[xCur][yCur];
+
+
+            CrossNode cross = new CrossNode(xCur, yCur);
+
+            for(int j=0;j < weigthStep.length;j++) {
+                cross = new CrossNode(xCur + weigthStep[j].dx, yCur + weigthStep[j].dy);
+
+                //if (wayMap[cross.dx][cross.dy] < 100000) {
+               if ((cross.dx >= 1) && (cross.dx <= wayMap.length-2) &&
+                       (cross.dy >= 1) && (cross.dy <= wayMap[cross.dx].length-2)) {
+                    int tmp = cur + fieldStep(battleField.scanQuadrant(cross.dx-1, cross.dy-1)) -
+                            directionOnEagle(cross.dx-1, cross.dy-1, qxFinish-1, qyFinish-1);
+                   //int tmp = cur + fieldStep(battleField.scanQuadrant(cross.dx-1, cross.dy-1));
+
+                   if((wayMap[cross.dx][cross.dy] == 0 && !(cross.dx == qxStart && cross.dy == qyStart))
+                           || (wayMap[cross.dx][cross.dy] < 100000 && tmp < wayMap[cross.dx][cross.dy])) {
+                        //exit = false;
+
+                             wayMap[cross.dx][cross.dy] = tmp;
+
+                    }
+                }
+               // printArray(wayMap);
+            }
+            //printArray(wayMap);
+
+            //System.out.println();
+                /*int tmp = wayMap[xCur + helix[i].dx][yCur+helix[i].dy];
+
+                if(tmp == 0 || tmp < cur) {
+                    exit = false;
+                    wayMap[xCur + helix[i].dx][yCur+helix[i].dy] =
+                            fieldStep(battleField.scanQuadrant(qxStart, qyStart+1)) - directionOnEagle(qxStart, qyStart, qxFinish, qyFinish);
+                }*/
+        }
+
+       // return exit;
+        return wayMap;
     }
 
     private class CrossNode {

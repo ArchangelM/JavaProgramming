@@ -68,7 +68,15 @@ public class ActionField extends JPanel {
 
         }
 */
-
+        path = ai.pathFinder(battleField, getQuadrantV(atacker.getY())+1, getQuadrantH(atacker.getX())+1,
+                getQuadrantH(mainTank.getY())+1,  getQuadrantV(mainTank.getX())+1);
+        for (Direction direction:
+                path) {
+            atacker.turn(direction);
+            checkTank(atacker, mainTank);
+            atacker.move();
+        }
+/*
         while (!mainTank.isDestroyed() && !atacker.isDestroyed() ) {
             atacker.turn(path[0]);
             checkTank(atacker, mainTank);
@@ -80,6 +88,7 @@ public class ActionField extends JPanel {
                     getQuadrantH(mainTank.getY())+1,  getQuadrantV(mainTank.getX())+1);
 
         }
+        */
 /*
         Direction[] pathAggr = ai.pathFinder(battleField, getQuadrantH(aggressor.getX())+1, getQuadrantV(aggressor.getY())+1, 9, 3);
         for (Direction direction:
