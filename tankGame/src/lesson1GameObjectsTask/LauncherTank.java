@@ -16,7 +16,7 @@ public class LauncherTank {
             Direction[] path = ai.pathFinder(bf, 2, 2, 7, 7);
             System.out.println();
             */
-            myGame.runTheGame();
+            //myGame.runTheGame();
         }
 
 }

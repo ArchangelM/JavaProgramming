@@ -56,7 +56,7 @@ public class AI {
         while(!exit) {
             exit = true;
 
-            //wayMap = helixMove(battleField, wayMap, qxStart, qyStart, xProhod, yProhod, qxFinish, qyFinish);
+            wayMap = helixMove(battleField, wayMap, qxStart, qyStart, xProhod, yProhod, qxFinish, qyFinish);
             //printArray(wayMap);
             for(int i = qxStart;i < wayMap.length-1;i++) {
                 int yBegin = qyStart+1;
@@ -280,11 +280,12 @@ public class AI {
 
 
         for(int i=0;i < helix.length;i++) {
-            int cur = wayMap[xCur][yCur];
+            // int cur = wayMap[xCur][yCur];
 
             xCur = xProhod + helix[i].dx;
             yCur = yProhod + helix[i].dy;
-            cur += wayMap[xCur][yCur];
+            int cur = wayMap[xCur][yCur];
+            //cur += wayMap[xCur][yCur];
 
 
             CrossNode cross = new CrossNode(xCur, yCur);
