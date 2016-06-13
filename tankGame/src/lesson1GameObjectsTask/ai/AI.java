@@ -337,4 +337,8 @@ public class AI {
         }
     }
 
+    private void defend() {
+        
+    }
+
 }
