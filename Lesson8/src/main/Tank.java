@@ -1,12 +1,17 @@
 package main;
 
-public abstract class Tank {
+public abstract class Tank implements Comparable<Tank>{
 
     private int id;
-    private String Name;
+    private String name;
     private double price;
 
     public Tank() {
+    }
+
+    @Override
+    public int compareTo(Tank o) {
+        return name.compareTo(o.getName());
     }
 
     public int getId() {
@@ -18,11 +23,11 @@ public abstract class Tank {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public double getPrice() {
