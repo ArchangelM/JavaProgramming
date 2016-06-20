@@ -1,6 +1,6 @@
-package Container;
+package container;
 
 public interface Service {
-    public void test();
+    public String test();
 }
 

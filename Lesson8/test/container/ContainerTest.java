@@ -25,8 +25,15 @@ public class ContainerTest {
 
     @Test
     public void testAddOnIndex() {
-        cur.setType("Mio");
-        serviceRepository.addElement(cur, 1);
-        assertEquals("Should add element", "Mio", serviceRepository.getElement().test());
+        cur.setType("Mio1");
+        serviceRepository.addElement(cur, 0);
+        assertEquals("Should add element", "Mio1", serviceRepository.getElement(0).test());
+    }
+
+    @Test
+    public void testAddLast() {
+        cur.setType("Mio last");
+        serviceRepository.addElement(cur);
+        assertEquals("Should add element", "Mio last", serviceRepository.getElement().test());
     }
 }
