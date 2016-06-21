@@ -19,8 +19,29 @@ public class ContainerTest {
     }
 
     @Test
+    public void testService() {
+        assertNotNull("Should be null", cur);
+    }
+
+    @Test
+    public void testServiceType() {
+        assertNull("Should be null", cur.getType());
+    }
+
+    @Test
+    public void testServiceElement() {
+        cur.setType("Mio");
+        assertEquals("Should be Mio", "Mio", cur.getType());
+    }
+
+    @Test
     public void testNotNullList() {
         assertNotNull("Should be initiated", serviceRepository);
+    }
+
+    @Test
+    public void testList() {
+        assertNotNull("Should be null", serviceRepository.getServiceList());
     }
 
     @Test
@@ -36,4 +57,6 @@ public class ContainerTest {
         serviceRepository.addElement(cur);
         assertEquals("Should add element", "Mio last", serviceRepository.getElement().test());
     }
+
+
 }
