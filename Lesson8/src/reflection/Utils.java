@@ -1,12 +1,29 @@
 package reflection;
 
+import main.Box;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class Utils {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         //reflaction
+
         System.out.println("printClass");
+        System.out.println("PrintClass");
+        printClassInfo(Box.class);
+        System.out.println();
+        printClassMethods(Box.class);
+        System.out.println();
+        printClassFields(Box.class);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("node", (Integer)12);
+
+        initClass(Box.class, map);
 
     }
 
@@ -35,7 +52,28 @@ public class Utils {
 
         for (Field field:
                 fields) {
-            System.out.println("Class field - " + field.getName());
+            System.out.println("Class public field - " + field.getName());
         }
+
+        fields = curClass.getDeclaredFields();
+
+        for (Field field:
+                fields) {
+            System.out.println("Class all field - " + field.getName());
+        }
+
     }
+
+
+    public static void initClass(Class curClass, Map<String, Object> map) throws Exception {
+        Object obj = curClass.newInstance();
+        Field cur = curClass.getDeclaredField("node");
+        //cur.set(curClass, map.get("node"));
+        
+
+
+
+    }
+
+
 }
