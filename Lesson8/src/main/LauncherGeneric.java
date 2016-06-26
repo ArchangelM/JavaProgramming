@@ -1,5 +1,7 @@
 package main;
 
+import reflection.Utils;
+
 public class LauncherGeneric {
     public static void main(String[] args) {
         BoxList<Tank> box = new BoxList<>();
@@ -37,6 +39,16 @@ public class LauncherGeneric {
         System.out.println();
         box.printList();
 
+
+        //reflaction
+        System.out.println();
+
+        System.out.println("PrintClass");
+        Utils.printClassInfo(Box.class);
+        System.out.println();
+        Utils.printClassMethods(Box.class);
+        System.out.println();
+        Utils.printClassFields(Box.class);
 
 
     }

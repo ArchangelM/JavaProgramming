@@ -22,12 +22,16 @@ public class ServiceRepository {
     }
 
     public Service getElement() {
-        return serviceList.get(serviceList.size());
+        return serviceList.get(serviceList.size()-1);
 
     }
 
     public Service getElement(int index) {
         return serviceList.get(index);
 
+    }
+
+    public List<Service> getServiceList() {
+        return serviceList;
     }
 }
