@@ -3,6 +3,7 @@ package reflection;
 import main.Box;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,9 @@ public class Utils {
         Map<String, Object> map = new HashMap<>();
         map.put("node", (Integer)12);
 
-        initClass(Box.class, map);
+        Box box = initClass(Box.class, map);
+
+        System.out.println("Node " + box.getNode());
 
     }
 
@@ -65,14 +68,23 @@ public class Utils {
     }
 
 
-    public static void initClass(Class curClass, Map<String, Object> map) throws Exception {
-        Object obj = curClass.newInstance();
-        Field cur = curClass.getDeclaredField("node");
-        //cur.set(curClass, map.get("node"));
-        
+    public static <T> T initClass(Class<T> curClass, Map<String, Object> map) throws IllegalAccessException,
+            InstantiationException, ExceptionInInitializerError, SecurityException, InvocationTargetException{
 
+        T obj = curClass.newInstance();
+        Method[] methods = obj.getClass().getMethods();
 
+        for(Method method: methods
+                ){
+            for(String str: map.keySet()
+                    ){
+                if(method.getName().equalsIgnoreCase("set" +str)){
+                    method.invoke(obj, map.get(str));
+                }
+            }
+        }
 
+        return obj;
     }
 
 
