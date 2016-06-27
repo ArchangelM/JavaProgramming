@@ -61,6 +61,7 @@ public class ApplicationManager {
             for (Method meth:methods
                  ) {
                 if(meth.isAnnotationPresent(InitService.class)) {
+                    //Аннотацию для проверки тоже можно передать и список параметров для вызоваметода
                     meth.invoke(obj, null);
                 }
             }
