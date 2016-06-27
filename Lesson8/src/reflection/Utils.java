@@ -46,6 +46,22 @@ public class Utils {
         System.out.println(test.getTestArray());
         System.out.println(test.getTestDouble());
 
+
+        System.out.println();
+
+        map = new HashMap<>();
+        map.put("tInt", (Integer)12);
+        map.put("testDouble", 45.98);
+        map.put("color", new Color(23, 45, 169));
+
+
+        PrivateTest prTest = setPrivates(PrivateTest.class, map);
+
+        System.out.println(prTest.gettInt());
+        System.out.println(prTest.getColor());
+        System.out.println(prTest.getTestDouble());
+
+
     }
 
     public static void printClassInfo(Class curClass) {
@@ -154,5 +170,24 @@ public class Utils {
 */
         return obj;
     }
+
+    public static <T> T setPrivates(Class<T> curClass, Map<String, Object> map) throws IllegalAccessException,
+            InstantiationException {
+           T obj = curClass.newInstance();
+           Field[] fields = curClass.getDeclaredFields();
+
+
+
+        for (Field field:
+                fields) {
+            field.setAccessible(true);
+            field.set (obj, map.get(field.getName()));
+
+            };
+
+        return obj;
+    }
+
+
 
 }
