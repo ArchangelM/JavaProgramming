@@ -2,6 +2,7 @@ package reflection;
 
 import java.awt.*;
 
+@Service
 public class PrivateTest {
     private Integer tInt;
     private double[] testArray;
