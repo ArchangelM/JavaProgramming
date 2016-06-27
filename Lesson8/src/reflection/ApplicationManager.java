@@ -75,4 +75,14 @@ public class ApplicationManager {
 
     }
 
+    public <T> T getService(Class<T> curClass) throws IllegalAccessException, InstantiationException {
+
+        if (curClass.isAnnotationPresent(Service.class)) {
+            T obj = curClass.newInstance();
+            return obj;
+        }
+
+        return null;
+    }
+
 }
