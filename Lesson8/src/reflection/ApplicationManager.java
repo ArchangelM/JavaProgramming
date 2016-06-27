@@ -4,6 +4,7 @@ import java.awt.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,6 +55,17 @@ public class ApplicationManager {
 
             Object[] params = list.toArray();
             T obj = curClass.getConstructor(paramTypes).newInstance(params);
+
+            Method[] methods = curClass.getDeclaredMethods();
+
+            for (Method meth:methods
+                 ) {
+                if(meth.isAnnotationPresent(InitService.class)) {
+                    meth.invoke(obj, null);
+                }
+            }
+
+
 
             return obj;
         }

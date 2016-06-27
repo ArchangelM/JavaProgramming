@@ -28,6 +28,11 @@ public class PrivateTest {
         this.color = color;
     }
 
+    @InitService
+    public void init() {
+        System.out.println("I`m working!");
+    }
+
     public int gettInt() {
         return tInt;
     }

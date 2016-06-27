@@ -5,11 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value = ElementType.TYPE)
+@Target(value = ElementType.METHOD)
 @Retention(value = RetentionPolicy.RUNTIME)
-//@Retention.RetentionPolicy.RUNTIME
-public @interface Service {
-    String name() default "runtimeCheck";
-
+public @interface InitService {
 }
-
