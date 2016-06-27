@@ -2,10 +2,14 @@ package reflection;
 
 import main.Box;
 
+import java.awt.*;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -27,6 +31,20 @@ public class Utils {
         Box box = initClass(Box.class, map);
 
         System.out.println("Node " + box.getNode());
+
+        List<Object> list = new ArrayList<>();
+        list.add(45);
+        //list.add(new double[] {34d, 67d, 34,98});
+        list.add(67.82d);
+        list.add(new Color(23, 45, 169));
+
+
+        Test test = initClass(Test.class, list);
+
+        System.out.println(test.gettInt());
+        System.out.println(test.getColor());
+        System.out.println(test.getTestArray());
+        System.out.println(test.getTestDouble());
 
     }
 
@@ -72,7 +90,8 @@ public class Utils {
             InstantiationException, ExceptionInInitializerError, SecurityException, InvocationTargetException{
 
         T obj = curClass.newInstance();
-        Method[] methods = obj.getClass().getMethods();
+        Method[] methods = curClass.getMethods();
+
 
         for(Method method: methods
                 ){
@@ -87,5 +106,53 @@ public class Utils {
         return obj;
     }
 
+    public static <T> T initClass(Class<T> curClass, List<Object> list) throws IllegalAccessException,
+            InstantiationException, ExceptionInInitializerError, SecurityException, InvocationTargetException,
+            NoSuchMethodException {
+
+        Class[] paramTypes = new Class[list.size()];
+        int i = 0;
+
+        for (Object object: list
+             ) {
+            paramTypes[i] = list.get(i++).getClass();
+        }
+
+        Constructor constr = curClass.getConstructor(paramTypes);
+        //constr.newInstance();
+        Object[] params = list.toArray();
+        T obj = curClass.getConstructor(paramTypes).newInstance(params);
+/*        T obj = null;
+
+        //Constructor[] constructors = obj.getClass().getConstructors();
+        Constructor[] constructors = curClass.getConstructors();
+
+        int parametrsNum = list.size();
+        boolean equal = false;
+
+        for(Constructor constructor: constructors
+                ){
+            if(parametrsNum == constructor.getParameterCount()) {
+                Class[] paramTypes1 = constructor.getParameterTypes();
+                equal = true;
+                for (Class paramType : paramTypes1) {
+                    for (Object object: list) {
+                        equal = false;
+                        if (!paramType.equals(object.getClass())) {
+                            equal = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (equal) {
+                obj = curClass.getConstructor(paramTypes).newInstance();
+                break;
+            }
+
+        }
+*/
+        return obj;
+    }
 
 }
