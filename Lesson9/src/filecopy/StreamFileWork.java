@@ -45,4 +45,14 @@ public class StreamFileWork {
 
         write(path, inside);
     }
+
+    public void CopyFile(File f) {
+        String path = f.getAbsolutePath();
+
+        byte[] inside = read(path);
+
+        path = path.replace(".", "_Copy.");
+
+        write(path, inside);
+    }
 }

@@ -16,6 +16,12 @@ public class LauncherFC {
 
         sfw.CopyFile(path, fileName);
 
+        path = "d:\\razrab\\test\\test1.txt";
+        path = path.replace("\\", File.separator);
+
+        file = new File(path);
+        sfw.CopyFile(file);
+
     }
 }
 
