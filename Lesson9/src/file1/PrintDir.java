@@ -12,7 +12,12 @@ public class PrintDir {
     public void printDir(String path) {
         path = path.replace("\\", File.separator);
         File f = new File(path);
-        
+
+        System.out.println(f.getAbsolutePath());
+        for (String cur:f.list()
+             ) {
+            System.out.println(cur);
+        }
 
 
     }

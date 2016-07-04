@@ -12,9 +12,9 @@ public class LauncherFile {
 
         PrintDir prnDir = new PrintDir();
 
-        //path = prnDir.creatingDir(path);
-       // prnDir.creatingFile(path);
-       // prnDir.printDir(path);
+        path = prnDir.creatingDir(path);
+        prnDir.creatingFile(path);
+        prnDir.printDir(path);
 
 
 
