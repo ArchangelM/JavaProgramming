@@ -38,7 +38,7 @@ public class StreamFileWork {
     }
 
     public void bufWrite(String fileName, byte[] cur) {
-        try(BufferedOutputStream bufOutStr = new BufferedOutputStream(new FileOutputStream(fileName))) {
+        try(BufferedOutputStream bufOutStr = new BufferedOutputStream(new FileOutputStream(fileName), 256)) {
             bufOutStr.write(cur);
 
         } catch (IOException e) {
@@ -50,7 +50,7 @@ public class StreamFileWork {
     public byte[] bufRead(String fileName) {
         List<Byte> list = new ArrayList<>();
 
-        try(BufferedInputStream bufInStr = new BufferedInputStream(new FileInputStream(fileName))) {
+        try(BufferedInputStream bufInStr = new BufferedInputStream(new FileInputStream(fileName), 256)) {
             int i = 0;
             while((i = bufInStr.read()) != -1) {
                 list.add(Byte.valueOf((byte)i));
