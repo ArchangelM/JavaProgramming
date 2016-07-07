@@ -3,6 +3,7 @@ package filecopy;
 
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 
 public class LauncherFC {
@@ -21,6 +22,10 @@ public class LauncherFC {
 
         file = new File(path);
         sfw.CopyFileBuf(file);
+
+        ChangeEncoding changeEncoding = new ChangeEncoding();
+
+        changeEncoding.changeEncoding(file, "CP1251", "UTF8");
 
     }
 }
