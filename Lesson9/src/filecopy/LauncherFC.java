@@ -20,7 +20,7 @@ public class LauncherFC {
         path = path.replace("\\", File.separator);
 
         file = new File(path);
-        sfw.CopyFile(file);
+        sfw.CopyFileBuf(file);
 
     }
 }
