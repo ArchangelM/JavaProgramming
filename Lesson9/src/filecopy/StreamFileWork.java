@@ -95,4 +95,21 @@ public class StreamFileWork {
 
         bufWrite(path, inside);
     }
+
+    public void StreamOutRedirect(File file) {
+
+        try (
+                FileOutputStream fos = new FileOutputStream(file);
+                PrintStream prnstr = new PrintStream(fos);
+
+        ){
+          System.setOut(prnstr);
+
+
+            //writer.flush();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
 }
