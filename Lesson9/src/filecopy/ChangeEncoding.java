@@ -9,12 +9,13 @@ import java.util.List;
 public class ChangeEncoding {
     public void changeEncoding(File file, String currentEncoding, String neededEncoding) {
         List<String> text = new ArrayList<>();
-        char[] chars;
 
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            InputStreamReader isr = new InputStreamReader(fis, currentEncoding);
-            BufferedReader reader = new BufferedReader(isr, 256);
+        try (
+                FileInputStream fis = new FileInputStream(file);
+                InputStreamReader isr = new InputStreamReader(fis, currentEncoding);
+                BufferedReader reader = new BufferedReader(isr, 256);
+                ){
+
 
             int i = 0;
             //reader.read(chars, 0, )
@@ -31,10 +32,12 @@ public class ChangeEncoding {
 
 
 
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            OutputStreamWriter osw = new OutputStreamWriter(fos, neededEncoding);
-            BufferedWriter writer = new BufferedWriter(osw, 256);
+        try (
+                FileOutputStream fos = new FileOutputStream(file);
+                OutputStreamWriter osw = new OutputStreamWriter(fos, neededEncoding);
+                BufferedWriter writer = new BufferedWriter(osw, 256);
+                ){
+
 
             if(text.size() >= 1) {
                 writer.write(text.get(0));
@@ -45,7 +48,7 @@ public class ChangeEncoding {
             }
 
 
-
+            //writer.flush();
         } catch (IOException e) {
             System.out.println(e);
         }
