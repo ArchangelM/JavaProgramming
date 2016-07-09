@@ -8,6 +8,9 @@ import java.util.zip.ZipOutputStream;
 /**
  * Please read notification
  * It`s a Mock in metod init() at this Class
+ *
+ * При чтении можно взять размер и соответсвенно сделать буффер для чтения всего файла если он скажем меньше N кб
+ * И по считывать не по 1 байту, а пачками, но так чтобы попасть в конец файла.
  */
 
 public class ZipArchiver {
