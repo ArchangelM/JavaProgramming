@@ -11,6 +11,17 @@ import java.util.zip.ZipOutputStream;
  *
  * При чтении можно взять размер и соответсвенно сделать буффер для чтения всего файла если он скажем меньше N кб
  * И по считывать не по 1 байту, а пачками, но так чтобы попасть в конец файла.
+ * //create all non exists folders
+ * //else you will hit FileNotFoundException for compressed folder
+ * new File(newFile.getParent()).mkdirs();
+ *
+ * FileOutputStream fos = new FileOutputStream(newFile);
+ *
+ * int len;
+ * while ((len = zis.read(buffer)) > 0) {
+ * fos.write(buffer, 0, len);
+ *  }
+
  */
 
 public class ZipArchiver {
