@@ -10,7 +10,10 @@ import lesson1GameObjectsTask.fields.Grass;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.tanks.BT7;
 import lesson1GameObjectsTask.tanks.T34;
+import lesson1GameObjectsTask.tanks.TankType;
 import lesson1GameObjectsTask.tanks.Tiger;
+import lesson1GameObjectsTask.utils.Memoirs;
+import lesson1GameObjectsTask.utils.TankAction;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,11 +38,11 @@ public class ActionField extends JPanel {
 
     private final int BULLET_X_DELTA = 25;
     private final int BULLET_Y_DELTA = 25;
-    JPanel panelFirstScreen;
-    JPanel panelGameover;
+    private JPanel panelFirstScreen;
+    private JPanel panelGameover;
+    private JFrame myFrame;
 
-
-    String tankType;
+    private String tankType;
 
     private final String DESTRUCTABLE = "BCE"; //коды разрушаемых объектов: кирпич, танк компьютера, штаб
     private final String UN_DESTRUCTABLE = "WS"; //коды не разрушаемых объектов: вода, камни
@@ -54,7 +57,11 @@ public class ActionField extends JPanel {
     private AbstractTank aggressor;
     private AbstractTank atacker;
 
-    AI ai;
+    private boolean writeActionFile;
+    private String fileName;
+    private Memoirs memoirs;
+
+    private AI ai;
 
 
     public void runTheGame() throws Exception {
@@ -62,8 +69,26 @@ public class ActionField extends JPanel {
         //Thread.sleep(2000);
         ai = new AI();
 
+        //Memoirs memoirs = new Memoirs("a.txt");
+        //memoirs.fileToWrite();
+        //memoirs.fileToRead();
+
+
+        //memoirs.readActionFile();
+        //Thread.sleep(3000);
+        atacker.move();
+        atacker.fire();
+
+        myFrame.getContentPane().removeAll();
+        myFrame.getContentPane().add(panelGameover);
+        //Thread.sleep(3000);
+        //
+        //panelFirstScreen.setEnabled(true);
+        //panelFirstScreen.setVisible(true);
+/*111111111111
        Direction[] path = ai.pathFinder(battleField, getQuadrantV(atacker.getY())+1, getQuadrantH(atacker.getX())+1,
                getQuadrantH(mainTank.getY())+1,  getQuadrantV(mainTank.getX())+1);
+*/
 //        Direction[] path = ai.pathFinder(battleField, getQuadrantV(atacker.getY())+1, getQuadrantH(atacker.getX())+1, 9,  3);
 /*      for (Direction direction:
                 path) {
@@ -82,7 +107,7 @@ public class ActionField extends JPanel {
             atacker.move();
         }
         */
-
+/*111111111111
         while (!mainTank.isDestroyed() && !atacker.isDestroyed() ) {
             atacker.turn(path[0]);
             checkTank(atacker, mainTank);
@@ -94,7 +119,7 @@ public class ActionField extends JPanel {
                     getQuadrantH(mainTank.getY())+1,  getQuadrantV(mainTank.getX())+1);
 
         }
-
+*/
 /*
         Direction[] pathAggr = ai.pathFinder(battleField, getQuadrantH(aggressor.getX())+1, getQuadrantV(aggressor.getY())+1, 9, 3);
         for (Direction direction:
@@ -133,7 +158,18 @@ public class ActionField extends JPanel {
     public ActionField() throws Exception {
         battleField = new BattleField();
 
+        //mem
+        writeActionFile = true; //Mock
+        fileName = "result.txt";//Mock
+        memoriesInit(fileName);//Mock
+
         mainTank = new T34(this, battleField);
+
+        if(writeActionFile) {
+            mainTank.setWriteActionFile(writeActionFile);
+            mainTank.setMemoirs(memoirs);
+        }
+
         tankBullet = new Bullet();
 
         //aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
@@ -150,11 +186,17 @@ public class ActionField extends JPanel {
         panelFirstScreen = new JPanel();
         panelGameover = new JPanel();
 
+        gameOverPanel(frame);
+        frame.getContentPane().removeAll();
+
         setFirstPanel(frame);
+        myFrame = frame;
 
         frame.getContentPane().add(panelFirstScreen);
         frame.pack();
         frame.setVisible(true);
+
+
 
 
 /*
@@ -164,6 +206,13 @@ public class ActionField extends JPanel {
 */
     }
 
+    public void memoriesInit(String str) {
+        //mem
+        memoirs = new Memoirs(str);
+        memoirs.clearFile();
+        // memoirs.fileToWrite(this);
+
+    }
 
     private boolean processInterception(Bullet bullet) throws Exception {
        // if (mainTank.getY() < 0 || mainTank.getY() > battleField.getBF_HEIGHT()) return false;
@@ -418,6 +467,7 @@ private boolean isDestructable(int x, int y) {
         else {
             System.out.println("Не правильное направление.");
         }
+
         repaint();
     }
 
@@ -478,6 +528,7 @@ private boolean isDestructable(int x, int y) {
 
                 break;
         }
+
     }
 
     public boolean checkUpBorder(int y, int upBorder) {
@@ -633,10 +684,11 @@ private boolean isDestructable(int x, int y) {
         panelFirstScreen.add(quation, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 0, new Insets(0, 0, 0, 0), 0, 0));
 
-
         JPanel tanksPanel = new JPanel();
         tanksPanel.setLayout(new GridLayout(2, 0));
         tanksPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+
+        JButton buttonBuy = new JButton();
 
         JRadioButton[] tanksRB = new JRadioButton[2];
         tanksRB[0] = new JRadioButton("Tiger");
@@ -648,6 +700,7 @@ private boolean isDestructable(int x, int y) {
         tanksRB[1].setText("BT-7");
         tanksRB[1].setMnemonic(KeyEvent.VK_B);
         tanksRB[1].setActionCommand("BT-7");
+        //tanksRB[1].onC
 
         tanksPanel.add(tanksRB[0]);
         tanksPanel.add(tanksRB[1]);
@@ -659,17 +712,23 @@ private boolean isDestructable(int x, int y) {
         panelFirstScreen.add(tanksPanel, new GridBagConstraints(0, 2, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 0, new Insets(0, 0, 0, 0), 0, 0));
 
-        JButton buttonBuy = new JButton();
+
+
         buttonBuy.setText("Play");
         buttonBuy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    tankType = e.getActionCommand();
-                System.out.println(tankType);
+                // tankType = e.getActionCommand();
+                tankType = tanksGroup.getSelection().getActionCommand();
+                        System.out.println(tankType);
                 try {
+                    panelFirstScreen.setVisible(false);
+                    panelFirstScreen.setEnabled(false);
+
                     setFrame(frame);
+
                 } catch (Exception ex)       {
-                    System.out.println(ex);
+                    System.out.println("First panel" + ex);
                 }
             }
         });
@@ -677,22 +736,107 @@ private boolean isDestructable(int x, int y) {
         panelFirstScreen.add(buttonBuy, new GridBagConstraints(0, 3, 1, 1, 0, 0, GridBagConstraints.LINE_START,
                 0, new Insets(0, 0, 0, 0), 0, 0));
 
+        frame.getContentPane().add(panelFirstScreen);
+
         panelFirstScreen.setEnabled(true);
+        panelFirstScreen.setVisible(true);
+
+    }
+
+    private void gameOverPanel(JFrame frame) throws Exception  {
+        panelGameover.setLayout(new GridBagLayout());
+        JLabel text = new JLabel("Gameover");
+        JTextArea quation = new JTextArea("Please check:");
+
+        panelGameover.add(text, new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        panelGameover.add(quation, new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
+
+        JButton buttonPlayAgain = new JButton();
+        JButton buttonExit = new JButton();
 
 
+        buttonPlayAgain.setText("Play again");
+        buttonPlayAgain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+
+                    panelGameover.setVisible(false);
+                    panelGameover.setEnabled(false);
+                    panelFirstScreen.setEnabled(true);
+                    panelFirstScreen.setVisible(true);
+
+                    frame.getContentPane().removeAll();
+                    //setFirstPanel(frame);
+                    frame.getContentPane().add(panelFirstScreen);
+
+                } catch (Exception ex)       {
+                    System.out.println("Game over" + ex);
+                }
+            }
+        });
+
+        buttonExit.setText("Exit");
+        buttonExit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                try {
+                    frame.dispose();
+                } catch (Exception ex)       {
+                    System.out.println("Game over" + ex);
+                }
+            }
+        });
+
+        panelGameover.add(buttonPlayAgain, new GridBagConstraints(0, 3, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
+        panelGameover.add(buttonExit, new GridBagConstraints(1, 3, 1, 1, 0, 0, GridBagConstraints.LINE_START,
+                0, new Insets(0, 0, 0, 0), 0, 0));
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(panelGameover);
+        panelGameover.setEnabled(true);
+        panelGameover.setVisible(true);
     }
 
     private void setFrame(JFrame frame) throws Exception {
         if(tankType.equals("Tiger")) {
             aggressor = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
+            aggressor.setTankType(TankType.AGRESSOR);
+            atacker = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
+            atacker.setTankType(TankType.ATACKER);
+            if(writeActionFile) {
+                aggressor.setWriteActionFile(writeActionFile);
+                aggressor.setMemoirs(memoirs);
+                atacker.setWriteActionFile(writeActionFile);
+                atacker.setMemoirs(memoirs);
+            }
+
 
         } else {
             aggressor = new BT7(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+            aggressor.setTankType(TankType.AGRESSOR);
             atacker = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
+            atacker.setTankType(TankType.ATACKER);
+            if(writeActionFile) {
+                aggressor.setWriteActionFile(writeActionFile);
+                aggressor.setMemoirs(memoirs);
+                atacker.setWriteActionFile(writeActionFile);
+                atacker.setMemoirs(memoirs);
+            }
         }
 
         frame.getContentPane().removeAll();
+        //panelFirstScreen.setVisible(false);
+        //panelFirstScreen.setEnabled(false);
+
         frame.getContentPane().add(this);
+        //this.setVisible(true);
+        //this.setEnabled(true);
         frame.pack();
         frame.repaint();
 

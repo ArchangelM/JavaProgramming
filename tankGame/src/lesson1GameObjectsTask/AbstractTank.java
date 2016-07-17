@@ -7,6 +7,11 @@ import lesson1GameObjectsTask.fields.Explosion;
 import lesson1GameObjectsTask.fields.Water;
 import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.interfaces.Drawable;
+import lesson1GameObjectsTask.tanks.TankType;
+import lesson1GameObjectsTask.utils.Memoirs;
+import lesson1GameObjectsTask.utils.TankAction;
+import lesson1GameObjectsTask.utils.Utils;
+
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -40,7 +45,13 @@ public abstract class AbstractTank implements Drawable, Destroyable {
     protected String[] spritesTankFilesName;
     protected Image[] imgTank;
 
+    private TankType tankType;
+
     private Bullet bullet;
+    private boolean writeActionFile;
+    private Memoirs memoirs;
+
+
 
     public AbstractTank(ActionField af, BattleField bf) {
         this(af, bf, 128, 512, Direction.UP);
@@ -63,6 +74,30 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
         engine = af;
         battleField = bf;
+        writeActionFile = false;
+
+        tankType = TankType.PLAYERTANK;
+
+    }
+
+    public boolean isWriteActionFile() {
+        return writeActionFile;
+    }
+
+    public void setWriteActionFile(boolean writeActionFile) {
+        this.writeActionFile = writeActionFile;
+    }
+
+    public void setMemoirs(Memoirs memoirs) {
+        this.memoirs = memoirs;
+    }
+
+    public TankType getTankType() {
+        return tankType;
+    }
+
+    public void setTankType(TankType tankType) {
+        this.tankType = tankType;
     }
 
     public void loadSpritesTank() {
@@ -85,6 +120,12 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
     public void turn(Direction direction) throws Exception {
         this.direction = direction;
+
+        //mem
+        if(isWriteActionFile()) {
+            memoirs.writeActionToFile(this, Utils.directionToAction(direction));
+        }
+
         engine.processTurn(this);
     }
 
@@ -92,6 +133,12 @@ public abstract class AbstractTank implements Drawable, Destroyable {
     public void fire() throws Exception {
         //Bullet bullet = new Bullet(x+25, y+25, direction);
         bullet = new Bullet(x+25, y+25, direction);
+
+        //mem
+        if(isWriteActionFile()) {
+            memoirs.writeActionToFile(this, TankAction.FIRE);
+        }
+
         engine.processFire(bullet);
     }
 
@@ -141,11 +188,12 @@ public abstract class AbstractTank implements Drawable, Destroyable {
             }
             //if (engine.checkTank(defender))
 
-        break;
+         break;
 		case LEFT:
             if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x)-1, battleField.getQuadrantV(y))){
                 fire();
             }
+
 			break;
 		case RIGHT:
             if (battleField.isQuadrantDestructable(battleField.getQuadrantH(x)+1, battleField.getQuadrantV(y))){
@@ -154,6 +202,12 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
 			break;
 		}
+
+        //mem
+        if(isWriteActionFile()) {
+            memoirs.writeActionToFile(this, TankAction.MOVE);
+        }
+
         engine.processMove(this);
     }
 
