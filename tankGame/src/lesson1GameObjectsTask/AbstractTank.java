@@ -139,7 +139,7 @@ public abstract class AbstractTank implements Drawable, Destroyable {
             memoirs.writeActionToFile(this, TankAction.FIRE);
         }
 
-        engine.processFire(bullet);
+        engine.processFire(this, bullet);
     }
 
     public boolean destroy() throws Exception {

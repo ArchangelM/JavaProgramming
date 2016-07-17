@@ -91,6 +91,16 @@ public class Utils {
             case RIGHT: return TankAction.RIGHT;
             default: return TankAction.NONE;
         }
+    }
+
+    public static Direction actionToDirection(TankAction direction) {
+        switch(direction) {
+            case UP: return Direction.UP;
+            case DOWN: return Direction.DOWN;
+            case LEFT: return Direction.LEFT;
+            case RIGHT: return Direction.RIGHT;
+            default: return Direction.NONE;
+        }
 
     }
 }

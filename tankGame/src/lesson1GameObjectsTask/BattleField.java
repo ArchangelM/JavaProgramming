@@ -9,7 +9,7 @@ import lesson1GameObjectsTask.interfaces.Destroyable;
 import lesson1GameObjectsTask.interfaces.Drawable;
 
 import java.awt.*;
-import java.util.Random;
+import java.util.*;
 
 public class BattleField implements Drawable {
     private final int BF_WIDTH = 576;

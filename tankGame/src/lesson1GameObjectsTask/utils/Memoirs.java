@@ -1,6 +1,8 @@
 package lesson1GameObjectsTask.utils;
 
 import lesson1GameObjectsTask.AbstractTank;
+import lesson1GameObjectsTask.tanks.TankType;
+
 import static lesson1GameObjectsTask.utils.Utils.*;
 
 import java.io.*;
@@ -24,9 +26,23 @@ public class Memoirs {
     private BufferedReader fileRead;
     private BufferedWriter fileWrite;
     private String fileName;
+    private java.util.List<String> memories;
+    private int curPosition;
+
+    public Memoirs(String fileName, boolean read) {
+
+        if (read) {
+            memories = new ArrayList<>();
+            curPosition = 0;
+
+        }
+
+        this.fileName = fileName;
+
+    }
 
     public Memoirs(String fileName) {
-        this.fileName = fileName;
+        this(fileName, false);
     }
 
     public void clearFile() {
@@ -95,13 +111,40 @@ public class Memoirs {
                 )
         {
             while ((action = fileRead.readLine()) != null) {
-                System.out.println(action);
+                memories.add(action);
+
             }
 
         } catch (IOException e) {
             System.out.println(e);
         }
 
+        if(memories.size() > 1) {
+            curPosition = 1; //first elevment \n
+        }
+    }
+
+    public String getCurString(){
+        return memories.get(curPosition);
+    }
+
+    public String getCurStringGoNext(){
+        return memories.get(curPosition++);
+    }
+
+    public int goNext() { //refactor from iterator
+        if(curPosition < memories.size()-1) {
+            return ++curPosition;
+        }
+        return -1;
+    }
+
+    public TankType getCurTankType() {
+        return tankTypeReadConverter(memories.get(curPosition).charAt(0));
+    }
+
+    public TankAction getCurTankAction() {
+        return actionReadConverter(memories.get(curPosition).charAt(1));
     }
 
     public void readTankFile(AbstractTank tank) {

@@ -7,8 +7,15 @@ import lesson1GameObjectsTask.ai.AI;
 
 public class LauncherTank {
         public static void main(String[] args) throws Exception {
-            // TODO Auto-generated method stub
-            ActionField myGame = new ActionField();
+
+            if(args.length > 0) {
+                System.out.println(args[0]);
+                ActionField myGame = new ActionField(args[0]);
+            }
+            else {
+                ActionField myGame = new ActionField();
+            }
+
 
             /*
             AI ai = new AI();

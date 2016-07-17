@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.*;
 
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ import static lesson1GameObjectsTask.BattleField.Y_MAX;
 
 import static lesson1GameObjectsTask.Bullet.BULLET_X_DIMENTION;
 import static lesson1GameObjectsTask.Bullet.BULLET_Y_DIMENTION;
+import static lesson1GameObjectsTask.utils.Utils.actionToDirection;
 
 public class ActionField extends JPanel {
 
@@ -51,15 +53,21 @@ public class ActionField extends JPanel {
     private final int RESURECTION = 3000;
 
     private BattleField battleField;
-    private AbstractTank mainTank;
     private Bullet tankBullet;
 
+    private AbstractTank mainTank;
     private AbstractTank aggressor;
     private AbstractTank atacker;
+    private java.util.List<AbstractTank> agressors;
+    private java.util.List<AbstractTank> atackers;
+    private java.util.List<AbstractTank> defenders;
+    private java.util.List<AbstractTank> players;
 
     private boolean writeActionFile;
     private String fileName;
     private Memoirs memoirs;
+
+    //private java.util.List<String> mem;
 
     private AI ai;
 
@@ -81,6 +89,7 @@ public class ActionField extends JPanel {
 
         myFrame.getContentPane().removeAll();
         myFrame.getContentPane().add(panelGameover);
+
         //Thread.sleep(3000);
         //
         //panelFirstScreen.setEnabled(true);
@@ -155,17 +164,69 @@ public class ActionField extends JPanel {
 
     }
 
+    public void runSavedGame() throws Exception {
+        do {
+            TankType tankType = memoirs.getCurTankType();
+            TankAction tankAction = memoirs.getCurTankAction();
+
+            switch (tankType) {
+                case AGRESSOR:
+                    if (agressors.size() <= 0) {
+                        agressors.add(new Tiger(this, battleField, battleField.getRandomLocationAggressor(),
+                                Direction.DOWN));
+                        agressors.get(0).setTankType(TankType.AGRESSOR);
+                    }
+
+                    tankAction(agressors.get(0), tankAction);
+
+                    break;
+                case ATACKER:
+                    if (atackers.size() <= 0) {
+                        atackers.add(new BT7(this, battleField, battleField.getRandomLocationAtacker(),
+                                Direction.DOWN));
+                        atackers.get(0).setTankType(TankType.ATACKER);
+                    }
+
+                    tankAction(atackers.get(0), tankAction);
+
+                    break;
+                case DEFFENDER:
+                    if (defenders.size() <= 0) {
+                        defenders.add(new T34(this, battleField));
+                        defenders.get(0).setTankType(TankType.DEFFENDER);
+                    }
+
+                    tankAction(defenders.get(0), tankAction);
+
+                    break;
+                case PLAYERTANK:
+                    if (players.size() <= 0) {
+                        players.add(new T34(this, battleField));
+                        players.get(0).setTankType(TankType.DEFFENDER);
+                    }
+
+                    tankAction(players.get(0), tankAction);
+
+                    break;
+
+            }
+
+        } while (memoirs.goNext() != -1);
+    }
+
     public ActionField() throws Exception {
         battleField = new BattleField();
 
         //mem
         writeActionFile = true; //Mock
-        fileName = "result.txt";//Mock
+        if (fileName == null) {
+            fileName = "result.txt";//Mock
+        }
         memoriesInit(fileName);//Mock
 
         mainTank = new T34(this, battleField);
 
-        if(writeActionFile) {
+        if (writeActionFile) {
             mainTank.setWriteActionFile(writeActionFile);
             mainTank.setMemoirs(memoirs);
         }
@@ -197,13 +258,49 @@ public class ActionField extends JPanel {
         frame.setVisible(true);
 
 
-
-
 /*
         frame.getContentPane().add(this);
         frame.pack();
         frame.setVisible(true);
 */
+    }
+
+    public ActionField(String arg) throws Exception {
+        battleField = new BattleField();
+
+        //mem
+        writeActionFile = false; //Mock
+
+        if (arg == null) {
+            fileName = "result.txt";//Mock
+        } else {
+            fileName = arg;
+        }
+
+        agressors = new ArrayList<>();
+        atackers = new ArrayList<>();
+        defenders = new ArrayList<>();
+        players = new ArrayList<>();
+
+        memoriesReadInit(fileName);
+
+        tankBullet = new Bullet();
+
+
+        JFrame frame = new JFrame("BATTLE FIELD, Tanks battles");
+        frame.setLocation(500, 150);
+        //frame.setMinimumSize(new Dimension(BF_WIDTH+15, BF_HEIGHT + 38));
+        frame.setMinimumSize(new Dimension(battleField.getBF_WIDTH(), battleField.getBF_HEIGHT() + 35));
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
+        frame.getContentPane().add(this);
+        frame.pack();
+        frame.setVisible(true);
+        frame.repaint();
+
+        runSavedGame();
+
     }
 
     public void memoriesInit(String str) {
@@ -214,7 +311,40 @@ public class ActionField extends JPanel {
 
     }
 
-    private boolean processInterception(Bullet bullet) throws Exception {
+    public void memoriesReadInit(String str) {
+        memoirs = new Memoirs(str, true);
+        memoirs.readActionFile();
+    }
+
+    public void tankAction(AbstractTank tank, TankAction action) {
+        try {
+            switch (action) {
+                case UP:
+                    tank.turn(actionToDirection(action));
+                    break;
+                case DOWN:
+                    tank.turn(actionToDirection(action));
+                    break;
+                case LEFT:
+                    tank.turn(actionToDirection(action));
+                    break;
+                case RIGHT:
+                    tank.turn(actionToDirection(action));
+                    break;
+                case FIRE:
+                    tank.fire();
+                    break;
+                case MOVE:
+                    tank.move();
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("runSavedfile: " + e);
+        }
+    }
+
+    //Rewrite Interception rules!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private boolean processInterception(AbstractTank tank, Bullet bullet) throws Exception {
        // if (mainTank.getY() < 0 || mainTank.getY() > battleField.getBF_HEIGHT()) return false;
       //  if (mainTank.getX() < 0 || mainTank.getX() > battleField.getBF_WIDTH()) return false;
 
@@ -233,17 +363,17 @@ public class ActionField extends JPanel {
             return true;
         }
 
-        if (checkInterception(aggressor, bullet)) {
-            if (aggressor.stricken()) {
+        if (checkInterception(tank, bullet)) { //aaggressor
+            if (tank.stricken()) {
                 Thread.sleep(RESURECTION);
-                aggressor = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
+                tank = new Tiger(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
                 return true;
             } else {
                 bullet.hit();
                 return false;
             }
         }
-
+/*
         if (checkInterception(mainTank, bullet)) {
             if (mainTank.stricken()) {
                 Thread.sleep(RESURECTION);
@@ -254,6 +384,7 @@ public class ActionField extends JPanel {
                 return false;
             }
         }
+*/
         return false;
     }
 /*
@@ -471,7 +602,7 @@ private boolean isDestructable(int x, int y) {
         repaint();
     }
 
-    public void processFire(Bullet bullet) throws Exception {
+    public void processFire(AbstractTank tank, Bullet bullet) throws Exception {
         int leftBorder = 0;
         int rightBorder = battleField.getDimentionX()*PIXELS_IN_CELL;
         int upBorder = 0;
@@ -480,7 +611,7 @@ private boolean isDestructable(int x, int y) {
         switch (bullet.getDirection()) {
             case UP:
                 //if (mainTank.getY() != upBorder) {
-                while (checkUpBorder(bullet.getY(), upBorder) && !processInterception(bullet)) {
+                while (checkUpBorder(bullet.getY(), upBorder) && !processInterception(tank, bullet)) {
                     bullet.updateY(-1);
                     tankBullet = bullet;
                     repaint();
@@ -493,7 +624,7 @@ private boolean isDestructable(int x, int y) {
             case DOWN:
                 //if (mainTank.getY() != downBorder) {
 
-                while (checkDownBorder(bullet.getY(), downBorder) && !processInterception(bullet)) {
+                while (checkDownBorder(bullet.getY(), downBorder) && !processInterception(tank, bullet)) {
                     bullet.updateY(1);
                     tankBullet = bullet;
                     repaint();
@@ -506,7 +637,7 @@ private boolean isDestructable(int x, int y) {
             case LEFT:
                 //if (mainTank.getX() != leftBorder) {
 
-                while (checkLeftBorder(bullet.getX(), leftBorder) && !processInterception(bullet)) {
+                while (checkLeftBorder(bullet.getX(), leftBorder) && !processInterception(tank, bullet)) {
                     bullet.updateX(-1);
                     tankBullet = bullet;
                     repaint();
@@ -518,7 +649,7 @@ private boolean isDestructable(int x, int y) {
             case RIGHT:
                 //if (mainTank.getX() != rightBorder) {
 
-                while (checkRightBorder(bullet.getX(), rightBorder) && !processInterception(bullet)) {
+                while (checkRightBorder(bullet.getX(), rightBorder) && !processInterception(tank, bullet)) {
                     bullet.updateX(1);
                     tankBullet = bullet;
                     repaint();
@@ -664,9 +795,25 @@ private boolean isDestructable(int x, int y) {
 */
         //draw(g, mainTank);
         //draw(g, aggressor);
-        mainTank.draw(g);
-        aggressor.draw(g);
-        atacker.draw(g);
+        if(mainTank != null) mainTank.draw(g);
+        if(aggressor != null) aggressor.draw(g);
+        if(atacker != null) atacker.draw(g);
+        for (AbstractTank tank: agressors
+             ) {
+            tank.draw(g);
+        }
+        for (AbstractTank tank: atackers
+                ) {
+            tank.draw(g);
+        }
+        for (AbstractTank tank: defenders
+                ) {
+            tank.draw(g);
+        }
+        for (AbstractTank tank: players
+                ) {
+            tank.draw(g);
+        }
 
         //paintBullet(g, tankBullet);
         tankBullet.draw(g);
@@ -805,28 +952,23 @@ private boolean isDestructable(int x, int y) {
 
     private void setFrame(JFrame frame) throws Exception {
         if(tankType.equals("Tiger")) {
-            aggressor = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
-            aggressor.setTankType(TankType.AGRESSOR);
-            atacker = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
-            atacker.setTankType(TankType.ATACKER);
+            agressors.add(new Tiger(this, battleField, battleField.getRandomLocationAggressor(),
+                    Direction.DOWN));
+            agressors.get(0).setTankType(TankType.AGRESSOR);
             if(writeActionFile) {
-                aggressor.setWriteActionFile(writeActionFile);
-                aggressor.setMemoirs(memoirs);
-                atacker.setWriteActionFile(writeActionFile);
-                atacker.setMemoirs(memoirs);
+                agressors.get(0).setWriteActionFile(writeActionFile);
+                agressors.get(0).setMemoirs(memoirs);
             }
 
 
         } else {
-            aggressor = new BT7(this, battleField, battleField.getRandomLocationAggressor(), Direction.DOWN);
-            aggressor.setTankType(TankType.AGRESSOR);
-            atacker = new Tiger(this, battleField, battleField.getRandomLocationAtacker(), Direction.DOWN);
-            atacker.setTankType(TankType.ATACKER);
+            atackers.add(new BT7(this, battleField, battleField.getRandomLocationAtacker(),
+                    Direction.DOWN));
+            atackers.get(0).setTankType(TankType.ATACKER);
             if(writeActionFile) {
-                aggressor.setWriteActionFile(writeActionFile);
-                aggressor.setMemoirs(memoirs);
-                atacker.setWriteActionFile(writeActionFile);
-                atacker.setMemoirs(memoirs);
+                atackers.get(0).setWriteActionFile(writeActionFile);
+                atackers.get(0).setMemoirs(memoirs);
+
             }
         }
 
