@@ -2,9 +2,10 @@ package threads.circles;
 
 import java.awt.*;
 
-public class Circle implements Runnable{
+public class Circle {
     private int speed;
     private Color color;
+    //private Graphics g;
 
     private int x;
     private int y;
@@ -17,15 +18,12 @@ public class Circle implements Runnable{
     public Circle(int speed, Color color) {
         this.speed = speed;
         this.color = color;
-    }
 
-    @Override
-    public void run() {
-        //draw(g);
     }
 
     public void draw(Graphics g) {
-        g.drawOval(x, y, w, h);
+        g.setColor(color);
+        g.fillOval(x, y, w, h);
     }
 
     public int getSpeed() {
@@ -76,5 +74,7 @@ public class Circle implements Runnable{
         this.h = h;
     }
 
-
+//    public void setG(Graphics g) {
+//        this.g = g;
+//    }
 }
