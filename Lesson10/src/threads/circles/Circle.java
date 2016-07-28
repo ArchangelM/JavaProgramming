@@ -2,15 +2,18 @@ package threads.circles;
 
 import java.awt.*;
 
-public class Circle {
+import static threads.circles.MyPanel.DIAMETR;
+
+public class Circle implements Runnable{
     private int speed;
     private Color color;
-    //private Graphics g;
 
     private int x;
     private int y;
     private int w;
     private int h;
+
+    public final static int WIDTH = 700;
 
     public Circle() {
     }
@@ -24,6 +27,33 @@ public class Circle {
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval(x, y, w, h);
+        System.out.println("Draw circle");
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            while (x < WIDTH - 2*DIAMETR) {
+               // System.out.println("circle move " + x);
+                x++;
+                try {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            while (x > DIAMETR) {
+
+                x--;
+                try {
+                    Thread.sleep(speed);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //repaint();
+            }
+        }
     }
 
     public int getSpeed() {
@@ -74,7 +104,4 @@ public class Circle {
         this.h = h;
     }
 
-//    public void setG(Graphics g) {
-//        this.g = g;
-//    }
 }

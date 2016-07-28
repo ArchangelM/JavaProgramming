@@ -9,7 +9,6 @@ public class MyPanel extends JPanel implements Runnable {
     public final static int DIAMETR = 10;
 
     Circle circle;
-    //Graphics g;
 
     public MyPanel() {
     }

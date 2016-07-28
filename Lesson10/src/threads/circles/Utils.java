@@ -53,8 +53,7 @@ public class Utils {
 
 
         circle.setX(diametr/2);
-        //circle.setY(begin + 2*diametr*num);
-        circle.setY(begin);
+        circle.setY(begin + (2*num)*diametr);
         circle.setH(diametr);
         circle.setW(diametr);
     }
