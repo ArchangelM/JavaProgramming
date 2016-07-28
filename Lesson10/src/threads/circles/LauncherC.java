@@ -29,7 +29,7 @@ public class LauncherC extends JPanel{
 //                    }
 //                }
 //            }
-//        });
+//        }).start();
     }
 
     public static void main(String[] args) {

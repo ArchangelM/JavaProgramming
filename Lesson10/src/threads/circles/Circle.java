@@ -27,7 +27,7 @@ public class Circle implements Runnable{
     public void draw(Graphics g) {
         g.setColor(color);
         g.fillOval(x, y, w, h);
-        System.out.println("Draw circle");
+        //System.out.println("Draw circle");
     }
 
     @Override
