@@ -2,7 +2,7 @@ package threads.gate;
 
 import java.awt.*;
 
-public class Gate {
+public class Gate implements Runnable {
     private int x = 400;
     private int y = 150;
 
@@ -16,6 +16,11 @@ public class Gate {
     public Gate() {
         color = Color.RED;
         isOpen = false;
+    }
+
+    @Override
+    public void run() {
+
     }
 
     public int getX() {
