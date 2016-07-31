@@ -44,7 +44,10 @@ public class LauncherGate extends JPanel {
             @Override
             public void run() {
                 try {
-                    shipTurn();
+                    while (true) {
+                        shipTurn();
+                        ship.setX(40);
+                    }
                 } catch(InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -90,7 +93,8 @@ public class LauncherGate extends JPanel {
     }
 
     public void shipTurn() throws InterruptedException {
-        System.out.println("Ship: Move");
+
+        System.out.println("Ship: I like to move it, move it!");
         while (ship.getX() < WIDTH - SHIP_DIMENTION) {
 
             int x = ship.getX();
@@ -118,25 +122,26 @@ public class LauncherGate extends JPanel {
             @Override
             public void run() {
                 try {
-                    synchronized (gate) {
-                        System.out.println("Gate: I`m waiting for you!");
-                        gate.wait();
-                    }
+                    while(true) {
+                        synchronized (gate) {
+                            System.out.println("Gate: I`m waiting for you!");
+                            gate.wait();
+                        }
 
-                    while(!gate.isOpen()) {
-                        System.out.println("Gate: I`m opening");
+                        while(!gate.isOpen()) {
+                            System.out.println("Gate: I`m opening");
+                            gateAnimation();
+                        }
+
+                        synchronized (ship) {
+                            System.out.println("Gate: Ship, coming in please.");
+                            ship.notify();
+                        }
+
+                        Thread.sleep(gate.getWaitTime());
+
                         gateAnimation();
                     }
-
-                    synchronized (ship) {
-                        System.out.println("Gate: Ship, coming in please.");
-                        ship.notify();
-                    }
-
-                    Thread.sleep(gate.getWaitTime());
-
-                    gateAnimation();
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                   }

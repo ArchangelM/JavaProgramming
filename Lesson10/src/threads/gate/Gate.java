@@ -3,8 +3,8 @@ package threads.gate;
 import java.awt.*;
 
 public class Gate  {
-    private int x = 400;
-    private int y = 150;
+    private int x;
+    private int y;
 
     private int deltaX = 60;
 
@@ -20,6 +20,10 @@ public class Gate  {
     public Gate() {
         color = Color.RED;
         isOpen = false;
+
+        x = 400;
+        y = 150;
+
         speed = 5;
         waitTime = 150;
     }

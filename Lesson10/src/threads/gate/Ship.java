@@ -3,14 +3,16 @@ package threads.gate;
 import java.awt.*;
 
 public class Ship {
-    private int x = 40;
-    private int y = 170;
+    private int x;
+    private int y;
 
     private int speed;
     private Color color;
 
     public Ship() {
         color = Color.GREEN;
+        x = 40;
+        y = 170;
         speed = 4;
 
     }
