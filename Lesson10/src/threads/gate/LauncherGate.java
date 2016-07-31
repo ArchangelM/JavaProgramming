@@ -17,7 +17,7 @@ public class LauncherGate extends JPanel {
     private Gate gate;
 
     public static void main(String[] args) throws Exception {
-        LauncherGate lg = new LauncherGate();
+        new LauncherGate();
     }
 
     public LauncherGate() {
@@ -67,7 +67,7 @@ public class LauncherGate extends JPanel {
     }
 
 
-    public void gateAnimation()  throws InterruptedException {
+    private void gateAnimation()  throws InterruptedException {
 
         if (!gate.isOpen()) {
             System.out.println("Gate: opening");
