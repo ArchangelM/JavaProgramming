@@ -12,6 +12,7 @@ public class Gate  {
     private final int yBottom = 150;
 
     private int speed;
+    private int waitTime;
     private Color color;
 
     private boolean isOpen;
@@ -20,6 +21,7 @@ public class Gate  {
         color = Color.RED;
         isOpen = false;
         speed = 5;
+        waitTime = 150;
     }
 
     public int getX() {
@@ -48,6 +50,10 @@ public class Gate  {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
     }
 
     public boolean isOpen() {

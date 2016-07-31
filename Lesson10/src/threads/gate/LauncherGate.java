@@ -133,7 +133,7 @@ public class LauncherGate extends JPanel {
                         ship.notify();
                     }
 
-                    Thread.sleep(150);
+                    Thread.sleep(gate.getWaitTime());
 
                     gateAnimation();
 
