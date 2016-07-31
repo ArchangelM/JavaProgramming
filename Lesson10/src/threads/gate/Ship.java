@@ -2,7 +2,7 @@ package threads.gate;
 
 import java.awt.*;
 
-public class Ship implements Runnable {
+public class Ship {
     private int x = 40;
     private int y = 170;
 
@@ -11,11 +11,7 @@ public class Ship implements Runnable {
 
     public Ship() {
         color = Color.GREEN;
-
-    }
-
-    @Override
-    public void run() {
+        speed = 4;
 
     }
 
@@ -33,6 +29,10 @@ public class Ship implements Runnable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public void draw(Graphics g) {

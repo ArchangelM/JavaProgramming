@@ -2,11 +2,14 @@ package threads.gate;
 
 import java.awt.*;
 
-public class Gate implements Runnable {
+public class Gate  {
     private int x = 400;
     private int y = 150;
 
+    private int deltaX = 60;
+
     private final int yTop = 50;
+    private final int yBottom = 150;
 
     private int speed;
     private Color color;
@@ -16,11 +19,7 @@ public class Gate implements Runnable {
     public Gate() {
         color = Color.RED;
         isOpen = false;
-    }
-
-    @Override
-    public void run() {
-
+        speed = 5;
     }
 
     public int getX() {
@@ -37,6 +36,18 @@ public class Gate implements Runnable {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public int getDeltaX() {
+        return deltaX;
+    }
+
+    public int getyBottom() {
+        return yBottom;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
     public boolean isOpen() {
